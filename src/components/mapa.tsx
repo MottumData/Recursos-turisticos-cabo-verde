@@ -1,7 +1,7 @@
 'use client';
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { LatLngExpression } from 'leaflet';
+import { LatLngExpression, point } from 'leaflet';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import pt from '../../public/locale/pt';
@@ -10,6 +10,8 @@ import es from '../../public/locale/es';
 import CategoryFilter from './filter';
 import { useState } from 'react';
 import Legend from './legend';
+import Expander from './expander';
+import { TouristResource } from './loadCsv';
 
 const locales = { pt, en, es };
 
@@ -17,18 +19,30 @@ type Language = 'pt' | 'en' | 'es';
 
 interface MapProps {
   center: LatLngExpression;
-  points: Array<{ lat: number; lng: number; title: string; description: string, cara: string }>;
+  points: TouristResource[];
   language: Language;
 }
 
-function getIcon(cara: string, language: Language) {
+function getIcon(resource: TouristResource, language: Language) {
   const locale = locales[language];
+  
+  // Verificar si resource y resource.cara están definidos
+  if (!resource || !resource.cara) {
+    console.log("Resource o propiedad 'cara' indefinida:", resource);
+    return new Icon({
+      iconUrl: '/icons/imagen-por-defecto.png',
+      iconSize: [32, 32],
+    });
+  }
+
+  console.log("Resource:", resource);
+  const cleanCara = resource.cara.trim();
   let iconUrl = '';
 
   console.log("Locale keys:", Object.values(locale));
-  console.log("Trimmed cara:", cara.trim());
+  console.log("Trimmed cara:", cleanCara);
 
-  switch (cara.trim()) {
+  switch (cleanCara) {
     case locale['Cara_Beaches_and_Coastal_Locations']:
       iconUrl = '/icons/playa.png'; // Icono de playa
       break;
@@ -90,7 +104,14 @@ function getIcon(cara: string, language: Language) {
 
 export default function Map({ center, points, language }: MapProps) {
   const [filteredCategories, setFilteredCategories] = useState<string[]>([]);
-  const [showLegend, setShowLegend] = useState<boolean>(false); 
+  const [showLegend, setShowLegend] = useState<boolean>(false);
+  const [expanderVisible, setExpanderVisible] = useState(false);
+  const [selectedResource, setSelectedResource] = useState<TouristResource | null>(null);
+    
+  const handleMarkerClick = (point: TouristResource) => {
+    setSelectedResource(point);
+    setExpanderVisible(true);
+  };
 
   const filteredPoints = points.filter(point => 
     filteredCategories.length === 0 || filteredCategories.includes(point.cara)
@@ -141,14 +162,21 @@ export default function Map({ center, points, language }: MapProps) {
       >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {filteredPoints.map((point, idx) => (
-        <Marker key={idx} position={[point.lat, point.lng]} icon={getIcon(point.cara, language)}>
-          <Popup>
+        <Marker key={idx} position={[point.lat, point.lng]} icon={getIcon(point, language)} eventHandlers={{ click: () => handleMarkerClick(point) }}>
+          {/*<Popup>
             <h3>{point.title}</h3>
             <p>{point.description}</p>
-          </Popup>
+          </Popup>*/}
         </Marker>
       ))}
     </MapContainer>
+    <Expander
+        visible={expanderVisible}
+        resource={selectedResource ?? undefined}
+        onClose={() => setExpanderVisible(false)}
+        language={language}
+        locale={locale}
+      />
     </div>
   );
 }

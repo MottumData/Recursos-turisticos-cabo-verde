@@ -6,15 +6,13 @@ import es from '../../public/locale/es';
 export interface TouristResource {
   lat: number;
   lng: number;
-  title: string;
-  description: string;
-  cara: string;
+  [key: string]: any; // Allows any other CSV fields
 }
 
 const locales = { pt, en, es };
 
 type Language = 'pt' | 'en' | 'es';
-const language: Language = 'pt'; // Set default language or get it from a context or prop
+const language: Language = 'pt';
 
 export const loadCSV = (csvFilePath: string, language: Language): Promise<TouristResource[]> => {
   const locale = locales[language];
@@ -23,15 +21,25 @@ export const loadCSV = (csvFilePath: string, language: Language): Promise<Touris
       download: true,
       header: true,
       complete: (results) => {
-        const data = results.data.map((row: any) => {
+        const data: TouristResource[] = results.data.map((row: any) => {
           const [lat, lng] = row['Lat-Long'].split(',').map((coord: string) => parseFloat(coord.trim()));
-          return {
+          const resource: TouristResource = {
             lat,
             lng,
-            title: row[locale['Nome do recurso turístico']],
-            description: row[locale['Descrição do produto']],
-            cara: row['Cara']
           };
+          // Copiar todas las demás columnas
+          for (const [key, value] of Object.entries(row)) {
+            if (key !== 'Lat-Long') {
+              if (key === 'Cara') {
+                resource['cara'] = value; // Mapeo explícito de 'Cara' a 'cara'
+              } else {
+                resource[key.toLowerCase()] = value; // Normalizar otras claves si es necesario
+              }
+            }
+          }
+          console.log("Parsed resource:", resource);
+          console.log("resource con cara:", resource.cara) // Para depuración
+          return resource;
         });
         resolve(data);
       },
