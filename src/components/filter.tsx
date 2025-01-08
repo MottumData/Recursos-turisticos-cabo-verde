@@ -53,33 +53,32 @@ export default function CategoryFilter({ language, onFilterChange }: CategoryFil
   };
 
   return (
-    <div ref={filterRef} className="relative">
-      <button 
-        onClick={toggleFilter} 
-        className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-gray-200 transition-colors duration-200"
-      >
-        <FontAwesomeIcon icon={faFilter} className="text-gray-800" />
-      </button>
-      {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 sm:w-56 md:w-64 lg:w-72 bg-white rounded-lg shadow-lg border border-gray-200 z-50 max-h-[40vh] overflow-y-auto">
-          {Object.keys(locale)
-            .filter(key => key.startsWith('Cara_'))
-            .map(category => (
-              <label 
-                key={category} 
-                className="flex items-center space-x-3 px-3 sm:px-4 py-2 hover:bg-gray-50 cursor-pointer"
-              >
-                <input
-                  type="checkbox"
-                  checked={selectedCategories.includes(locale[category])}
-                  onChange={() => toggleCategory(locale[category])}
-                  className="w-4 h-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500"
-                />
-                <span className="text-gray-800 font-medium text-sm sm:text-base">{locale[category]}</span>
-              </label>
-            ))}
-        </div>
-      )}
+    <div className="space-y-2">
+      {Object.keys(locale)
+        .filter(key => key.startsWith('Cara_'))
+        .map(category => (
+          <label 
+            key={category} 
+            className="flex items-center p-2 rounded-lg hover:bg-white/60 
+                     transition-colors duration-200 cursor-pointer group"
+          >
+            <div className="relative flex items-center">
+              <input
+                type="checkbox"
+                checked={selectedCategories.includes(locale[category])}
+                onChange={() => toggleCategory(locale[category])}
+                className="w-5 h-5 border-2 border-gray-300 rounded-md
+                         checked:bg-blue-500 checked:border-blue-500
+                         focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                         transition-colors duration-200"
+              />
+              <span className="ml-3 text-sm text-gray-700 font-medium
+                           group-hover:text-gray-900 transition-colors duration-200">
+                {locale[category]}
+              </span>
+            </div>
+          </label>
+        ))}
     </div>
-);
+  );
 }

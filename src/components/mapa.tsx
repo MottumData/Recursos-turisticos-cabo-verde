@@ -1,17 +1,21 @@
 'use client';
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { LatLngExpression, point } from 'leaflet';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'leaflet-routing-machine';
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+import L from 'leaflet';
 import pt from '../../public/locale/pt';
 import en from '../../public/locale/en';
 import es from '../../public/locale/es';
 import CategoryFilter from './filter';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Legend from './legend';
 import Expander from './expander';
-import { TouristResource } from './loadCsv';
+import { TouristResource, Route } from './loadCsv';
+import Sidebar from './sidebar';
 
 const locales = { pt, en, es };
 
@@ -20,7 +24,81 @@ type Language = 'pt' | 'en' | 'es';
 interface MapProps {
   center: LatLngExpression;
   points: TouristResource[];
+  routes: Route[];
+  selectedRoute: Route | null;
+  setSelectedRoute: (route: Route | null) => void;
   language: Language;
+}
+
+function RoutingControl({ selectedRoute }: { selectedRoute: Route | null }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (selectedRoute) {
+      // Acceder a la propiedad con espacios usando notación de corchetes
+      const recursosGeoreferenciados = selectedRoute["recursos georeferenciados"];
+      console.log('Map component loaded:', recursosGeoreferenciados);
+
+      if (!recursosGeoreferenciados) {
+        console.error('No se encontró "recursos georeferenciados" en selectedRoute.');
+        return;
+      }
+
+      // Extraer coordenadas del string
+      const lines = recursosGeoreferenciados.split('\n');
+      const waypoints = lines.map((line: string) => {
+        // Utilizar regex para extraer las coordenadas al final de cada línea
+        const match = line.match(/(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
+        if (match) {
+          const lat = parseFloat(match[1]);
+          const lng = parseFloat(match[2]);
+          return L.latLng(lat, lng);
+        } else {
+          console.warn('No se encontraron coordenadas en la línea:', line);
+          return null;
+        }
+      }).filter((coord: L.LatLng | null): coord is L.LatLng => coord !== null);
+
+      if (waypoints.length < 2) {
+        console.error('Se requieren al menos dos waypoints para calcular una ruta.');
+        return;
+      }
+
+      console.log('Waypoints:', waypoints);
+
+      // Definir el router usando OSRM con HTTPS
+      const router = L.Routing.osrmv1({
+        serviceUrl: 'https://router.project-osrm.org/route/v1',
+      });
+
+      const routingControl = L.Routing.control({
+        router: router,
+        waypoints: waypoints,
+        lineOptions: {
+          styles: [{ color: 'blue', weight: 4 }],
+          extendToWaypoints: true,
+          missingRouteTolerance: 10,
+        },
+        show: false, // Ocultar la interfaz de enrutamiento
+        createMarker: () => null, // No crear marcadores en los waypoints
+      } as any)
+        .on('routesfound', (e) => {
+          console.log('Ruta encontrada:', e.routes);
+        })
+        .on('routingerror', (e) => {
+          console.error('Error de enrutamiento completo:', e);
+        })
+        .addTo(map);
+
+        return () => {
+          if (routingControl) {
+            map.removeControl(routingControl);
+          }
+        }
+    }
+  }, [map, selectedRoute]);
+
+  return null;
 }
 
 function getIcon(resource: TouristResource, language: Language) {
@@ -28,19 +106,15 @@ function getIcon(resource: TouristResource, language: Language) {
   
   // Verificar si resource y resource.cara están definidos
   if (!resource || !resource.cara) {
-    console.log("Resource o propiedad 'cara' indefinida:", resource);
     return new Icon({
       iconUrl: '/icons/imagen-por-defecto.png',
       iconSize: [32, 32],
     });
   }
 
-  console.log("Resource:", resource);
   const cleanCara = resource.cara.trim();
   let iconUrl = '';
 
-  console.log("Locale keys:", Object.values(locale));
-  console.log("Trimmed cara:", cleanCara);
 
   switch (cleanCara) {
     case locale['Cara_Beaches_and_Coastal_Locations']:
@@ -102,12 +176,13 @@ function getIcon(resource: TouristResource, language: Language) {
   });
 }
 
-export default function Map({ center, points, language }: MapProps) {
+export default function Map({ center, points, routes, selectedRoute,setSelectedRoute, language }: MapProps) {
   const [filteredCategories, setFilteredCategories] = useState<string[]>([]);
   const [showLegend, setShowLegend] = useState<boolean>(false);
   const [expanderVisible, setExpanderVisible] = useState(false);
   const [selectedResource, setSelectedResource] = useState<TouristResource | null>(null);
-    
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
   const handleMarkerClick = (point: TouristResource) => {
     setSelectedResource(point);
     setExpanderVisible(true);
@@ -121,12 +196,6 @@ export default function Map({ center, points, language }: MapProps) {
 
   return (
     <div className="relative w-full h-full">
-      <div className="absolute top-20 right-4 z-[1000]">
-        <CategoryFilter 
-          language={language}
-          onFilterChange={setFilteredCategories}
-        />
-      </div>
       {/* Legend button positioned bottom-right */}
       <div className="absolute bottom-6 right-4 z-[1000]">
         <button
@@ -142,6 +211,23 @@ export default function Map({ center, points, language }: MapProps) {
             className="w-6 h-6 text-gray-600"
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+      <div className="absolute top-6 left-6 z-[1000]">
+        <button
+          onClick={() => setSidebarVisible(true)}
+          className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg"
+          title="Open Sidebar"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            className="w-6 h-6 text-gray-600"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12h18M3 6h18M3 18h18" />
           </svg>
         </button>
       </div>
@@ -169,6 +255,7 @@ export default function Map({ center, points, language }: MapProps) {
           </Popup>*/}
         </Marker>
       ))}
+       {selectedRoute && <RoutingControl selectedRoute={selectedRoute} />}
     </MapContainer>
     <Expander
         visible={expanderVisible}
@@ -176,6 +263,15 @@ export default function Map({ center, points, language }: MapProps) {
         onClose={() => setExpanderVisible(false)}
         language={language}
         locale={locale}
+      />
+    <Sidebar
+        visible={sidebarVisible}
+        onClose={() => setSidebarVisible(false)}
+        language={language}
+        setFilteredCategories={setFilteredCategories}
+        content={<div>Your content here</div>}
+        locale={locale}
+        onRouteSelect={setSelectedRoute}
       />
     </div>
   );
