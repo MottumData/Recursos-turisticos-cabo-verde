@@ -1,8 +1,9 @@
 'use client';
 
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import { LatLngExpression, point } from 'leaflet';
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
+import { LatLngExpression } from 'leaflet';
 import ExpanderRutas from './expander_rutas';
+import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import L, { LatLng } from 'leaflet';
 import { Polyline } from 'react-leaflet';
@@ -83,37 +84,35 @@ function RoutingControl({ selectedRoute }: { selectedRoute: Route | null }) {
 
       console.log('Waypoints:', waypoints);
 
-      const fetchRoute = async () => {
-        try {
-          const response = await fetch('https://api.openrouteservice.org/v2/directions/driving-car/geojson', {
-            method: 'POST',
-            headers: {
-              'Authorization': '5b3ce3597851110001cf624806d373a127de42c6ac73f64c01f3d2a1',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              coordinates: waypoints
-            })
-          });
+      // Definir el router usando OSRM con HTTPS
+      const router = L.Routing.osrmv1({
+        serviceUrl: 'https://router.project-osrm.org/route/v1',
+      });
 
-          if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
+      const routingControl = L.Routing.control({
+        router: router,
+        waypoints: waypoints,
+        lineOptions: {
+          styles: [{ color: 'blue', weight: 4 }],
+          extendToWaypoints: true,
+          missingRouteTolerance: 10,
+        },
+        show: false, // Ocultar la interfaz de enrutamiento
+        createMarker: () => null, // No crear marcadores en los waypoints
+      } as any)
+        .on('routesfound', (e) => {
+          console.log('Ruta encontrada:', e.routes);
+        })
+        .on('routingerror', (e) => {
+          console.error('Error de enrutamiento completo:', e);
+        })
+        .addTo(map);
+
+        return () => {
+          if (routingControl) {
+            map.removeControl(routingControl);
           }
-
-          const data = await response.json();
-          const coords = data.features[0].geometry.coordinates.map((coord: [number, number]) => [coord[1], coord[0]] as [number, number]);
-          setRouteCoords(coords);
-
-          // Opcional: Ajustar la vista del mapa para la ruta
-          const bounds = L.latLngBounds(coords);
-          map.fitBounds(bounds);
-
-        } catch (err) {
-          console.error('Error al obtener la ruta:', err);
         }
-      };
-
-      fetchRoute();
     }
   }, [map, selectedRoute]);
 
@@ -194,7 +193,7 @@ function getIcon(resource: TouristResource, language: Language) {
   }
 }
 
-export default function Map({ center, points, routes, selectedRoute,setSelectedRoute, language }: MapProps) {
+export default function Map({ center, points, selectedRoute,setSelectedRoute, language }: MapProps) {
   const [filteredCategories, setFilteredCategories] = useState<string[]>([]);
   const [showLegend, setShowLegend] = useState<boolean>(false);
   const [expanderVisible, setExpanderVisible] = useState(false);
@@ -276,10 +275,6 @@ export default function Map({ center, points, routes, selectedRoute,setSelectedR
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {filteredPoints.map((point, idx) => (
         <Marker key={idx} position={[point.lat, point.lng]} icon={getIcon(point, language)} eventHandlers={{ click: () => handleMarkerClick(point) }}>
-          {/*<Popup>
-            <h3>{point.title}</h3>
-            <p>{point.description}</p>
-          </Popup>*/}
         </Marker>
       ))}
        {selectedRoute && <RoutingControl selectedRoute={selectedRoute} />}

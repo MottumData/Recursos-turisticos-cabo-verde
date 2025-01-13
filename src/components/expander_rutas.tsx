@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FaMapMarkerAlt, FaFilePdf } from 'react-icons/fa';
+import React, { useState, useRef } from 'react';
+import {FaFilePdf } from 'react-icons/fa';
 
 interface TouristResource {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 

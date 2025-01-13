@@ -2,8 +2,6 @@ import { useState } from 'react';
 import pt from '../../public/locale/pt';
 import en from '../../public/locale/en';
 import es from '../../public/locale/es';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef } from 'react';
 
 interface LocaleType {
