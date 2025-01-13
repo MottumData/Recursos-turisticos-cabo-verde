@@ -130,7 +130,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
       {/* Header */}
       <div className="sticky top-0 bg-white/70 backdrop-blur-sm border-b border-gray-200 rounded-t-3xl">
         <div className="flex justify-center items-center p-6 relative">
-          <h2 className="text-4xl font-bold text-center px-6 py-4
+          <h2 className="text-xl sm:text-4xl font-bold text-center px-6 py-4
                       bg-gradient-to-r from-gray-800 to-gray-600 
                       bg-clip-text text-transparent">
             {capitalizeWords(resource[locale['nome do recurso turístico']])}

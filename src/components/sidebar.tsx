@@ -55,6 +55,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, setFilteredCategori
     onClose();
   };
 
+
   return (
     <div
       ref={sidebarRef}

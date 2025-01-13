@@ -3,10 +3,10 @@
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import { LatLngExpression } from 'leaflet';
 import ExpanderRutas from './expander_rutas';
+import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import 'leaflet-routing-machine';
-import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+import L, { LatLng } from 'leaflet';
+import { Polyline } from 'react-leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
 import {
   FaUmbrellaBeach,
@@ -36,6 +36,7 @@ import Expander from './expander';
 import { TouristResource, Route } from './loadCsv';
 import Sidebar from './sidebar';
 
+const Openrouteservice = require("openrouteservice-js");
 const locales = { pt, en, es };
 
 type Language = 'pt' | 'en' | 'es';
@@ -51,10 +52,10 @@ interface MapProps {
 
 function RoutingControl({ selectedRoute }: { selectedRoute: Route | null }) {
   const map = useMap();
+  const [routeCoords, setRouteCoords] = useState<[number, number][]>([]);
 
   useEffect(() => {
     if (selectedRoute) {
-      // Acceder a la propiedad con espacios usando notación de corchetes
       const recursosGeoreferenciados = selectedRoute["recursos georeferenciados"];
       console.log('Map component loaded:', recursosGeoreferenciados);
 
@@ -63,20 +64,18 @@ function RoutingControl({ selectedRoute }: { selectedRoute: Route | null }) {
         return;
       }
 
-      // Extraer coordenadas del string
       const lines = recursosGeoreferenciados.split('\n');
       const waypoints = lines.map((line: string) => {
-        // Utilizar regex para extraer las coordenadas al final de cada línea
         const match = line.match(/(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
         if (match) {
           const lat = parseFloat(match[1]);
           const lng = parseFloat(match[2]);
-          return L.latLng(lat, lng);
+          return [lng, lat];
         } else {
           console.warn('No se encontraron coordenadas en la línea:', line);
           return null;
         }
-      }).filter((coord: L.LatLng | null): coord is L.LatLng => coord !== null);
+      }).filter((coord: [number, number] | null): coord is [number, number] => coord !== null);
 
       if (waypoints.length < 2) {
         console.error('Se requieren al menos dos waypoints para calcular una ruta.');
@@ -99,9 +98,7 @@ function RoutingControl({ selectedRoute }: { selectedRoute: Route | null }) {
           missingRouteTolerance: 10,
         },
         show: false, // Ocultar la interfaz de enrutamiento
-        
         createMarker: () => null, // No crear marcadores en los waypoints
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any)
         .on('routesfound', (e) => {
           console.log('Ruta encontrada:', e.routes);
@@ -119,8 +116,15 @@ function RoutingControl({ selectedRoute }: { selectedRoute: Route | null }) {
     }
   }, [map, selectedRoute]);
 
-  return null;
+  return (
+    <>
+      {routeCoords.length > 0 && (
+        <Polyline positions={routeCoords} pathOptions={{ color: 'blue', weight: 4 }} />
+      )}
+    </>
+  );
 }
+
 
 function createColoredDivIcon(iconElement: JSX.Element, bgColor: string) {
   const size = 30; // Outer circle size
@@ -210,6 +214,14 @@ export default function Map({ center, points, selectedRoute,setSelectedRoute, la
     setExpanderVisible(true);
   };
 
+  const handleSidebarToggle = () => {
+    setSidebarVisible(true);
+    setExpanderVisible(false);
+    setRouteExpanderVisible(false);
+    // Close point expander
+    // Don't close route expander here
+  };
+
   const filteredPoints = points.filter(point => 
     filteredCategories.length === 0 || filteredCategories.includes(point.cara)
   );
@@ -230,7 +242,7 @@ export default function Map({ center, points, selectedRoute,setSelectedRoute, la
       </div>
       <div className="absolute top-6 left-6 z-[1000]">
         <button
-          onClick={() => setSidebarVisible(true)}
+          onClick={handleSidebarToggle}
           className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg"
           title="Open Sidebar"
         >
