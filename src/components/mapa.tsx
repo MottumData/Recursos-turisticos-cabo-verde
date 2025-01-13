@@ -2,16 +2,37 @@
 
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { LatLngExpression, point } from 'leaflet';
+import ExpanderRutas from './expander_rutas';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import L, { LatLng } from 'leaflet';
 import 'leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
-import L from 'leaflet';
+import { renderToStaticMarkup } from 'react-dom/server';
+import {
+  FaUmbrellaBeach,
+  FaUniversity,
+  FaLandmark,
+  FaPalette,
+  FaWrench,
+  FaPaintBrush,
+  FaPrayingHands,
+  FaSeedling,
+  FaBinoculars,
+  FaUsers,
+  FaGuitar,
+  FaTractor,
+  FaMountain,
+  FaGem,
+  FaMonument,
+  FaLayerGroup
+} from 'react-icons/fa';
+
 import pt from '../../public/locale/pt';
 import en from '../../public/locale/en';
 import es from '../../public/locale/es';
 import CategoryFilter from './filter';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, JSX } from 'react';
 import Legend from './legend';
 import Expander from './expander';
 import { TouristResource, Route } from './loadCsv';
@@ -101,79 +122,71 @@ function RoutingControl({ selectedRoute }: { selectedRoute: Route | null }) {
   return null;
 }
 
+function createColoredDivIcon(iconElement: JSX.Element, bgColor: string) {
+  const size = 30; // Outer circle size
+  const iconScale = 0.8; // Scale factor for inner icon
+  
+  return L.divIcon({
+    html: renderToStaticMarkup(
+      <div
+        style={{
+          backgroundColor: bgColor,
+          width: `${size}px`,
+          height: `${size}px`,
+          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div style={{ transform: `scale(${iconScale})` }}>
+          {iconElement}
+        </div>
+      </div>
+    ),
+    className: '',
+    iconSize: [size, size],
+  });
+}
 function getIcon(resource: TouristResource, language: Language) {
   const locale = locales[language];
-  
-  // Verificar si resource y resource.cara están definidos
   if (!resource || !resource.cara) {
-    return new Icon({
-      iconUrl: '/icons/imagen-por-defecto.png',
-      iconSize: [32, 32],
-    });
+    return createColoredDivIcon(<FaLandmark size={24} color="#fff" />, '#888');
   }
 
   const cleanCara = resource.cara.trim();
-  let iconUrl = '';
-
-
   switch (cleanCara) {
     case locale['Cara_Beaches_and_Coastal_Locations']:
-      iconUrl = '/icons/playa.png'; // Icono de playa
-      break;
+      return createColoredDivIcon(<FaUmbrellaBeach size={24} color="#fff" />, '#F4D03F'); // Ocean blue
     case locale['Cara_Archaeological Legacy']:
-      iconUrl = '/icons/arqueologia_1.png'; // Icono de ruinas
-      break;
+      return createColoredDivIcon(<FaMonument size={24} color="#fff" />, '#d2b48c'); // Sand/stone
     case locale['Cara_Folclore Materials']:
-      iconUrl = '/icons/arqueologia.png'; // Icono de edificio
-      break;
+      return createColoredDivIcon(<FaGuitar size={24} color="#fff" />, '#cd5c5c'); // Traditional red
     case locale['Cara_Representative Works of Art']:
-      iconUrl = '/icons/arte.png'; // Icono de arte
-      break;
+      return createColoredDivIcon(<FaPalette size={24} color="#fff" />, '#9370db'); // Artistic purple
     case locale['Cara_Engineering Works']:
-      iconUrl = '/icons/ingenieria.png'; // Icono de ingeniería
-      break;
+      return createColoredDivIcon(<FaWrench size={24} color="#fff" />, '#DC143C'); // Steel blue
     case locale['Cara_Museums and Exhibition Halls']:
-      iconUrl = '/icons/museo-de-arte.png'; // Icono de museo
-      break;
+      return createColoredDivIcon(<FaPaintBrush size={24} color="#fff" />, '#800020'); // Burgundy
     case locale['Cara_Spiritual Folklore']:
-      iconUrl = '/icons/espiritual.png'; // Icono espiritual
-      break;
+      return createColoredDivIcon(<FaPrayingHands size={24} color="#fff" />, '#4b0082'); // Deep indigo
     case locale['Cara_Vales']:
-      iconUrl = '/icons/pradera.png'; // Icono de valle
-      break;
+      return createColoredDivIcon(<FaSeedling size={24} color="#fff" />, '#90ee90'); // Light green
     case locale['Cara_Mountains and Mountains']:
-      iconUrl = '/icons/montana.png'; // Icono de montaña
-      break;
+      return createColoredDivIcon(<FaMountain size={24} color="#fff" />, '#708090'); // Slate gray
     case locale['Cara_Flora and Fauna Observation Sites']:
-      iconUrl = '/icons/binoculares.png'; // Icono de naturaleza
-      break;
+      return createColoredDivIcon(<FaBinoculars size={24} color="#fff" />, '#228b22'); // Forest green
     case locale['Cara_Geological and Paleontological Formations']:
-      iconUrl = '/icons/geologia.png'; // Icono de geología
-      break;
+      return createColoredDivIcon(<FaGem size={24} color="#fff" />, '#8b4513'); // Saddle brown
     case locale['Cara_Ethnic Groups']:
-      iconUrl = '/icons/gestion-de-equipos.png'; // Icono de personas
-      break;
+      return createColoredDivIcon(<FaUsers size={24} color="#fff" />, '#e27d60'); // Terracotta
     case locale['Cara_Human Settlements and Living Architecture']:
-      iconUrl = '/icons/clasicos.png'; // Icono de casa
-      break;
+      return createColoredDivIcon(<FaUniversity size={24} color="#fff" />, '#b22222'); // Brick red
     case locale['Cara_Agricultural Exploration']:
-      iconUrl = '/icons/segador.png'; // Icono de agricultura
-      break;
+      return createColoredDivIcon(<FaTractor size={24} color="#fff" />, '#daa520'); // Golden wheat
     default:
-      iconUrl = '/icons/imagen-por-defecto.png'; // Icono por defecto
+      return createColoredDivIcon(<FaLandmark size={24} color="#fff" />, '#778899'); // Light slate gray
   }
-
-  // Verificar si el archivo de icono existe
-  const img = new Image();
-  img.src = iconUrl;
-  img.onerror = () => {
-    console.error(`Icon not found: ${iconUrl}`);
-  };
-
-  return new Icon({
-    iconUrl,
-    iconSize: [32, 32]
-  });
 }
 
 export default function Map({ center, points, routes, selectedRoute,setSelectedRoute, language }: MapProps) {
@@ -182,6 +195,15 @@ export default function Map({ center, points, routes, selectedRoute,setSelectedR
   const [expanderVisible, setExpanderVisible] = useState(false);
   const [selectedResource, setSelectedResource] = useState<TouristResource | null>(null);
   const [sidebarVisible, setSidebarVisible] = useState(false);
+  const [routeExpanderVisible, setRouteExpanderVisible] = useState(false);
+  const [selectedRouteResource, setSelectedRouteResource] = useState<Route | null>(null);
+
+  const handleRouteSelect = (route: Route | null) => {
+    console.log('Ruta seleccionada en Map:', route);
+    setSelectedRoute(route);
+    setSelectedRouteResource(route);
+    setRouteExpanderVisible(!!route);
+  };
 
   const handleMarkerClick = (point: TouristResource) => {
     setSelectedResource(point);
@@ -203,15 +225,7 @@ export default function Map({ center, points, routes, selectedRoute,setSelectedR
           className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg"
           title={locale['Show_Legend'] || 'Show Legend'}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            className="w-6 h-6 text-gray-600"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+          <FaLayerGroup className="w-6 h-6 text-gray-600" />
         </button>
       </div>
       <div className="absolute top-6 left-6 z-[1000]">
@@ -264,6 +278,15 @@ export default function Map({ center, points, routes, selectedRoute,setSelectedR
         language={language}
         locale={locale}
       />
+
+    <ExpanderRutas
+        visible={routeExpanderVisible}
+        resource={selectedRouteResource ?? undefined}
+        onClose={() => setRouteExpanderVisible(false)}
+        language={language}
+        locale={locale}
+      />
+
     <Sidebar
         visible={sidebarVisible}
         onClose={() => setSidebarVisible(false)}
@@ -271,7 +294,7 @@ export default function Map({ center, points, routes, selectedRoute,setSelectedR
         setFilteredCategories={setFilteredCategories}
         content={<div>Your content here</div>}
         locale={locale}
-        onRouteSelect={setSelectedRoute}
+        onRouteSelect={handleRouteSelect}
       />
     </div>
   );

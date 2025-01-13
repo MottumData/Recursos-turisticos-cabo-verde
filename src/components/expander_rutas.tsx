@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { FaMapMarkerAlt, FaFilePdf } from 'react-icons/fa';
 
 interface TouristResource {
   [key: string]: any;
 }
 
-interface ExpanderProps {
+interface ExpanderRutasProps {
   visible: boolean;
   onClose: () => void;
   resource?: TouristResource;
@@ -14,19 +15,21 @@ interface ExpanderProps {
 
 const capitalizeWords = (str: string) => {
   if (!str) return '';
-  return str.toString().split(' ').map(word => 
-    word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-  ).join(' ');
+  return str
+    .toString()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
 };
 
-export default function Expander({ visible, onClose, resource, locale }: ExpanderProps) {
+export default function ExpanderRutas({ visible, onClose, resource, locale }: ExpanderRutasProps) {
   const [activeImage, setActiveImage] = useState(0);
   const expanderRef = useRef<HTMLDivElement>(null);
 
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
   const [isAccessServicesOpen, setIsAccessServicesOpen] = useState(false);
 
-  const [expanderHeight, setExpanderHeight] = useState('90vh');
+  const [expanderHeight, setExpanderHeight] = useState('20vh');
   const startYRef = useRef<number | null>(null);
   const startHeightRef = useRef<number | null>(null);
 
@@ -55,66 +58,44 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
     startYRef.current = null;
     startHeightRef.current = null;
   };
-  
-  useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (expanderRef.current && !expanderRef.current.contains(event.target as Node)) {
-          onClose();
-        }
-      };
-  
-      document.addEventListener('mousedown', handleClickOutside);
-      
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }, [onClose]);
 
   if (!resource) return null;
 
   // Image collection
   const images = [
-    resource[locale['feature images']],
-    resource[locale['feature 1 images']],
-    resource[locale['feature 2 images']],
-    resource[locale['feature 3 images']],
-    resource[locale['feature 4 images']],
+    resource[locale['url_img1']],
+    resource[locale['url_img2']],
+    resource[locale['url_img3']],
+    resource[locale['url_img4']],
   ].filter(Boolean);
 
   // Organize data into sections
   const basicInfo = {
-    [locale['nome do recurso turístico']]: resource[locale['nome do recurso turístico']],
-    [locale['island']]: resource[locale['island']],
-    [locale['council']]: resource[locale['council']],
-    [locale['parish']]: resource[locale['parish']],
-    [locale['vila']]: resource[locale['vila']],
-    [locale['neighborhood']]: resource[locale['neighborhood']]
+    [locale['name']]: resource[locale['name']],
+    [locale['municipalities through which it passes']]: resource[locale['municipalities through which it passes']],
+    [locale['duration']]: resource[locale['duration']],
+    [locale['distance']]: resource[locale['distance']],
+    [locale['access mode']]: resource[locale['access mode']],
+    [locale['difficulty']]: resource[locale['difficulty']],
+    [locale['activity']]: resource[locale['activity']],
+    [locale['resources included']]: resource[locale['resources included']],
+    [locale['starting point']]: resource[locale['starting point']],
+    [locale['exit point']]: resource[locale['exit point']],
+    [locale['georeferenced resources']]: resource[locale['georeferenced resources']],
+    [locale['url google maps']]: resource[locale['url google maps']],
+    [locale['latlong route']]: resource[locale['latlong route']],
+    [locale['ruta latlong transformada']]: resource[locale['ruta latlong transformada']],
+    [locale['optional activities:']]: resource[locale['optional activities:']],
+    [locale['recommendations']]: resource[locale['recommendations']],
+    [locale['id']]: resource[locale['id']],
   };
 
-  const classification = {
-      [locale['classification']]: resource[locale['classification']],
-      [locale['cara']]: resource[locale['cara']]
-  };
+  console.log(basicInfo);
 
   const description = {
-      [locale['descrição do produto']]: resource[locale['descrição do produto']],
-      [locale['associated material elements']]: resource[locale['associated material elements']],
-      [locale['associated natural elements']]: resource[locale['associated natural elements']],
-      [locale['uniqueness that sets it apart from others in the region']]: resource[locale['uniqueness that sets it apart from others in the region']]
+    [locale['route description max. 300 words']]: resource[locale['route description max. 300 words']],
   };
 
-  const accessInfo = {
-      [locale['resource access [public or private domain]']]: resource[locale['resource access [public or private domain]']],
-      [locale['means of travel']]: resource[locale['means of travel']],
-      [locale['conservation status']]: resource[locale['conservation status']],
-      [locale['type of income']]: resource[locale['type of income']]
-  };
-
-  const services = {
-      [locale['basic services (within the tourist resort)']]: resource[locale['basic services (within the tourist resort)']],
-      [locale['emergency services (within the tourist resort)']]: resource[locale['emergency services (within the tourist resort)']],
-      [locale['other tourist services (within the tourist resource)']]: resource[locale['other tourist services (within the tourist resource)']]
-  };
   return (
     <div
       ref={expanderRef}
@@ -123,7 +104,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
         transform transition-transform duration-300 rounded-t-3xl z-[10000]
         shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.2)] backdrop-blur-sm
         ${visible ? 'translate-y-0' : 'translate-y-full'}`}
-        style={{ height: expanderHeight, cursor: 'row-resize' }}
+      style={{ height: expanderHeight, cursor: 'row-resize' }}
     >
 
       <div className="flex justify-center items-center p-2">
@@ -132,29 +113,41 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
 
       {/* Header */}
       <div className="sticky top-0 bg-white/70 backdrop-blur-sm border-b border-gray-200 rounded-t-3xl">
-        <div className="flex justify-center items-center p-6 relative">
-          <h2 className="text-4xl font-bold text-center px-6 py-4
-                      bg-gradient-to-r from-gray-800 to-gray-600 
-                      bg-clip-text text-transparent">
-            {capitalizeWords(resource[locale['nome do recurso turístico']])}
-          </h2>
-          <button
-            onClick={onClose}
-            className="absolute right-4 p-2 hover:bg-gray-100/80 rounded-full"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-gray-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        <div className="flex flex-col items-center p-6 relative">
+          <div className="flex justify-between w-full items-center">
+            <h2 className="text-4xl font-bold text-center flex-1 px-6 py-4
+                        bg-gradient-to-r from-gray-800 to-gray-600 
+                        bg-clip-text text-transparent">
+              {capitalizeWords(resource[locale['name']])}
+            </h2>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-gray-100/80 rounded-full"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-gray-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          
+          <button
+            onClick={() => window.open(resource[locale['url google maps']], '_blank')}
+            className="flex items-center gap-2 px-4 py-2 mt-2 text-sm text-gray-600 hover:bg-gray-100/80 rounded-full transition-colors"
+            title="Ver en Google Maps"
+          >
+            <FaFilePdf className="h-5 w-5" />
+            <span>Ver en Google Maps</span>
           </button>
         </div>
       </div>
-  
+
+      {/* Body content below header */}
       <div className="p-6 overflow-y-auto" style={{ height: 'calc(80vh - 90px)' }}>
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Information Column */}
@@ -216,7 +209,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
                 </div>
               )}
             </section>
-  
+
             {/* Access and Services */}
             <section className="space-y-4">
               <button
@@ -238,7 +231,8 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
               </button>
               {isAccessServicesOpen && (
                 <div className="space-y-4 mb-20">
-                  {[...Object.entries(accessInfo), ...Object.entries(services)].map(
+                  {/* Add access and services information here if applicable */}
+                  {Object.entries(basicInfo).map(
                     ([key, value]) =>
                       value && (
                         <div
@@ -254,7 +248,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
               )}
             </section>
           </div>
-  
+
           {/* Image and Gallery Column */}
           <div className="lg:w-1/2">
             {/* Image Gallery */}

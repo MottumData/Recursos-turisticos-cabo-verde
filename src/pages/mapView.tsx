@@ -46,13 +46,13 @@ export default function MapView() {
 
   return (
     <div className="relative w-full h-screen">
-      <div className="absolute top-2 left-20 z-[1000]">
+      <div className="absolute top-2 right-4 z-[1000]">
         <Image 
           src="/Logo_cabo_verde.png"
           alt="Logo Cabo Verde"
           width={150}
           height={150}
-          className="w-[100px] sm:w-[125px] md:w-[150px] lg:w-[175px] h-auto object-contain"
+          className="width-auto height-auto"
           priority
         />
       </div>
