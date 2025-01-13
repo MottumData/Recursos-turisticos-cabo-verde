@@ -2,6 +2,7 @@
 
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { LatLngExpression, point } from 'leaflet';
+import ExpanderRutas from './expander_rutas';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import L, { LatLng } from 'leaflet';
@@ -24,6 +25,7 @@ import {
   FaMountain,
   FaGem,
   FaMonument,
+  FaLayerGroup
 } from 'react-icons/fa';
 
 import pt from '../../public/locale/pt';
@@ -193,6 +195,15 @@ export default function Map({ center, points, routes, selectedRoute,setSelectedR
   const [expanderVisible, setExpanderVisible] = useState(false);
   const [selectedResource, setSelectedResource] = useState<TouristResource | null>(null);
   const [sidebarVisible, setSidebarVisible] = useState(false);
+  const [routeExpanderVisible, setRouteExpanderVisible] = useState(false);
+  const [selectedRouteResource, setSelectedRouteResource] = useState<Route | null>(null);
+
+  const handleRouteSelect = (route: Route | null) => {
+    console.log('Ruta seleccionada en Map:', route);
+    setSelectedRoute(route);
+    setSelectedRouteResource(route);
+    setRouteExpanderVisible(!!route);
+  };
 
   const handleMarkerClick = (point: TouristResource) => {
     setSelectedResource(point);
@@ -214,15 +225,7 @@ export default function Map({ center, points, routes, selectedRoute,setSelectedR
           className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg"
           title={locale['Show_Legend'] || 'Show Legend'}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            className="w-6 h-6 text-gray-600"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+          <FaLayerGroup className="w-6 h-6 text-gray-600" />
         </button>
       </div>
       <div className="absolute top-6 left-6 z-[1000]">
@@ -275,6 +278,15 @@ export default function Map({ center, points, routes, selectedRoute,setSelectedR
         language={language}
         locale={locale}
       />
+
+    <ExpanderRutas
+        visible={routeExpanderVisible}
+        resource={selectedRouteResource ?? undefined}
+        onClose={() => setRouteExpanderVisible(false)}
+        language={language}
+        locale={locale}
+      />
+
     <Sidebar
         visible={sidebarVisible}
         onClose={() => setSidebarVisible(false)}
@@ -282,7 +294,7 @@ export default function Map({ center, points, routes, selectedRoute,setSelectedR
         setFilteredCategories={setFilteredCategories}
         content={<div>Your content here</div>}
         locale={locale}
-        onRouteSelect={setSelectedRoute}
+        onRouteSelect={handleRouteSelect}
       />
     </div>
   );

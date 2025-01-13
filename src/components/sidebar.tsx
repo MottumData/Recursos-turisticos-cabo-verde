@@ -57,6 +57,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
     setSelectedRoute(routeName);
     const route = routes.find(r => r.name === routeName) || null;
     onRouteSelect(route);
+    onClose();
   };
 
   return (
@@ -64,23 +65,24 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
       ref={sidebarRef}
       className={`fixed top-0 left-0 h-full bg-white shadow-2xl 
         transform transition-transform duration-300 ease-in-out z-[10000] overflow-y-auto
+        w-[60vw] sm:w-[40vw] md:max-w-[400px]
+        flex flex-col
         ${visible ? 'translate-x-0' : '-translate-x-full'}`}
-      style={{ width: '90vw', maxWidth: '400px' }}
     >
 
       {/* Header Section */}
-      <div className="p-6 border-b border-gray-200">
+      <div className="p-3 sm:p-6 border-b border-gray-200">
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Image 
               src="/Logo_cabo_verde.png"
               alt="Logo Cabo Verde"
-              width={130}
-              height={130}
-              className="object-contain"
+              width={90} // Reducido en móvil
+              height={90}
+              className="object-contain sm:w-[130px] sm:h-[130px]"
               priority
             />
-            <h2 className="text-xl font-bold text-gray-800 text-center">
+            <h2 className="text-lg sm:text-xl font-bold text-gray-800 text-center">
               {locale['Santiago Resources map']}
             </h2>
           </div>
@@ -88,8 +90,8 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
       </div>
 
       {/* Filtros Section */}
-      <div className="px-6 py-6 border-b border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-700 mb-4">
+      <div className="px-4 py-4 sm:px-6 sm:py-6 border-b border-gray-200">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-700 mb-3 sm:mb-4">
           {locale['Categories'] || 'Categories'}
         </h3>
         <CategoryFilter 
@@ -99,16 +101,16 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
       </div>
     
       {/* Rutas Section */}
-      <div className="px-6 py-6 border-b border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-700 mb-4">
+      <div className="px-4 py-4 sm:px-6 sm:py-6 border-b border-gray-200">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-700 mb-3 sm:mb-4">
           {locale['Select_Route'] || 'Select Route'}
         </h3>
         <select
           value={selectedRoute}
           onChange={handleRouteChange}
-          className="w-full bg-white border border-gray-300 text-gray-700 py-2.5 px-4 rounded-lg 
+          className="w-full bg-white border border-gray-300 text-gray-700 py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg 
                      shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                     transition-all duration-200"
+                     transition-all duration-200 text-sm sm:text-base"
         >
           <option value="">{locale['Select_Route'] || 'Select Route'}</option>
           {routes.map(route => (
@@ -118,15 +120,16 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
       </div>
 
       {/* Idiomas Section */}
-      <div className="px-6 py-6 border-b border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-700 mb-4">
+      <div className="mt-auto px-2 py-2 sm:px-4 sm:py-3 border-t border-gray-100">
+        <h3 className="text-xs sm:text-sm font-medium text-gray-500 mb-2">
           {locale['Select_Language'] || 'Select Language'}
         </h3>
         <select
           value={language}
           onChange={(e) => setLanguage(e.target.value as Language)}
-          className="w-full bg-white border border-gray-300 text-gray-700 py-2.5 px-4 rounded-lg 
-                     shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+          className="w-full bg-gray-50 border border-gray-200 text-gray-600 py-1.5 px-2 rounded 
+                     text-xs sm:text-sm
+                     focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent
                      transition-all duration-200"
         >
           <option value="pt">Português</option>

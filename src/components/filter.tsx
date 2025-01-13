@@ -64,7 +64,10 @@ export default function CategoryFilter({ language, onFilterChange }: CategoryFil
       <span className="text-black-700 font-medium ml-3">Seleccionar tipo de recurso</span>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-[20rem] bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-4">
+        <div className="absolute right-0 mt-2 
+        w-45 sm:w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-50 
+        p-2 sm:p-4
+        ">
           <div className="space-y-2 overflow-y-auto max-h-60">
             {Object.keys(locale)
               .filter(key => key.startsWith('Cara_'))
