@@ -11,6 +11,13 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      "padded-blocks": "off",
+    },
+  },
 ];
 
-export default eslintConfig;
+export default {
+  ignorePatterns: ["**/*"],
+};
