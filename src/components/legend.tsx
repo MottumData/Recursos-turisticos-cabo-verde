@@ -53,17 +53,22 @@ const Legend: React.FC<LegendProps> = ({ locale, onClose }) => {
   }, [onClose]);
 
   return (
-    <div ref={legendRef} className="absolute bottom-16 right-4 z-[1000] bg-white p-4 sm:p-6 border border-gray-200 rounded-lg shadow-lg w-[28rem] max-h-[40vh] overflow-y-auto">
-      <h2 className="text-xl font-semibold mb-4 text-gray-900">{locale['Legend'] || 'Legend'}</h2>
+    <div ref={legendRef} className="absolute bottom-16 right-4 z-[1000] bg-white p-3 sm:p-6 
+        border border-gray-200 rounded-lg shadow-lg w-[20rem] sm:w-[28rem] max-h-[40vh] overflow-y-auto">
+      <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-gray-900">
+        {locale['Legend'] || 'Legend'}
+      </h2>
       <ul>
         {categories.map((item, index) => (
-          <li key={index} className="flex items-center text-gray-900 hover:bg-gray-50 p-2 rounded-md transition-colors">
-            <div className="w-8 h-8 mr-3 flex items-center justify-center rounded-full" style={{ backgroundColor: item.color }}>
-              <div className="text-white">
+          <li key={index} className="flex items-center text-gray-900 hover:bg-gray-50 p-1.5 sm:p-2 
+              rounded-md transition-colors space-y-2">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3 flex items-center justify-center rounded-full" 
+                style={{ backgroundColor: item.color }}>
+              <div className="text-white text-sm sm:text-base">
                 {item.icon}
               </div>
             </div>
-            <span className="text-sm">{locale[item.key] || item.key}</span>
+            <span className="text-xs sm:text-sm">{locale[item.key] || item.key}</span>
           </li>
         ))}
       </ul>

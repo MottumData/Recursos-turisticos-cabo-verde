@@ -29,7 +29,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale }: Ex
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
   const [isAccessServicesOpen, setIsAccessServicesOpen] = useState(false);
 
-  const [expanderHeight, setExpanderHeight] = useState('20vh');
+  const [expanderHeight, setExpanderHeight] = useState('30vh');
   const startYRef = useRef<number | null>(null);
   const startHeightRef = useRef<number | null>(null);
 
@@ -115,7 +115,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale }: Ex
       <div className="sticky top-0 bg-white/70 backdrop-blur-sm border-b border-gray-200 rounded-t-3xl">
         <div className="flex flex-col items-center p-6 relative">
           <div className="flex justify-between w-full items-center">
-            <h2 className="text-4xl font-bold text-center flex-1 px-6 py-4
+            <h2 className="text-xl sm:text-4xl font-bold text-center flex-1 px-6 py-4
                         bg-gradient-to-r from-gray-800 to-gray-600 
                         bg-clip-text text-transparent">
               {capitalizeWords(resource[locale['name']])}

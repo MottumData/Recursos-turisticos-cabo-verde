@@ -60,6 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
     onClose();
   };
 
+
   return (
     <div
       ref={sidebarRef}

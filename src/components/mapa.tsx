@@ -3,11 +3,9 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { LatLngExpression, point } from 'leaflet';
 import ExpanderRutas from './expander_rutas';
-import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import L, { LatLng } from 'leaflet';
-import 'leaflet-routing-machine';
-import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+import { Polyline } from 'react-leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
 import {
   FaUmbrellaBeach,
@@ -31,13 +29,13 @@ import {
 import pt from '../../public/locale/pt';
 import en from '../../public/locale/en';
 import es from '../../public/locale/es';
-import CategoryFilter from './filter';
 import { useState, useEffect, JSX } from 'react';
 import Legend from './legend';
 import Expander from './expander';
 import { TouristResource, Route } from './loadCsv';
 import Sidebar from './sidebar';
 
+const Openrouteservice = require("openrouteservice-js");
 const locales = { pt, en, es };
 
 type Language = 'pt' | 'en' | 'es';
@@ -53,10 +51,10 @@ interface MapProps {
 
 function RoutingControl({ selectedRoute }: { selectedRoute: Route | null }) {
   const map = useMap();
+  const [routeCoords, setRouteCoords] = useState<[number, number][]>([]);
 
   useEffect(() => {
     if (selectedRoute) {
-      // Acceder a la propiedad con espacios usando notación de corchetes
       const recursosGeoreferenciados = selectedRoute["recursos georeferenciados"];
       console.log('Map component loaded:', recursosGeoreferenciados);
 
@@ -65,20 +63,18 @@ function RoutingControl({ selectedRoute }: { selectedRoute: Route | null }) {
         return;
       }
 
-      // Extraer coordenadas del string
       const lines = recursosGeoreferenciados.split('\n');
       const waypoints = lines.map((line: string) => {
-        // Utilizar regex para extraer las coordenadas al final de cada línea
         const match = line.match(/(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
         if (match) {
           const lat = parseFloat(match[1]);
           const lng = parseFloat(match[2]);
-          return L.latLng(lat, lng);
+          return [lng, lat];
         } else {
           console.warn('No se encontraron coordenadas en la línea:', line);
           return null;
         }
-      }).filter((coord: L.LatLng | null): coord is L.LatLng => coord !== null);
+      }).filter((coord: [number, number] | null): coord is [number, number] => coord !== null);
 
       if (waypoints.length < 2) {
         console.error('Se requieren al menos dos waypoints para calcular una ruta.');
@@ -87,40 +83,49 @@ function RoutingControl({ selectedRoute }: { selectedRoute: Route | null }) {
 
       console.log('Waypoints:', waypoints);
 
-      // Definir el router usando OSRM con HTTPS
-      const router = L.Routing.osrmv1({
-        serviceUrl: 'https://router.project-osrm.org/route/v1',
-      });
+      const fetchRoute = async () => {
+        try {
+          const response = await fetch('https://api.openrouteservice.org/v2/directions/driving-car/geojson', {
+            method: 'POST',
+            headers: {
+              'Authorization': '5b3ce3597851110001cf624806d373a127de42c6ac73f64c01f3d2a1',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              coordinates: waypoints
+            })
+          });
 
-      const routingControl = L.Routing.control({
-        router: router,
-        waypoints: waypoints,
-        lineOptions: {
-          styles: [{ color: 'blue', weight: 4 }],
-          extendToWaypoints: true,
-          missingRouteTolerance: 10,
-        },
-        show: false, // Ocultar la interfaz de enrutamiento
-        createMarker: () => null, // No crear marcadores en los waypoints
-      } as any)
-        .on('routesfound', (e) => {
-          console.log('Ruta encontrada:', e.routes);
-        })
-        .on('routingerror', (e) => {
-          console.error('Error de enrutamiento completo:', e);
-        })
-        .addTo(map);
-
-        return () => {
-          if (routingControl) {
-            map.removeControl(routingControl);
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
           }
+
+          const data = await response.json();
+          const coords = data.features[0].geometry.coordinates.map((coord: [number, number]) => [coord[1], coord[0]] as [number, number]);
+          setRouteCoords(coords);
+
+          // Opcional: Ajustar la vista del mapa para la ruta
+          const bounds = L.latLngBounds(coords);
+          map.fitBounds(bounds);
+
+        } catch (err) {
+          console.error('Error al obtener la ruta:', err);
         }
+      };
+
+      fetchRoute();
     }
   }, [map, selectedRoute]);
 
-  return null;
+  return (
+    <>
+      {routeCoords.length > 0 && (
+        <Polyline positions={routeCoords} pathOptions={{ color: 'blue', weight: 4 }} />
+      )}
+    </>
+  );
 }
+
 
 function createColoredDivIcon(iconElement: JSX.Element, bgColor: string) {
   const size = 30; // Outer circle size
@@ -210,6 +215,14 @@ export default function Map({ center, points, routes, selectedRoute,setSelectedR
     setExpanderVisible(true);
   };
 
+  const handleSidebarToggle = () => {
+    setSidebarVisible(true);
+    setExpanderVisible(false);
+    setRouteExpanderVisible(false);
+    // Close point expander
+    // Don't close route expander here
+  };
+
   const filteredPoints = points.filter(point => 
     filteredCategories.length === 0 || filteredCategories.includes(point.cara)
   );
@@ -230,7 +243,7 @@ export default function Map({ center, points, routes, selectedRoute,setSelectedR
       </div>
       <div className="absolute top-6 left-6 z-[1000]">
         <button
-          onClick={() => setSidebarVisible(true)}
+          onClick={handleSidebarToggle}
           className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg"
           title="Open Sidebar"
         >

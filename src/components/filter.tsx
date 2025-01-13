@@ -65,8 +65,8 @@ export default function CategoryFilter({ language, onFilterChange }: CategoryFil
 
       {isOpen && (
         <div className="absolute right-0 mt-2 
-        w-45 sm:w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-50 
-        p-2 sm:p-4
+        w-45 sm:w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50 
+        p-1 sm:p-2
         ">
           <div className="space-y-2 overflow-y-auto max-h-60">
             {Object.keys(locale)
@@ -82,12 +82,12 @@ export default function CategoryFilter({ language, onFilterChange }: CategoryFil
                       type="checkbox"
                       checked={selectedCategories.includes(locale[category])}
                       onChange={() => toggleCategory(locale[category])}
-                      className="appearance-none h-5 w-5 border-2 border-gray-300 rounded-md 
+                      className="appearance-none h-3 w-3 sm:h-4 sm:w-4 border-2 border-gray-300 rounded-md 
                               checked:bg-blue-500 checked:border-blue-500 
                               focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 
                               transition-colors duration-200"
                     />
-                    <span className="ml-3 text-sm text-gray-700 font-medium
+                    <span className="ml-3 text-xs sm:text-sm text-gray-700 font-medium
                                 group-hover:text-gray-900 transition-colors duration-200">
                       {locale[category]}
                     </span>
