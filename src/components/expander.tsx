@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 interface TouristResource {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
@@ -91,10 +92,6 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
     [locale['neighborhood']]: resource[locale['neighborhood']]
   };
 
-  const classification = {
-      [locale['classification']]: resource[locale['classification']],
-      [locale['cara']]: resource[locale['cara']]
-  };
 
   const description = {
       [locale['descrição do produto']]: resource[locale['descrição do produto']],

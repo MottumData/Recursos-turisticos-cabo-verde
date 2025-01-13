@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { LatLngExpression } from 'leaflet';
-import { useLanguage } from '../components/languageContext';
+import { LanguageProvider, useLanguage } from '../components/languageContext';
 import pt from '../../public/locale/pt';
 import en from '../../public/locale/en';
 import es from '../../public/locale/es';
@@ -20,7 +20,7 @@ const locales = { pt, en, es };
 
 export default function MapView() {
   const [isClient, setIsClient] = useState(false);
-  const { language, setLanguage } = useLanguage() as { language: keyof typeof locales, setLanguage: (lang: keyof typeof locales) => void };
+  const { language } = useLanguage() as { language: keyof typeof locales, setLanguage: (lang: keyof typeof locales) => void };
   const [points, setPoints] = useState<TouristResource[]>([]);
   const [routes, setRoutes] = useState<Route[]>([]);
   const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
@@ -28,7 +28,7 @@ export default function MapView() {
   useEffect(() => {
     setIsClient(true);
     const csvFilePath = `/data/santiago_cabo_verde_recursos_${language}.csv`;
-    loadCSV(csvFilePath, language).then(data => {
+    loadCSV(csvFilePath).then(data => {
       setPoints(data);
     }).catch(console.error);
 
@@ -42,9 +42,8 @@ export default function MapView() {
 
   if (!isClient) return null;
 
-  const locale: { [key: string]: string } = locales[language];
-
   return (
+    <LanguageProvider>
     <div className="relative w-full h-screen">
       <div className="absolute top-2 right-4 z-[1000]">
         <Image 
@@ -58,5 +57,6 @@ export default function MapView() {
       </div>
       <Map center={center} points={points} language={language} routes={routes} selectedRoute={selectedRoute} setSelectedRoute={setSelectedRoute} />
     </div>
+    </LanguageProvider>
   );
 }

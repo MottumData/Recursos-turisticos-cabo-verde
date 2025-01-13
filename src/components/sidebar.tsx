@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import CategoryFilter from './filter';
 import { useLanguage } from '../components/languageContext'; // Asegúrate de que la ruta sea correcta
-import pt from '../../public/locale/pt';
-import en from '../../public/locale/en';
-import es from '../../public/locale/es';
 import { Route, loadRoutesCSV} from '../components/loadCsv';
 import Image from 'next/image';
 
@@ -19,9 +16,7 @@ interface SidebarProps {
   onRouteSelect: (route: Route | null) => void;
 }
 
-const locales = { pt, en, es };
-
-const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFilteredCategories, locale, onRouteSelect}) => {
+const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, setFilteredCategories, locale, onRouteSelect}) => {
   const { language, setLanguage } = useLanguage() as { language: Language; setLanguage: (lang: Language) => void };
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [routes, setRoutes] = useState<Route[]>([]);

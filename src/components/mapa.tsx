@@ -1,11 +1,10 @@
 'use client';
 
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import { LatLngExpression, point } from 'leaflet';
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
+import { LatLngExpression } from 'leaflet';
 import ExpanderRutas from './expander_rutas';
-import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import L, { LatLng } from 'leaflet';
+import L from 'leaflet';
 import 'leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -31,7 +30,6 @@ import {
 import pt from '../../public/locale/pt';
 import en from '../../public/locale/en';
 import es from '../../public/locale/es';
-import CategoryFilter from './filter';
 import { useState, useEffect, JSX } from 'react';
 import Legend from './legend';
 import Expander from './expander';
@@ -101,7 +99,9 @@ function RoutingControl({ selectedRoute }: { selectedRoute: Route | null }) {
           missingRouteTolerance: 10,
         },
         show: false, // Ocultar la interfaz de enrutamiento
+        
         createMarker: () => null, // No crear marcadores en los waypoints
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any)
         .on('routesfound', (e) => {
           console.log('Ruta encontrada:', e.routes);
@@ -189,7 +189,7 @@ function getIcon(resource: TouristResource, language: Language) {
   }
 }
 
-export default function Map({ center, points, routes, selectedRoute,setSelectedRoute, language }: MapProps) {
+export default function Map({ center, points, selectedRoute,setSelectedRoute, language }: MapProps) {
   const [filteredCategories, setFilteredCategories] = useState<string[]>([]);
   const [showLegend, setShowLegend] = useState<boolean>(false);
   const [expanderVisible, setExpanderVisible] = useState(false);
@@ -263,10 +263,6 @@ export default function Map({ center, points, routes, selectedRoute,setSelectedR
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {filteredPoints.map((point, idx) => (
         <Marker key={idx} position={[point.lat, point.lng]} icon={getIcon(point, language)} eventHandlers={{ click: () => handleMarkerClick(point) }}>
-          {/*<Popup>
-            <h3>{point.title}</h3>
-            <p>{point.description}</p>
-          </Popup>*/}
         </Marker>
       ))}
        {selectedRoute && <RoutingControl selectedRoute={selectedRoute} />}
