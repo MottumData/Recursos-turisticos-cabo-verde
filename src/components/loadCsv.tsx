@@ -6,27 +6,28 @@ import es from '../../public/locale/es';
 export interface TouristResource {
   lat: number;
   lng: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any; // Allows any other CSV fields
 }
 
 export interface Route {
   name: string;
   coordinates: [number, number][];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any; // Allows any other CSV fields
 }
 
 const locales = { pt, en, es };
 
 type Language = 'pt' | 'en' | 'es';
-const language: Language = 'pt';
 
-export const loadCSV = (csvFilePath: string, language: Language): Promise<TouristResource[]> => {
-  const locale = locales[language];
+export const loadCSV = (csvFilePath: string): Promise<TouristResource[]> => {
   return new Promise((resolve, reject) => {
     Papa.parse(csvFilePath, {
       download: true,
       header: true,
       complete: (results) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const data: TouristResource[] = results.data.map((row: any) => {
           const [lat, lng] = row['Lat-Long'].split(',').map((coord: string) => parseFloat(coord.trim()));
           const resource: TouristResource = {
@@ -61,6 +62,7 @@ export const loadRoutesCSV = (csvFilePath: string, language: Language): Promise<
       download: true,
       header: true,
       complete: (results) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const data: Route[] = results.data.map((row: any) => {
           const coordinates = row['Ruta LatLong Transformada']
           ? row['Ruta LatLong Transformada'].split(';').map((coord: string) => {
