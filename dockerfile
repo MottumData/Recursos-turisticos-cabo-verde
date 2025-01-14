@@ -13,7 +13,7 @@ RUN npm install --frozen-lockfile --production
 COPY . .
 
 # Construye la aplicación para producción
-RUN npm run build && npm prune --production
+RUN npm run build 
 
 # Etapa 2: 
 FROM node:22-alpine AS runner
