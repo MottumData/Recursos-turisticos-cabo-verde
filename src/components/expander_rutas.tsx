@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import {FaFilePdf } from 'react-icons/fa';
+import {FaFilePdf, FaMap} from 'react-icons/fa';
 
 interface TouristResource {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -142,14 +142,14 @@ export default function ExpanderRutas({ visible, onClose, resource, locale }: Ex
             className="flex items-center gap-2 px-4 py-2 mt-2 text-sm text-gray-600 hover:bg-gray-100/80 rounded-full transition-colors"
             title="Ver en Google Maps"
           >
-            <FaFilePdf className="h-5 w-5" />
+            <FaMap className="h-5 w-5" />
             <span>Ver en Google Maps</span>
           </button>
         </div>
       </div>
 
       {/* Body content below header */}
-      <div className="p-6 overflow-y-auto" style={{ height: 'calc(80vh - 90px)' }}>
+      <div className="p-6 overflow-y-auto" style={{ height: 'calc(80vh - 90px)', WebkitOverflowScrolling: 'touch' }}>
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Information Column */}
           <div className="lg:w-1/2 space-y-8">

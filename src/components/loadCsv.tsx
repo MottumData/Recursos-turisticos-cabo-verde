@@ -21,7 +21,7 @@ const locales = { pt, en, es };
 
 type Language = 'pt' | 'en' | 'es';
 
-export const loadCSV = (csvFilePath: string): Promise<TouristResource[]> => {
+export const loadCSV = (csvFilePath: string, language: Language): Promise<TouristResource[]> => {
   return new Promise((resolve, reject) => {
     Papa.parse(csvFilePath, {
       download: true,

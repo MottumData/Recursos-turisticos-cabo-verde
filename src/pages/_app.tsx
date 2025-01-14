@@ -1,6 +1,6 @@
-import MapView from './pages/mapView';
-import './app/globals.css';
-import { LanguageProvider } from './components/languageContext';
+import MapView from './mapView';
+import '../app/globals.css';
+import { LanguageProvider } from '../components/languageContext';
 
 function App() {
   return (

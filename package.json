@@ -15,7 +15,7 @@
     "axios": "^1.7.9",
     "leaflet": "^1.9.4",
     "leaflet-routing-machine": "^3.2.12",
-    "next": "15.1.2",
+    "next": "^15.1.2",
     "next-intl": "^3.26.3",
     "openrouteservice-js": "^0.4.1",
     "papaparse": "^5.4.1",
