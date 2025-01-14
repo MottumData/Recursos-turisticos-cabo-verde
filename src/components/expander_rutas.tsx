@@ -149,7 +149,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale }: Ex
       </div>
 
       {/* Body content below header */}
-      <div className="p-6 overflow-y-auto" style={{ height: 'calc(80vh - 90px)' }}>
+      <div className="p-6 overflow-y-auto" style={{ height: 'calc(80vh - 90px)', WebkitOverflowScrolling: 'touch' }}>
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Information Column */}
           <div className="lg:w-1/2 space-y-8">
