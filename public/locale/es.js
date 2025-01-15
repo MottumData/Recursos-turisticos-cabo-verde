@@ -83,10 +83,12 @@ export default {
   "url_img4": "url_img4",
   "route description max. 300 words": "descripción de la ruta max. 300 palabras",
   "duration": "duración",
+  "duration_final": "duración_final",
   "distance": "distancia",
   "access mode": "modo de acceso",
   "difficulty": "dificultad",
   "activity": "actividad",
+  "activity_list": "actividad_lista",
   "resources included": "recursos incluidos",
   "starting point": "punto de inicio",
   "exit point": "punto de salida",
@@ -99,4 +101,10 @@ export default {
   "id": "id",
 
   "name": "name",
+
+  "Filter_Routes": "Filtrar Rutas",
+
+  "Filter_Routes": "Filtrar Rutas",
+  "Filter_Duration": "Filtrar Atributo1",
+  "Filter_Activity": "Filtrar Atributo2",
 };

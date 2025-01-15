@@ -27,7 +27,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
   const [isAccessServicesOpen, setIsAccessServicesOpen] = useState(false);
 
-  const [expanderHeight, setExpanderHeight] = useState('90vh');
+  const [expanderHeight, setExpanderHeight] = useState('40vh');
   const startYRef = useRef<number | null>(null);
   const startHeightRef = useRef<number | null>(null);
 
@@ -53,6 +53,32 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
   const handleMouseUp = () => {
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
+    startYRef.current = null;
+    startHeightRef.current = null;
+  };
+
+  const handleTouchStart = (evt: React.TouchEvent) => {
+    evt.stopPropagation();
+    startYRef.current = evt.touches[0].clientY;
+    startHeightRef.current = expanderRef.current?.offsetHeight || 0;
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    document.addEventListener('touchend', handleTouchEnd);
+  };
+  
+  const handleTouchMove = (evt: TouchEvent) => {
+    evt.preventDefault();
+    if (startYRef.current !== null && startHeightRef.current !== null) {
+      const delta = startYRef.current - evt.touches[0].clientY;
+      let newHeight = startHeightRef.current + delta;
+      const maxExpanderHeight = window.innerHeight;
+      if (newHeight > maxExpanderHeight) newHeight = maxExpanderHeight;
+      setExpanderHeight(`${newHeight}px`);
+    }
+  };
+  
+  const handleTouchEnd = () => {
+    document.removeEventListener('touchmove', handleTouchMove);
+    document.removeEventListener('touchend', handleTouchEnd);
     startYRef.current = null;
     startHeightRef.current = null;
   };
@@ -120,7 +146,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
         transform transition-transform duration-300 rounded-t-3xl z-[10000]
         shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.2)] backdrop-blur-sm
         ${visible ? 'translate-y-0' : 'translate-y-full'}`}
-        style={{ height: expanderHeight, cursor: 'row-resize' }}
+        style={{ height: expanderHeight, cursor: 'row-resize', overscrollBehavior: 'contain' }}
     >
 
       <div className="flex justify-center items-center p-2">
@@ -128,7 +154,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
       </div>
 
       {/* Header */}
-      <div className="sticky top-0 bg-white/70 backdrop-blur-sm border-b border-gray-200 rounded-t-3xl">
+      <div className="sticky top-0 bg-white/70 backdrop-blur-sm border-b border-gray-200 rounded-t-3xl" onTouchStart={handleTouchStart}>
         <div className="flex justify-center items-center p-6 relative">
           <h2 className="text-xl sm:text-4xl font-bold text-center px-6 py-4
                       bg-gradient-to-r from-gray-800 to-gray-600 

@@ -27,6 +27,15 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
   const [routes, setRoutes] = useState<Route[]>([]);
   const [selectedRoute, setSelectedRoute] = useState<string>('');
 
+  const [filteredDurations, setFilteredDurations] = useState<string[]>([]);
+  const [filteredActivities, setFilteredActivities] = useState<string[]>([]);
+
+  // Estados para opciones de filtros generadas dinámicamente
+  const [durationOptions, setDurationOptions] = useState<{ key: string; label: string }[]>([]);
+  const [activityOptions, setActivityOptions] = useState<{ key: string; label: string }[]>([]);
+
+  const [filteredRoutes, setFilteredRoutes] = useState<Route[]>([]);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
@@ -45,8 +54,36 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
     console.log('Loading routes...');
     const csvFilePath = `/data/rutas_cabo_verde_${language}.csv`;
     loadRoutesCSV(csvFilePath, language).then(data => {
-      console.log('Loaded routes:', data); // Log the dataset of routes
       setRoutes(data);
+
+      const uniqueDurations = Array.from(new Set(data.map(route => route[locale['duration_final']]))).sort();
+      
+      // Clean activity strings before creating Set
+      const cleanActivity = (activity: string) => {
+        return activity
+          .replace(/[\[\]']/g, '')  // remove brackets and single quotes
+          .replace(/\s+/g, ' ')    // replace multiple spaces with single space
+          .trim()                  // remove leading/trailing spaces
+          .toLowerCase();          // convert to lowercase
+      };
+
+      const uniqueActivities: string[] = Array.from(
+        new Set(
+          data.flatMap((route: Route) => 
+            route[locale['activity_list']]
+              .split(',')
+              .map(cleanActivity)
+          )
+        )
+      )
+      .map(activity => activity.charAt(0).toUpperCase() + activity.slice(1))
+      .sort();
+      
+      const formattedDurations = uniqueDurations.map(value => ({ key: value, label: value }));
+      const formattedActivities = uniqueActivities.map(value => ({ key: value, label: value }));
+      
+      setDurationOptions(formattedDurations);
+      setActivityOptions(formattedActivities);
     }).catch(error => {
       console.error('Error loading routes:', error);
     });
@@ -59,6 +96,36 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
     onRouteSelect(route);
     onClose();
   };
+
+  useEffect(() => {
+    let filtered = routes;
+  
+    // Filtrar por duración
+    if (filteredDurations.length > 0) {
+      filtered = filtered.filter(route => filteredDurations.includes(route[locale['duration_final']]));
+    }
+  
+    // Filtrar por actividad
+    if (filteredActivities.length > 0) {
+      filtered = filtered.filter(route => {
+        const routeActivities: string[] = route[locale['activity_list']]
+          .replace(/[\[\]']/g, '')  // remove brackets and single quotes
+          .split(',')
+          .map((activity: string) => activity.trim().toLowerCase());
+        
+        console.log(`Route: ${route.name}, Activities:`, routeActivities);
+        console.log('Filtered Activities:', filteredActivities);
+  
+        return filteredActivities.some(
+          filterActivity => routeActivities.includes(filterActivity.toLowerCase())
+        );
+      });
+    }
+  
+    setFilteredRoutes(filtered);
+    console.log('Filtered routes:', filtered);
+  }, [routes, filteredDurations, filteredActivities, locale]);
+
 
 
   return (
@@ -83,7 +150,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
               className="object-contain sm:w-[130px] sm:h-[130px]"
               priority
             />
-            <h2 className="text-lg sm:text-xl font-bold text-gray-800 text-center">
+            <h2 className="text-xs sm:text-lg font-bold text-gray-800 text-center">
               {locale['Santiago Resources map']}
             </h2>
           </div>
@@ -92,7 +159,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
 
       {/* Filtros Section */}
       <div className="px-4 py-4 sm:px-6 sm:py-6 border-b border-gray-200">
-        <h3 className="text-base sm:text-lg font-semibold text-gray-700 mb-3 sm:mb-4">
+        <h3 className="text-xs sm:text-lg font-semibold text-gray-700 mb-3 sm:mb-4">
           {locale['Categories'] || 'Categories'}
         </h3>
         <CategoryFilter 
@@ -102,10 +169,31 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
       </div>
     
       {/* Rutas Section */}
-      <div className="px-4 py-4 sm:px-6 sm:py-6 border-b border-gray-200">
-        <h3 className="text-base sm:text-lg font-semibold text-gray-700 mb-3 sm:mb-4">
+      <div className="px-4 py-4 sm:px-6 sm:py-6">
+        <h3 className="text-xs sm:text-lg font-semibold text-gray-700 mb-3 sm:mb-4">
           {locale['Select_Route'] || 'Select Route'}
         </h3>
+          <div className="px-4 py-0 sm:px-6 sm:py-0">
+            <CategoryFilter
+              language={language}
+              onFilterChange={setFilteredDurations}
+              options={durationOptions}
+              localeKey="Filter_Duration"
+            />
+          </div>
+
+          {/* Filtros de Actividad */}
+          <div className="px-4 py-2 sm:px-6 sm:py-4">
+            <CategoryFilter
+              language={language}
+              onFilterChange={setFilteredActivities}
+              options={activityOptions}
+              localeKey="Filter_Activity"
+            />
+          </div>
+          <div className="mb-2 mt-4 text-center text-xs sm:text-base">
+            {`Mostrando ${filteredRoutes.length} de 23 rutas disponibles`}
+          </div>
         <select
           value={selectedRoute}
           onChange={handleRouteChange}
@@ -114,7 +202,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
                      transition-all duration-200 text-sm sm:text-base"
         >
           <option value="">{locale['Select_Route'] || 'Select Route'}</option>
-          {routes.map(route => (
+          {filteredRoutes.map(route => (
             <option key={route.name} value={route.name}>{route.name}</option>
           ))}
         </select>

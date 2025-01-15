@@ -1,28 +1,44 @@
-import { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaFilter, FaClock, FaHiking } from 'react-icons/fa';
 import pt from '../../public/locale/pt';
 import en from '../../public/locale/en';
 import es from '../../public/locale/es';
-import { useEffect, useRef } from 'react';
 
 interface LocaleType {
-    [key: string]: string;
-    Filter_Categories: string;
-  }
-  
-  const locales: { [key in 'pt' | 'en' | 'es']: LocaleType } = { pt, en, es };
-  
-  type Language = 'pt' | 'en' | 'es';
+  [key: string]: string;
+  Filter_Routes: string;
+  Filter_Duration: string;
+  Filter_Activity: string;
+}
+
+const iconMap: { [key in keyof LocaleType]?: React.ComponentType } = {
+  Filter_Routes: FaFilter,
+  Filter_Duration: FaClock,
+  Filter_Activity: FaHiking,
+};
+
+const locales: { [key in 'pt' | 'en' | 'es']: LocaleType } = { pt, en, es };
+
+type Language = 'pt' | 'en' | 'es';
 
 interface CategoryFilterProps {
   language: Language;
-  onFilterChange: (selectedCategories: string[]) => void;
+  onFilterChange: (selectedFilters: string[]) => void;
+  options?: { key: string; label: string }[];
+  localeKey?: keyof LocaleType;
 }
 
-export default function CategoryFilter({ language, onFilterChange }: CategoryFilterProps) {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+export default function CategoryFilter({
+  language,
+  onFilterChange,
+  options,
+  localeKey = 'Filter_Categories',
+}: CategoryFilterProps) {
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const filterRef = useRef<HTMLDivElement>(null);
   const locale = locales[language];
+  const IconComponent = iconMap[localeKey] || FaFilter;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -37,61 +53,99 @@ export default function CategoryFilter({ language, onFilterChange }: CategoryFil
     };
   }, []);
 
-  const toggleCategory = (categoryKey: string) => {
-    const newCategories = selectedCategories.includes(categoryKey)
-      ? selectedCategories.filter(cat => cat !== categoryKey)
-      : [...selectedCategories, categoryKey];
-    
-    setSelectedCategories(newCategories);
-    onFilterChange(newCategories); // This will send the category keys to parent
+  useEffect(() => {
+    console.log(`CategoryFilter (${localeKey}) options:`, options);
+  }, [options, localeKey]);
+
+
+  const toggleFilterOption = (filterKey: string) => {
+    const newFilters = selectedFilters.includes(filterKey)
+      ? selectedFilters.filter(f => f !== filterKey)
+      : [...selectedFilters, filterKey];
+
+    setSelectedFilters(newFilters);
+    onFilterChange(newFilters);
   };
 
-  const toggleFilter = () => {
+  const toggleFilterPanel = () => {
     setIsOpen(!isOpen);
   };
 
   return (
     <div className="relative" ref={filterRef}>
       <button
-        onClick={toggleFilter}
+        onClick={toggleFilterPanel}
         className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg"
-        title={locale['Filter_Categories'] || 'Filter Categories'}
+        title={locale[localeKey] || 'Filter'}
       >
-        <img src='/icons/filtrar.png' alt="Filter" className="w-6 h-6" />
+        <IconComponent className="w-5 h-5 text-gray-600" />
       </button>
-      <span className="text-black-700 font-medium ml-3">Seleccionar tipo de recurso</span>
+      <span className="text-black-700 font-medium ml-3 text-[10px] sm:text-base font-medium">
+        {localeKey === 'Filter_Categories' ? 'Seleccionar tipo de recurso' : 
+         localeKey === 'Filter_Duration' ? 'Seleccionar duración' : 
+         localeKey === 'Filter_Activity' ? 'Seleccionar actividad' : 'Seleccionar filtro'}
+      </span>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 
-        w-45 sm:w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50 
-        p-1 sm:p-2
-        ">
+        <div
+        className="absolute mt-2 
+          left-0 sm:left-auto sm:right-0  
+          w-40 sm:w-80 
+          bg-white border border-gray-200 rounded-lg shadow-lg z-50 
+          p-4"
+        >
           <div className="space-y-2 overflow-y-auto max-h-60">
-            {Object.keys(locale)
-              .filter(key => key.startsWith('Cara_'))
-              .map(category => (
+            {options ? (
+              options.map(option => (
                 <label
-                  key={category}
+                  key={option.key}
                   className="flex items-center p-2 rounded-lg hover:bg-gray-100 
                           transition-colors duration-200 cursor-pointer group"
                 >
                   <div className="flex items-center">
                     <input
                       type="checkbox"
-                      checked={selectedCategories.includes(locale[category])}
-                      onChange={() => toggleCategory(locale[category])}
-                      className="appearance-none h-3 w-3 sm:h-4 sm:w-4 border-2 border-gray-300 rounded-md 
+                      checked={selectedFilters.includes(option.key)}
+                      onChange={() => toggleFilterOption(option.key)}
+                      className="appearance-none h-1 w-1 sm:h-4 sm:w-4 border-2 border-gray-300 rounded-md 
                               checked:bg-blue-500 checked:border-blue-500 
                               focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 
                               transition-colors duration-200"
                     />
-                    <span className="ml-3 text-xs sm:text-sm text-gray-700 font-medium
-                                group-hover:text-gray-900 transition-colors duration-200">
-                      {locale[category]}
+                    <span className="ml-3 text-[8px] sm:text-sm text-gray-700 font-medium
+                          group-hover:text-gray-900 transition-colors duration-200">
+                      {option.label}
                     </span>
                   </div>
                 </label>
-              ))}
+              ))
+            ) : (
+              Object.keys(locale)
+                .filter(key => key.startsWith('Cara_'))
+                .map(category => (
+                  <label
+                    key={category}
+                    className="flex items-center p-2 rounded-lg hover:bg-gray-100 
+                            transition-colors duration-200 cursor-pointer group"
+                  >
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={selectedFilters.includes(locale[category])}
+                        onChange={() => toggleFilterOption(locale[category])}
+                        className="appearance-none h-1 w-1 sm:h-4 sm:w-4 border-2 border-gray-300 rounded-md 
+                                checked:bg-blue-500 checked:border-blue-500 
+                                focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 
+                                transition-colors duration-200"
+                      />
+                      <span className="ml-3 text-[8px] sm:text-sm text-gray-700 font-medium
+                                  group-hover:text-gray-900 transition-colors duration-200">
+                        {locale[category]}
+                      </span>
+                    </div>
+                  </label>
+                ))
+            )}
           </div>
         </div>
       )}

@@ -60,6 +60,33 @@ export default function ExpanderRutas({ visible, onClose, resource, locale }: Ex
     startHeightRef.current = null;
   };
 
+  const handleTouchStart = (evt: React.TouchEvent) => {
+    evt.preventDefault();
+    evt.stopPropagation();
+    startYRef.current = evt.touches[0].clientY;
+    startHeightRef.current = expanderRef.current?.offsetHeight || 0;
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    document.addEventListener('touchend', handleTouchEnd);
+  };
+  
+  const handleTouchMove = (evt: TouchEvent) => {
+    evt.preventDefault();
+    if (startYRef.current !== null && startHeightRef.current !== null) {
+      const delta = startYRef.current - evt.touches[0].clientY;
+      let newHeight = startHeightRef.current + delta;
+      const maxExpanderHeight = window.innerHeight;
+      if (newHeight > maxExpanderHeight) newHeight = maxExpanderHeight;
+      setExpanderHeight(`${newHeight}px`);
+    }
+  };
+  
+  const handleTouchEnd = () => {
+    document.removeEventListener('touchmove', handleTouchMove);
+    document.removeEventListener('touchend', handleTouchEnd);
+    startYRef.current = null;
+    startHeightRef.current = null;
+  };
+
   if (!resource) return null;
 
   // Image collection
@@ -113,7 +140,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale }: Ex
       </div>
 
       {/* Header */}
-      <div className="sticky top-0 bg-white/70 backdrop-blur-sm border-b border-gray-200 rounded-t-3xl">
+      <div className="sticky top-0 bg-white/70 backdrop-blur-sm border-b border-gray-200 rounded-t-3xl" onTouchStart={handleTouchStart}>
         <div className="flex flex-col items-center p-6 relative">
           <div className="flex justify-between w-full items-center">
             <h2 className="text-xl sm:text-4xl font-bold text-center flex-1 px-6 py-4

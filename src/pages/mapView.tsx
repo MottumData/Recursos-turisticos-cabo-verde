@@ -43,7 +43,7 @@ export default function MapView() {
   if (!isClient) return null;
   const locale: { [key: string]: string } = locales[language];
   return (
-    <div className="relative w-full h-screen">
+    <div className="fixed w-full h-[calc(100vh)] overflow-hidden">
       <div className="absolute top-2 right-4 z-[1000]">
         <Image 
           src="/Logo_cabo_verde.png"

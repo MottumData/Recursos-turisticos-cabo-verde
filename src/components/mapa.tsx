@@ -231,7 +231,7 @@ export default function Map({ center, points, selectedRoute,setSelectedRoute, la
   const locale: { [key: string]: string } = locales[language];
 
   return (
-    <div className="relative w-full h-full">
+    <div className="w-screen h-screen relative ">
       {/* Legend button positioned bottom-right */}
       <div className="absolute bottom-6 right-4 z-[1000]">
         <button

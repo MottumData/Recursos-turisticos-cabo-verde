@@ -1,11 +1,6 @@
 Nombre de la ruta,Municipios por los que transcurre,Imagen 1,URL_img1,Imagen 2,URL_img2,Imagen 3,URL_img3,Imagen 4,URL_img4,"Descripción de la ruta
-Max. 300 palabras",Duración,Distancia,Modo de acceso,Dificultad,Actividad,Recursos incluidos,Punto de inicio,Punto de salida,Recursos Georeferenciados,URL de Google Maps,Ruta LatLong,Ruta LatLong Transformada,Actividades Opcionales:,Recomendaciones,id
-"RUTA DEL SURF: ""OLAS Y AVENTURA EN SANTIAGO""","Playa, Tarrafal, São Domingos",COD_55,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ol20dU6aO9GOLCOVP4x0.jpg,COD_24,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/iobEyEZLoiRISWGMZkJK.jpg,COD_51,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/o0J3FG1XuAQMvDXOBAiB.jpg,COD_68,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/HXHfwzSweRjHE2Iu0V6d.jpg,"Adéntrate en la Ruta del Surf de Santiago, un recorrido que combina playas paradisíacas, olas perfectas para principiantes e intermedios, y una vibrante comunidad surfista local. Descubre paisajes espectaculares y vive la emoción de un deporte acuático en un entorno cálido y acogedor.",5 H. 30 MIN,109 kilómetros,Vehículo,Media-Alta,"Surf
-Bodyboard
-Windsurf
-Snorkel y buceo
-Senderismo costero
-Avistamiento de fauna marina","1. Praia de Quebra Canela
+Max. 300 palabras",Duración,Duración_Final,Distancia,Modo de acceso,Dificultad,Recursos incluidos,Punto de inicio,Punto de salida,Recursos Georeferenciados,URL de Google Maps,Ruta LatLong,Ruta LatLong Transformada,Actividades Opcionales:,Recomendaciones,id,Actividad,Actividad_Lista
+"RUTA DEL SURF: ""OLAS Y AVENTURA EN SANTIAGO""","Playa, Tarrafal, São Domingos",COD_55,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ol20dU6aO9GOLCOVP4x0.jpg,COD_24,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/iobEyEZLoiRISWGMZkJK.jpg,COD_51,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/o0J3FG1XuAQMvDXOBAiB.jpg,COD_68,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/HXHfwzSweRjHE2Iu0V6d.jpg,"Adéntrate en la Ruta del Surf de Santiago, un recorrido que combina playas paradisíacas, olas perfectas para principiantes e intermedios, y una vibrante comunidad surfista local. Descubre paisajes espectaculares y vive la emoción de un deporte acuático en un entorno cálido y acogedor.",5 H. 30 MIN,5-6 horas,109 kilómetros,Vehículo,Media-Alta,"1. Praia de Quebra Canela
 Una playa urbana bien equipada con restaurantes, bares y hoteles cercanos. Aunque es más conocida por su ambiente relajado, también se practican deportes náuticos durante la temporada alta.
 Kayak y paddleboarding son populares aquí debido a sus aguas tranquilas. En días específicos, puede ser utilizada para iniciarse en el surf cuando las olas lo permiten.
 Consejo práctico: Ideal para quienes buscan una experiencia de playa combinada con confort urbano. Disfruta de las vistas desde los miradores cercanos antes de practicar deportes acuáticos
@@ -42,8 +37,13 @@ Senderismo costero: Explora los acantilados y cuevas salinas en Praia de São Fr
 Época recomendada: Mejores meses para surfear: mayo a julio.
 Accesibilidad: Todas las playas tienen acceso gratuito; verifica horarios de alquiler de equipos en cada punto.
 Precauciones: Apto para familias, pero supervisa a los niños en playas con olas fuertes.
-Normas: Respeta la fauna marina y evita dejar residuos en el entorno.",1
-"RUTA DE PIRATAS: ""EL CARIBE AFRICANO""","Ribeira Grande de Santiago, Playa, Tarrafal",COD_37,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/vVeXVH8J1qqudIokg1qc.jpg,COD_26,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/lND6pPqDQl0DEVlQZuEy.jpg,COD_56,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ENhixE9bRN4Nq8WvB6Jw.jpg,COD_42,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/tBg3MaKoiQi294PBbZmG.jpg,"Adéntrate en la fascinante historia de piratas y comerciantes en Santiago, recorriendo fortalezas, miradores estratégicos y playas que fueron testigos de contrabandos y defensas épicas. Una experiencia ideal para amantes de la historia y la aventura.",4 H. 30 MIN,95 kilómetros,Vehículo,Baja-Media,Cultura,"1. Fortaleza Real de São Filipe
+Normas: Respeta la fauna marina y evita dejar residuos en el entorno.",1,"Surf
+Bodyboard
+Windsurf
+Snorkel y buceo
+Senderismo costero
+Avistamiento de fauna marina","['Surf', 'Bodyboard', 'Windsurf', 'Snorkel y buceo', 'Senderismo costero', 'Avistamiento de fauna marina']"
+"RUTA DE PIRATAS: ""EL CARIBE AFRICANO""","Ribeira Grande de Santiago, Playa, Tarrafal",COD_37,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/vVeXVH8J1qqudIokg1qc.jpg,COD_26,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/lND6pPqDQl0DEVlQZuEy.jpg,COD_56,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ENhixE9bRN4Nq8WvB6Jw.jpg,COD_42,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/tBg3MaKoiQi294PBbZmG.jpg,"Adéntrate en la fascinante historia de piratas y comerciantes en Santiago, recorriendo fortalezas, miradores estratégicos y playas que fueron testigos de contrabandos y defensas épicas. Una experiencia ideal para amantes de la historia y la aventura.",4 H. 30 MIN,4-5 horas,95 kilómetros,Vehículo,Baja-Media,"1. Fortaleza Real de São Filipe
 Construida en el siglo XVI, esta fortaleza es un símbolo de la defensa de la isla contra los ataques piratas. Su ubicación estratégica permite disfrutar de vistas impresionantes de Ribeira Grande de Santiago.
 Consejo práctico: Lleva calzado cómodo para explorar las áreas empedradas y aprovecha los guías locales para conocer detalles fascinantes.
 2. Miradouro de Cruzeiro
@@ -76,8 +76,8 @@ Avistamiento de flora y fauna en Praia Ribeira da Prata: Observa manglares, coqu
 Accesibilidad: La mayoría de los puntos son accesibles en vehículo; algunos requieren caminatas cortas.
 Época recomendada: Todo el año, evitando días lluviosos para disfrutar de las playas y vistas.
 Normas locales: Respetar las señalizaciones y no alterar los elementos históricos.
-Idiomas disponibles: Portugués, español e inglés en la mayoría de los lugares turísticos.",2
-"RUTA COLONIAL: ""LOS TIEMPOS DE CIDADE VELHA""",Ribeira Grande de Santiago,COD_64,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/RCWmKa0rNlYa2ggxXF4C.jpg,COD_41,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/EvLeHsyYwf5TCd4kK7aV.jpg,COD_26,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/lND6pPqDQl0DEVlQZuEy.jpg,COD_29,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Fp3lN5HeJxjzZY9reqk1.jpg,"Revive los inicios del colonialismo en África explorando la primera ciudad europea en los trópicos, Cidade Velha. Este recorrido lleva al visitante a través de monumentos históricos, calles emblemáticas y espacios religiosos que cuentan la historia de la expansión portuguesa y el comercio transatlántico. Una experiencia cultural y educativa en el corazón de Cabo Verde.",2 H. 10 MIN,6 KM,Vehículo,Baja-Media,Cultura,"1. Fortaleza Real de São Filipe
+Idiomas disponibles: Portugués, español e inglés en la mayoría de los lugares turísticos.",2,Cultura,['Cultura']
+"RUTA COLONIAL: ""LOS TIEMPOS DE CIDADE VELHA""",Ribeira Grande de Santiago,COD_64,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/RCWmKa0rNlYa2ggxXF4C.jpg,COD_41,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/EvLeHsyYwf5TCd4kK7aV.jpg,COD_26,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/lND6pPqDQl0DEVlQZuEy.jpg,COD_29,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Fp3lN5HeJxjzZY9reqk1.jpg,"Revive los inicios del colonialismo en África explorando la primera ciudad europea en los trópicos, Cidade Velha. Este recorrido lleva al visitante a través de monumentos históricos, calles emblemáticas y espacios religiosos que cuentan la historia de la expansión portuguesa y el comercio transatlántico. Una experiencia cultural y educativa en el corazón de Cabo Verde.",2 H. 10 MIN, 2-3 horas,6 KM,Vehículo,Baja-Media,"1. Fortaleza Real de São Filipe
 Construida en el siglo XVI, esta fortaleza defendía a Cidade Velha de los ataques piratas. Su diseño trapezoidal y materiales locales como el basalto son testigos de su importancia estratégica.
 Consejo práctico: Lleva calzado cómodo y visita temprano para evitar el calor del mediodía.
 2. Igreja da Nossa Senhora do Rosário
@@ -103,11 +103,11 @@ https://maps.app.goo.gl/Z4bJJSEVkbVWFsko9",https://maps.app.goo.gl/Z4bJJSEVkbVWF
 Accesibilidad: Adaptado para caminatas; se recomienda transporte turístico entre los recursos.
 Época recomendada: Todo el año, evitando días de lluvia para una mejor experiencia al aire libre.
 Normas locales: Respetar las señalizaciones y no alterar los elementos históricos.
-Idiomas disponibles: Portugués, inglés y español en la mayoría de las visitas guiadas.",3
+Idiomas disponibles: Portugués, inglés y español en la mayoría de las visitas guiadas.",3,Cultura,['Cultura']
 "RUTA AFRICANA: ""RAÍCES DE SANTIAGO""","santa catarina
 Playa
 San Miguel
-santa cruz",COD_7,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/mvKxDy2phNHJ9Zk7YARj.jpg,COD_39,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/yN0uoK3C7kkYtZoS8sUp.jpg,COD_59,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/s5zvE0DG43MmwjYp6rIO.jpg,COD_35,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Jn7MMlTcCadjmLIBJh2c.jpg,"La Ruta Africana ""Raíces de Santiago"" ofrece una inmersión en las tradiciones africanas vivas de la isla. Este recorrido conecta al visitante con las costumbres que han perdurado a través de siglos, reflejando la riqueza cultural de Cabo Verde y las profundas influencias africanas que moldearon su identidad.",5 H. 00 MIN,80 KM,Vehículo,Baja-Media,Cultura,"1. Mercado Municipal
+santa cruz",COD_7,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/mvKxDy2phNHJ9Zk7YARj.jpg,COD_39,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/yN0uoK3C7kkYtZoS8sUp.jpg,COD_59,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/s5zvE0DG43MmwjYp6rIO.jpg,COD_35,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Jn7MMlTcCadjmLIBJh2c.jpg,"La Ruta Africana ""Raíces de Santiago"" ofrece una inmersión en las tradiciones africanas vivas de la isla. Este recorrido conecta al visitante con las costumbres que han perdurado a través de siglos, reflejando la riqueza cultural de Cabo Verde y las profundas influencias africanas que moldearon su identidad.",5 H. 00 MIN,4-5 horas,80 KM,Vehículo,Baja-Media,"1. Mercado Municipal
 Ubicado en el corazón de Praia, este mercado es el epicentro de la vida comercial y social de la ciudad. Su diseño moderno contrasta con las tradiciones que aún perviven en sus pasillos, donde agricultores y comerciantes locales ofrecen productos frescos, desde frutas tropicales hasta hierbas medicinales utilizadas en prácticas ancestrales de sanación. En este mercado, la herencia africana se refleja en la gastronomía y en los métodos de cultivo y recolección que han pasado de generación en generación. Es un lugar ideal para experimentar los sabores y aromas que definen la cultura caboverdiana.  
 Consejo práctico: Visita temprano para experimentar la actividad diaria y la mayor variedad de productos.
 2. Museo Etnográfico da Praia
@@ -141,10 +141,10 @@ Espectáculo de Batuque: Disfruta de esta vibrante expresión musical y de danza
 Duración sugerida: Dedica entre 5 y 7 horas para explorar todos los puntos de la ruta con tranquilidad, incluyendo tiempo para actividades opcionales y descanso.
 Accesibilidad: Aunque la mayoría de los puntos son accesibles, algunas aldeas Rabelados requieren caminatas moderadas por caminos rurales. Si es necesario, consulta con agencias locales opciones de transporte adaptado.
 Época ideal para visitar: Todo el año es adecuado para esta ruta, pero la temporada seca (noviembre a mayo) ofrece un clima más favorable para las actividades al aire libre.
-Normas culturales: Respeta las tradiciones de las comunidades, especialmente en las aldeas Rabelados, donde la vida cotidiana sigue ritmos y valores ancestrales. Pregunta siempre antes de tomar fotografías y sigue las indicaciones de los guías locales.",4
+Normas culturales: Respeta las tradiciones de las comunidades, especialmente en las aldeas Rabelados, donde la vida cotidiana sigue ritmos y valores ancestrales. Pregunta siempre antes de tomar fotografías y sigue las indicaciones de los guías locales.",4,Cultura,['Cultura']
 "RUTA HISTÓRICA: ""CABO VERDE EN LA LUCHA POR LA LIBERTAD""","Tarrafal
 santa catarina
-Playa",COD_27,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/R5mNymU3FgNv5dSx23q5.jpg,COD_9,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/kXaUaDECXQ0xEGjB9JVt.png,COD_60,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/gC9jne5pC31Qe52JLB4r.jpg,COD_6,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/s5zvE0DG43MmwjYp6rIO.jpg,"Recorre los hitos más significativos de la lucha por la independencia de Cabo Verde. Esta ruta conecta lugares emblemáticos donde se escribieron capítulos cruciales de la historia, ofreciendo al visitante una experiencia conmovedora y educativa sobre la resistencia y el sacrificio que llevaron a la libertad del país.",4 H. 45 MIN,80 KM,Vehículo,Baja-Media,Cultura,"1. Museo y Fundación Amílcar Cabral
+Playa",COD_27,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/R5mNymU3FgNv5dSx23q5.jpg,COD_9,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/kXaUaDECXQ0xEGjB9JVt.png,COD_60,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/gC9jne5pC31Qe52JLB4r.jpg,COD_6,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/s5zvE0DG43MmwjYp6rIO.jpg,"Recorre los hitos más significativos de la lucha por la independencia de Cabo Verde. Esta ruta conecta lugares emblemáticos donde se escribieron capítulos cruciales de la historia, ofreciendo al visitante una experiencia conmovedora y educativa sobre la resistencia y el sacrificio que llevaron a la libertad del país.",4 H. 45 MIN,4-5 horas,80 KM,Vehículo,Baja-Media,"1. Museo y Fundación Amílcar Cabral
 Este museo preserva documentos, fotografías y objetos personales de Amílcar Cabral, el ideólogo detrás de las independencias de Cabo Verde y Guinea-Bissau. Es un espacio dedicado a la reflexión sobre las luchas anticoloniales y la construcción de una identidad nacional, preservando el legado cultural y político de este líder revolucionario.
 Consejo práctico: Aprovecha las visitas guiadas para una experiencia enriquecedora.
 2. Casa de Infancia de Amílcar Cabral
@@ -175,11 +175,11 @@ Explora el monumento de la Revolta y aprende sobre la importancia histórica de 
 Accesibilidad: La mayoría de los lugares son accesibles en vehículo, pero algunos requieren caminatas cortas.
 Época ideal para visitar: Todo el año es adecuado, especialmente durante la temporada seca (noviembre a mayo).
 Normas culturales: Respeta las indicaciones de los guías locales y evita alterar los elementos históricos.
-Idiomas disponibles: Las visitas guiadas están disponibles en criollo, portugués, inglés y español.",5
+Idiomas disponibles: Las visitas guiadas están disponibles en criollo, portugués, inglés y español.",5,Cultura,['Cultura']
 "RUTA RELIGIOSA: ""FE Y TRADICIONES DEL NORTE DE SANTIAGO""","San Miguel
 Tarrafal
 santa cruz
-santa catarina",COD_8,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/LxpNNSgXKqn68PY0btgt.jpg,COD_20,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Ey6BTxxiVBbG0CFymLRI.jpg,COD_30,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/StCUvzqLdsfcTDC6Kjpc.jpg,COD_31,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/qXnG0N85xiN3fVByEpQQ.jpg,"Descubre la riqueza espiritual e histórica de Santiago en una ruta que conecta los templos religiosos más emblemáticos del norte de la isla. Desde pequeñas capillas rurales hasta majestuosas iglesias, esta experiencia única es ideal para quienes buscan explorar la herencia cultural y arquitectónica de Cabo Verde.",3 H. 20 MIN,75 kilómetros,Vehículo,Baja-Media,Cultura,"1. Capela de Mato Correia
+santa catarina",COD_8,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/LxpNNSgXKqn68PY0btgt.jpg,COD_20,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Ey6BTxxiVBbG0CFymLRI.jpg,COD_30,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/StCUvzqLdsfcTDC6Kjpc.jpg,COD_31,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/qXnG0N85xiN3fVByEpQQ.jpg,"Descubre la riqueza espiritual e histórica de Santiago en una ruta que conecta los templos religiosos más emblemáticos del norte de la isla. Desde pequeñas capillas rurales hasta majestuosas iglesias, esta experiencia única es ideal para quienes buscan explorar la herencia cultural y arquitectónica de Cabo Verde.",3 H. 20 MIN,3-4 horas,75 kilómetros,Vehículo,Baja-Media,"1. Capela de Mato Correia
 Una pequeña capilla con capacidad para 100 personas, construida por la comunidad local e inmigrante. Este lugar de peregrinación ofrece una atmósfera tranquila y vistas panorámicas impresionantes del consejo de São Miguel.
 Consejo Práctico: Lleva calzado cómodo para disfrutar de los senderos cercano.
 2. Igreja Matriz Santo Amaro Abade
@@ -210,11 +210,11 @@ Fiesta de Nho Santiago Maior: Disfruta de la mayor festividad de Santa Cruz el 2
 Accesibilidad: Transporte público disponible desde Praia; la mayoría de los templos son accesibles para personas con movilidad reducida.
 Época Ideal: Todo el año, pero se recomienda visitar durante las festividades locales.
 Costos: Entrada gratuita en todos los templos. Transporte y actividades opcionales tienen costos variables.
-Normas: Respeto por los horarios de misa y uso adecuado de los espacios religiosos.",6
+Normas: Respeto por los horarios de misa y uso adecuado de los espacios religiosos.",6,Cultura,['Cultura']
 "RUTA RELIGIOSA: ""FE Y TRADICIONES DEL SUR DE SANTIAGO""","Ribeira Grande de Santiago
 São Lourenço dos Órgãos
 Santo Domingo
-Playa",COD_58,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/CAq5w9OgAWN4uYyAsfjh.jpg,COD_17,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/YC6P5bDMphaoPmHaBaoC.jpg,COD_29,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Fp3lN5HeJxjzZY9reqk1.jpg,COD_18,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ElB4yb1c0081NE8gp4fe.jpg,"Explora la fe, la historia y la arquitectura en la ruta que conecta los templos más representativos del sur de Santiago. Desde el icónico Convento de São Francisco hasta la emblemática Praça Cruz de Papa, vive una experiencia única de espiritualidad y cultura, ideal para fieles y amantes de la historia.",3 H. 40 MIN,80 KM,Vehículo,Baja-Media,Cultura,"1. Praça Cruz de Papa
+Playa",COD_58,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/CAq5w9OgAWN4uYyAsfjh.jpg,COD_17,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/YC6P5bDMphaoPmHaBaoC.jpg,COD_29,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Fp3lN5HeJxjzZY9reqk1.jpg,COD_18,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ElB4yb1c0081NE8gp4fe.jpg,"Explora la fe, la historia y la arquitectura en la ruta que conecta los templos más representativos del sur de Santiago. Desde el icónico Convento de São Francisco hasta la emblemática Praça Cruz de Papa, vive una experiencia única de espiritualidad y cultura, ideal para fieles y amantes de la historia.",3 H. 40 MIN,3-4 horas,80 KM,Vehículo,Baja-Media,"1. Praça Cruz de Papa
 Erigida en memoria de la visita del Papa Juan Pablo II en 1990, esta plaza cuenta con un mirador y un parque que complementan el monumento.
 Consejo Práctico: Disfruta de un atardecer sobre la Bahía de Quebra Canela.
 2. Igreja Matriz de Nossa Senhora da Graça
@@ -253,9 +253,9 @@ Fiesta de Nossa Senhora da Graça: Asiste a las celebraciones en agosto, en la i
 Accesibilidad: Transporte público y privado disponibles para todos los puntos de interés.
 Época Ideal: Todo el año, pero especialmente durante las festividades religiosas.
 Costos: Entrada gratuita en la mayoría de los puntos; Sin embargo, algunos templos pueden requerir una tarifa simbólica o donación para su mantenimiento.
-Normas: Vestimenta respetuosa y silencio en los lugares de culto.",7
+Normas: Vestimenta respetuosa y silencio en los lugares de culto.",7,Cultura,['Cultura']
 "RUTA NATURAL: ""TESOROS DE LA NATURALEZA DEL NORTE DE SANTIAGO""","Santo Domingo
-San Miguel",COD_21,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/FMXeGDSdOMssg12xTqFR.jpg,COD_69,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/mvKxDy2phNHJ9Zk7YARj.jpg,COD_70,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/cdXbrImQjnrVtPWH1Saq.jpg,,,"Adéntrate en los paisajes más impresionantes de Santiago con esta ruta que conecta parques naturales, valles históricos y montañas emblemáticas. Este recorrido destaca los ecosistemas protegidos, flora y fauna endémicas, y el impresionante relieve montañoso, posicionando a Santiago como un destino ideal para los amantes del ecoturismo y el senderismo.",6 H. 30 MIN,60 kilómetros,Vehículo,Media-Alta,Senderismo,"1. GonGon
+San Miguel",COD_21,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/FMXeGDSdOMssg12xTqFR.jpg,COD_69,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/mvKxDy2phNHJ9Zk7YARj.jpg,COD_70,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/cdXbrImQjnrVtPWH1Saq.jpg,,,"Adéntrate en los paisajes más impresionantes de Santiago con esta ruta que conecta parques naturales, valles históricos y montañas emblemáticas. Este recorrido destaca los ecosistemas protegidos, flora y fauna endémicas, y el impresionante relieve montañoso, posicionando a Santiago como un destino ideal para los amantes del ecoturismo y el senderismo.",6 H. 30 MIN,Más de 6 horas,60 kilómetros,Vehículo,Media-Alta,"1. GonGon
 Un paraje natural menos conocido pero perfecto para observación de aves y descanso en la naturaleza.
 Consejo Práctico: Consulta las condiciones climáticas antes de visitar.
 2. Serra Malagueta
@@ -276,9 +276,9 @@ https://maps.app.goo.gl/QFmUhevREm679jVy8 ",https://maps.app.goo.gl/QFmUhevREm67
 Accesibilidad: La mayoría de los puntos son accesibles en vehículo y requieren caminatas medias.
 Época Ideal: Todo el año, excepto durante las lluvias intensas (noviembre a enero).
 Costos: Entrada gratuita en la mayoría de los puntos, excepto en Serra Malagueta, donde se aplica una tarifa simbólica de 100 escudos para visitantes internacionales​.
-Normas: Llevar la basura, evitar ruidos fuertes y respetar la flora y fauna locales.",8
+Normas: Llevar la basura, evitar ruidos fuertes y respetar la flora y fauna locales.",8,Senderismo,['Senderismo']
 "RUTA NATURAL: ""TESOROS DE LA NATURALEZA DEL SUR DE SANTIAGO""","Ribeira Grande de Santiago
-São Lourenço dos Órgãos",COD_66,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/JyIgFvrq2T2liESjceCO.jpg,,,,,,,"Adéntrate en los paisajes más impresionantes de Santiago con esta ruta que conecta parques naturales, valles históricos y montañas emblemáticas. Este recorrido destaca los ecosistemas protegidos, flora y fauna endémicas, y el impresionante relieve montañoso, posicionando a Santiago como un destino ideal para los amantes del ecoturismo y el senderismo.",3 H. 50 MIN,30 KM,Vehículo,Medios de comunicación,Senderismo,"1. Vale da Ribeira Grande de Santiago
+São Lourenço dos Órgãos",COD_66,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/JyIgFvrq2T2liESjceCO.jpg,,,,,,,"Adéntrate en los paisajes más impresionantes de Santiago con esta ruta que conecta parques naturales, valles históricos y montañas emblemáticas. Este recorrido destaca los ecosistemas protegidos, flora y fauna endémicas, y el impresionante relieve montañoso, posicionando a Santiago como un destino ideal para los amantes del ecoturismo y el senderismo.",3 H. 50 MIN,3-4 horas,30 KM,Vehículo,Medios de comunicación,"1. Vale da Ribeira Grande de Santiago
 Un valle histórico y natural utilizado como laboratorio agrícola durante la época colonial, con árboles centenarios y vestigios de comercio de esclavos.
 Consejo Práctico: El recorrido incluye 5 km a pie; lleva ropa ligera.
 2. Monte Gâmboa
@@ -296,10 +296,10 @@ NEW Monte Gâmboa São Lourenço dos Órgãos 15.032633537407914, -23.6262897597
 Accesibilidad: La mayoría de los puntos son accesibles en vehículo y requieren caminatas medias.
 Época Ideal: Todo el año, excepto durante las lluvias intensas (noviembre a enero).
 Costos: Entrada gratuita en la mayoría de los puntos.
-Normas: Llevar la basura, evitar ruidos fuertes y respetar la flora y fauna locales.",9
+Normas: Llevar la basura, evitar ruidos fuertes y respetar la flora y fauna locales.",9,Senderismo,['Senderismo']
 "RUTA MUSICAL Y GASTRONÓMICA: ""SABOR Y SONIDOS DE SANTIAGO""","santa cruz
 santa catarina
-São Lourenço dos Órgãos",COD_10,,COD_33,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Jd94rDemjBeN1s62wWM6.jpg,,,,,"Sumérgete en los sabores y ritmos de Santiago con esta ruta que celebra la herencia musical y gastronómica de Cabo Verde. Explora centros culturales, plazas emblemáticas, museos y destilerías para vivir una experiencia única que combina tradición, música y delicias locales.",2H.05MIN,35 KM,Vehículo,Baja-Media,Cultura,"1. Largo Catchás ""Rei do Funaná""
+São Lourenço dos Órgãos",COD_10,,COD_33,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Jd94rDemjBeN1s62wWM6.jpg,,,,,"Sumérgete en los sabores y ritmos de Santiago con esta ruta que celebra la herencia musical y gastronómica de Cabo Verde. Explora centros culturales, plazas emblemáticas, museos y destilerías para vivir una experiencia única que combina tradición, música y delicias locales.",2H.05MIN, 2-3 horas,35 KM,Vehículo,Baja-Media,"1. Largo Catchás ""Rei do Funaná""
 Un homenaje al legendario Carlos Alberto Martins, fundador del conjunto Bulimundo y promotor del funaná. La plaza cuenta con una estatua simbólica y placas conmemorativas.
 Consejo Práctico: Ideal para disfrutar durante festividades locales.
 2. Destilería Grogue: UPAPIT
@@ -325,14 +325,9 @@ Ruta del Pescado en Restaurantes de la Costa: Visita restaurantes costeros en Pr
 Accesibilidad: Transporte público disponible para la mayoría de los puntos, aunque se recomienda transporte privado para mayor flexibilidad.
 Época Ideal: Todo el año, especialmente durante festividades musicales y culturales.
 Costos: Entrada de 100 escudos en el Centro Cultural Norberto Tavares; visitas a otros puntos gratuitas o con costos variables según actividades​
-​Normas: Respetar los horarios de las visitas y las normas de cada espacio cultural.",10
+​Normas: Respetar los horarios de las visitas y las normas de cada espacio cultural.",10,Cultura,['Cultura']
 "RUTA DE LA COSTA: ""PLAYAS Y FAROS DEL NORTE DE SANTIAGO""","Tarrafal
-San Miguel",COD_23,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/jb7s5fK3KB1suavwLlLX.jpg,COD_48,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/YVo4EQGTjDPn3jdQy0ZZ.jpg,COD_52,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/7DzVdUut2MbTJgGtyQwO.jpg,COD_56,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ENhixE9bRN4Nq8WvB6Jw.jpg,"Explora la belleza natural de las costas del norte de Santiago con esta ruta que conecta playas de arena blanca y negra, paisajes volcánicos y sitios ideales para el descanso y la contemplación. Una experiencia perfecta para amantes de la naturaleza, el ecoturismo y el turismo sostenible.",4 H. 15 MIN,32 KM,Vehículo,Baja-Media,"Baño
-Surf
-Bodyboard
-Windsurf
-Snorkel y buceo
-Avistamiento de fauna marina","1. Praia Ribeira da Prata
+San Miguel",COD_23,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/jb7s5fK3KB1suavwLlLX.jpg,COD_48,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/YVo4EQGTjDPn3jdQy0ZZ.jpg,COD_52,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/7DzVdUut2MbTJgGtyQwO.jpg,COD_56,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ENhixE9bRN4Nq8WvB6Jw.jpg,"Explora la belleza natural de las costas del norte de Santiago con esta ruta que conecta playas de arena blanca y negra, paisajes volcánicos y sitios ideales para el descanso y la contemplación. Una experiencia perfecta para amantes de la naturaleza, el ecoturismo y el turismo sostenible.",4 H. 15 MIN,4-5 horas,32 KM,Vehículo,Baja-Media,"1. Praia Ribeira da Prata
 Conocida por sus dunas de arena negra y su potencial como destino de turismo de salud. Es el mayor punto de desove de tortugas marinas en la región.
 Consejo Práctico: Ideal para visitar en temporada seca para maximizar la visibilidad del paisaje.
 2. Praia de Presidente
@@ -356,14 +351,14 @@ https://maps.app.goo.gl/GdAWj2ssQFbmduf57   ",https://maps.app.goo.gl/GdAWj2ssQF
 Deportes Acuáticos en Praia Branca: Experimenta actividades como snorkel y paseos en bote.","Equipo Recomendado: Ropa de playa calzado para caminar en la arena, protector solar y agua.
 Accesibilidad: Transporte público y privado disponible; algunas playas requieren acceso a pie o autorización previa.
 Época Ideal: Todo el año, aunque la temporada seca ofrece mejores condiciones para disfrutar del paisaje y las actividades al aire libre.
-Normas: Respeta las regulaciones ambientales, especialmente en playas de desove de tortugas.",11
-"RUTA DE LA COSTA: ""PLAYAS Y FAROS DEL SUR DE SANTIAGO""","Praia
-Ribeira Grande de Santiago",COD_16,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Mz6XxdpQmrEh1i71gGJd.jpg,COD_22,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/LoLRdqNMlnBCYle7GMQc.jpg,COD_55,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ol20dU6aO9GOLCOVP4x0.jpg,COD_49,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/giLpIdJSRlHzn9v4K2zZ.jpg,"Explora las tranquilas playas y el histórico faro del sur de Santiago en un recorrido que combina la belleza natural y el legado arquitectónico de Cabo Verde. Descubre desde playas urbanas ideales para el ocio hasta pequeñas calas de arena negra, perfectas para quienes buscan experiencias únicas y relajantes.",4 H. 55 MIN,60 kilómetros,Vehículo,Baja-Media,"Baño
+Normas: Respeta las regulaciones ambientales, especialmente en playas de desove de tortugas.",11,"Baño
 Surf
 Bodyboard
 Windsurf
 Snorkel y buceo
-Avistamiento de fauna marina","1. Farol Dona Maria Pia
+Avistamiento de fauna marina","['Baño', 'Surf', 'Bodyboard', 'Windsurf', 'Snorkel y buceo', 'Avistamiento de fauna marina']"
+"RUTA DE LA COSTA: ""PLAYAS Y FAROS DEL SUR DE SANTIAGO""","Praia
+Ribeira Grande de Santiago",COD_16,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Mz6XxdpQmrEh1i71gGJd.jpg,COD_22,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/LoLRdqNMlnBCYle7GMQc.jpg,COD_55,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ol20dU6aO9GOLCOVP4x0.jpg,COD_49,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/giLpIdJSRlHzn9v4K2zZ.jpg,"Explora las tranquilas playas y el histórico faro del sur de Santiago en un recorrido que combina la belleza natural y el legado arquitectónico de Cabo Verde. Descubre desde playas urbanas ideales para el ocio hasta pequeñas calas de arena negra, perfectas para quienes buscan experiencias únicas y relajantes.",4 H. 55 MIN,4-5 horas,60 kilómetros,Vehículo,Baja-Media,"1. Farol Dona Maria Pia
 Ubicado en Ponta Temerosa, este faro del siglo XIX es el primero construido en Cabo Verde. Su estructura octogonal y su posición estratégica ofrecen vistas espectaculares al mar.
 Consejo Práctico: Recomendado visitar al atardecer para disfrutar de las vistas.
 2. Praia da Prainha
@@ -403,14 +398,14 @@ Paseo por la Aldea Artística de Porto Mosquito: Descubre las fachadas pintadas 
 Accesibilidad: Transporte público disponible para la mayoría de los puntos; se recomienda vehículo privado para mayor comodidad.
 Época Ideal: Todo el año, especialmente durante la temporada seca para disfrutar al máximo de las actividades al aire libre.
 Costos: Entrada gratuita en todos los puntos; algunas actividades como alquiler de equipos pueden tener costos adicionales.
-Normas: Respetar la naturaleza y las regulaciones locales, especialmente en áreas protegidas.",12
-"RUTA DE LA COSTA: ""PLAYAS Y FAROS DEL ESTE DE SANTIAGO""","Santo Domingo
-santa cruz",COD_34,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/I4hdKDtQZhRry2viHObv.jpg,COD_51,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/o0J3FG1XuAQMvDXOBAiB.jpg,COD_53,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/9HFpfxvPNUDYeSl93l4R.jpg,COD_50,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/QMD9tgrDCsFWvt3XdCdJ.jpg,"Descubre las maravillas del litoral este de Santiago con esta ruta que combina playas de aguas cristalinas, arenas de variados colores y un histórico faro. Una experiencia única para amantes de la naturaleza, el ecoturismo y el relax en un entorno costero incomparable.",5 H. 05 MIN,75 kilómetros,Vehículo,Baja-Media,"Baño
+Normas: Respetar la naturaleza y las regulaciones locales, especialmente en áreas protegidas.",12,"Baño
 Surf
 Bodyboard
 Windsurf
 Snorkel y buceo
-Avistamiento de fauna marina","1. Farol de Ponta Leste
+Avistamiento de fauna marina","['Baño', 'Surf', 'Bodyboard', 'Windsurf', 'Snorkel y buceo', 'Avistamiento de fauna marina']"
+"RUTA DE LA COSTA: ""PLAYAS Y FAROS DEL ESTE DE SANTIAGO""","Santo Domingo
+santa cruz",COD_34,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/I4hdKDtQZhRry2viHObv.jpg,COD_51,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/o0J3FG1XuAQMvDXOBAiB.jpg,COD_53,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/9HFpfxvPNUDYeSl93l4R.jpg,COD_50,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/QMD9tgrDCsFWvt3XdCdJ.jpg,"Descubre las maravillas del litoral este de Santiago con esta ruta que combina playas de aguas cristalinas, arenas de variados colores y un histórico faro. Una experiencia única para amantes de la naturaleza, el ecoturismo y el relax en un entorno costero incomparable.",5 H. 05 MIN,5-6 horas,75 kilómetros,Vehículo,Baja-Media,"1. Farol de Ponta Leste
 Un faro histórico con estructura octogonal y vistas espectaculares del océano. Aunque desactivado, su singular arquitectura y entorno costero lo convierten en un sitio de interés.
 Consejo Práctico: Accesible en vehículo, ideal para visitas al atardecer.
 2. Praia Baixo
@@ -444,10 +439,13 @@ Deportes Náuticos en Praia Baixo: Practica windsurf, snorkel o paseos en kayak 
 Accesibilidad: Transporte público disponible, aunque se recomienda vehículo privado para mayor comodidad.
 Época Ideal: Todo el año; mejor durante la temporada seca para disfrutar al máximo.
 Costos: Entrada gratuita en todos los puntos; si bien el alquiler de equipos para deportes náuticos puede tener costos adicionales.
-Normas: Respetar las regulaciones ambientales, especialmente en áreas de desove de tortugas.",13
-"RUTA DE LA COSTA: ""PLAYAS Y FAROS DEL OESTE DE SANTIAGO""",Santa Catarina,COD_2,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/wsntT98EbG0lz5Xl6DZ4.jpg,COD_28,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/3yKfc7jtgo0gMdNJuvst.png,COD_63,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/GNS4jSdBv7IlCVYxhC40.jpg,,,"Descubre los encantos naturales del oeste de Santiago en una ruta que combina impresionantes formaciones rocosas, grutas fascinantes y bahías pintorescas. Este recorrido es perfecto para quienes buscan tranquilidad, paisajes únicos y un contacto cercano con la naturaleza más auténtica de la isla.",2 H. 30 MIN,76 kilómetros,Vehículo,Medios de comunicación,"Baño
-Paseo en Bote
-Senderismo","1. Baia do Porto Rinção
+Normas: Respetar las regulaciones ambientales, especialmente en áreas de desove de tortugas.",13,"Baño
+Surf
+Bodyboard
+Windsurf
+Snorkel y buceo
+Avistamiento de fauna marina","['Baño', 'Surf', 'Bodyboard', 'Windsurf', 'Snorkel y buceo', 'Avistamiento de fauna marina']"
+"RUTA DE LA COSTA: ""PLAYAS Y FAROS DEL OESTE DE SANTIAGO""",Santa Catarina,COD_2,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/wsntT98EbG0lz5Xl6DZ4.jpg,COD_28,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/3yKfc7jtgo0gMdNJuvst.png,COD_63,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/GNS4jSdBv7IlCVYxhC40.jpg,,,"Descubre los encantos naturales del oeste de Santiago en una ruta que combina impresionantes formaciones rocosas, grutas fascinantes y bahías pintorescas. Este recorrido es perfecto para quienes buscan tranquilidad, paisajes únicos y un contacto cercano con la naturaleza más auténtica de la isla.",2 H. 30 MIN, 2-3 horas,76 kilómetros,Vehículo,Medios de comunicación,"1. Baia do Porto Rinção
 La mayor comunidad pesquera de Santa Catarina. Este rincón combina un paisaje de arena negra y piedra volcánica con la vibrante actividad de los pescadores locales.
 Consejo Práctico: Ideal para un día relajante; lleva comida y agua.
 2. Gruta de Águas Belas
@@ -469,8 +467,10 @@ Observación de Flora y Fauna en Ribeira da Barca: Descubre la biodiversidad loc
 Accesibilidad: Transporte público limitado; se recomienda vehículo privado o tours organizados.
 Época Ideal: Todo el año; las condiciones climáticas son favorables, excepto en temporada de lluvias intensas.
 Costos: Entrada gratuita en todos los puntos; actividades como caminatas guiadas pueden tener costos adicionales.
-Normas: Respeta las áreas naturales, lleva tu basura y no alteres la fauna local.",14
-RUTA DE PRAIA,Playa,COD_27,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/R5mNymU3FgNv5dSx23q5.jpg,COD_40,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/xI0EQNvNRjQSraaxTZ9u.jpg,COD_7,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/mvKxDy2phNHJ9Zk7YARj.jpg,COD_16,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Mz6XxdpQmrEh1i71gGJd.jpg,"Recorre el corazón histórico y cultural de Plateau, en Praia. Desde museos únicos hasta calles vibrantes y monumentos emblemáticos, esta ruta te llevará a descubrir la esencia cultural y arquitectónica de Praia, ideal para amantes de la historia y exploradores urbanos.",CH. 25 MINUTOS,"3,9KM",A pie,Baja-Media,Cultura,"1. Museo Etnográfico da Praia
+Normas: Respeta las áreas naturales, lleva tu basura y no alteres la fauna local.",14,"Baño
+Paseo en Bote
+Senderismo","['Baño', 'Paseo en Bote', 'Senderismo']"
+RUTA DE PRAIA,Playa,COD_27,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/R5mNymU3FgNv5dSx23q5.jpg,COD_40,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/xI0EQNvNRjQSraaxTZ9u.jpg,COD_7,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/mvKxDy2phNHJ9Zk7YARj.jpg,COD_16,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Mz6XxdpQmrEh1i71gGJd.jpg,"Recorre el corazón histórico y cultural de Plateau, en Praia. Desde museos únicos hasta calles vibrantes y monumentos emblemáticos, esta ruta te llevará a descubrir la esencia cultural y arquitectónica de Praia, ideal para amantes de la historia y exploradores urbanos.",CH. 25 MINUTOS,4-5 horas,"3,9KM",A pie,Baja-Media,"1. Museo Etnográfico da Praia
 Este museo alberga una rica colección que ilustra la vida cotidiana, los oficios y las tradiciones de Cabo Verde. Sus exhibiciones incluyen piezas de artesanía, herramientas tradicionales y vitrinas interpretativas que permiten a los visitantes conectarse con las raíces culturales del archipiélago. Ubicado en un edificio histórico en el Plateau, es el lugar ideal para comprender la identidad cultural de Cabo Verde.
 Consejo práctico: Visítalo temprano para evitar aglomeraciones y disfruta de sus explicaciones detalladas​.
 2. Rua Pedonal 5 de Julho
@@ -519,14 +519,14 @@ Accesibilidad: La mayoría de los puntos son accesibles a pie; ideal para person
 Duración Estimada: Dedica un día completo para disfrutar plenamente de la experiencia.
 Normas: Respeta las indicaciones en los museos y áreas naturales.
 Idiomas Disponibles: Portugués, criollo y, en ocasiones, inglés.
-Seguridad: Zonas seguras y señalizadas; mantén precaución en los miradores.",15
+Seguridad: Zonas seguras y señalizadas; mantén precaución en los miradores.",15,Cultura,['Cultura']
 RUTA DE RIBEIRA GRANDE DE SANTIAGO,Ribeira Grande de Santiago,"COD_29
 
 ",https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Fp3lN5HeJxjzZY9reqk1.jpg,COD_67,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/PLrPQobqPC3Ox44gK9fG.jpg,"COD_64
 
 ",https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/RCWmKa0rNlYa2ggxXF4C.jpg,"COD_54
 
-",https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/gpmasnTK6lv6K2WVvXz6.jpg,"Explora la historia y la naturaleza de Santiago con una ruta que conecta lugares emblemáticos de la Ribeira Grande de Santiago. Descubre una iglesia histórica, fortalezas, calles pintorescas, y playas únicas. Ideal para amantes de la cultura, la arquitectura y los paisajes costeros.",3 H. 44 MIN,"16,9 KM",Vehículo,Baja-Media,Cultura,"1. Igreja da Nossa Senhora do Rosário 
+",https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/gpmasnTK6lv6K2WVvXz6.jpg,"Explora la historia y la naturaleza de Santiago con una ruta que conecta lugares emblemáticos de la Ribeira Grande de Santiago. Descubre una iglesia histórica, fortalezas, calles pintorescas, y playas únicas. Ideal para amantes de la cultura, la arquitectura y los paisajes costeros.",3 H. 44 MIN,3-4 horas,"16,9 KM",Vehículo,Baja-Media,"1. Igreja da Nossa Senhora do Rosário 
 Construida en 1495, esta iglesia es la más antigua en funcionamiento en África subsahariana. Destaca por su capilla lateral manuelina, un raro ejemplo de arquitectura gótica en la región. Además de su valor arquitectónico, la iglesia alberga tres tumbas de misioneros, incluido el Padre Nicolau Ferreira, de Cabo Verde.  
 Consejo práctico: Lleva calzado cómodo para explorar la zona histórica y ropa adecuada para visitar la iglesia.
 2. Fortaleza Real de São Filipe
@@ -568,9 +568,9 @@ Duración: Dedica un día completo para disfrutar plenamente de la ruta.
 Costos: Entradas combinadas para varios sitios.
 Accesibilidad: Adecuado para personas con movilidad reducida en algunos puntos (Rua da Banana y Igreja).
 Época Ideal: Año entero, pero evita días de lluvia para visitas a playas y ruinas.
-Seguridad: Mantente en caminos señalizados y respeta las normas locales.",16
+Seguridad: Mantente en caminos señalizados y respeta las normas locales.",16,Cultura,['Cultura']
 RUTA DE SAN MIGUEL,San Miguel,COD_71,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/VQSLKRpqcwM4mHYOde3b.jpg,COD_87,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/VryrBZEIGEARLlI7g6LL.png,COD_59,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/s5zvE0DG43MmwjYp6rIO.jpg,"COD_52
-",https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/7DzVdUut2MbTJgGtyQwO.jpg,"Embárcate en un viaje que combina cultura, historia y paisajes únicos en São Miguel. Explora el rico legado cultural de los Rabelados, la majestuosidad de la Iglesia Matriz, las tradiciones del Centro Histórico y la serenidad de la Praia de Mangue de 7 Ribeiras. Una experiencia ideal para los amantes de la autenticidad y la naturaleza.",3 H. 23 MIN,"11,5 KM",Vehículo,Baja-Media,Cultura,"1. Centro Hístorico de São Miguel 
+",https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/7DzVdUut2MbTJgGtyQwO.jpg,"Embárcate en un viaje que combina cultura, historia y paisajes únicos en São Miguel. Explora el rico legado cultural de los Rabelados, la majestuosidad de la Iglesia Matriz, las tradiciones del Centro Histórico y la serenidad de la Praia de Mangue de 7 Ribeiras. Una experiencia ideal para los amantes de la autenticidad y la naturaleza.",3 H. 23 MIN,3-4 horas,"11,5 KM",Vehículo,Baja-Media,"1. Centro Hístorico de São Miguel 
 No solo es un núcleo cultural e histórico, sino también un vibrante escenario para diversos eventos culturales que celebran la riqueza de la región. Festivales de música, danza y gastronomía animan regularmente sus calles y plazas, atrayendo tanto a locales como a turistas que buscan una inmersión auténtica en la cultura caboverdiana. Además, la tradición pesquera sigue viva en el área, ofreciendo a los visitantes la oportunidad de observar la vida diaria de los pescadores y degustar mariscos frescos en acogedores restaurantes locales.
 Consejo práctico: lleva tu cámara para capturar estos momentos únicos y consulta los calendarios locales para no perderte los eventos destacados durante tu visita.
 2. Igreja Matriz de São Miguel
@@ -600,9 +600,9 @@ Accesibilidad: Apta para todas las edades; algunas zonas requieren esfuerzo mode
 Duración estimada: De 3 a 6 horas, dependiendo del tiempo en cada actividad.
 Época ideal: Todo el año, aunque se recomienda evitar la temporada de lluvias por accesibilidad.
 Seguridad: Precaución en días lluviosos; llevar repelente para insectos.
-Idiomas disponibles: Portugués, criollo caboverdiano y servicios de guía en inglés/español disponibles bajo reserva.",17
+Idiomas disponibles: Portugués, criollo caboverdiano y servicios de guía en inglés/español disponibles bajo reserva.",17,Cultura,['Cultura']
 RUTA DE SANTA CRUZ,Santa Cruz,COD_62,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ZIZs9GQlrWNFv4w5knfm.jpg,COD_30,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/StCUvzqLdsfcTDC6Kjpc.jpg,COD_43,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/PAOgQtfH84piXtUjs8yg.jpg,COD_50,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/QMD9tgrDCsFWvt3XdCdJ.jpg,"Sumérgete en una experiencia única que combina naturaleza, historia y cultura en la región de Santa Cruz,ubicada en la isla de Santiago. Esta ruta ofrece un recorrido por paisajes impresionantes, playas paradisíacas y tesoros culturales únicos, ideal para familias y aventureros.
-",Je. 15 de,"15,8 KM",Vehículo,Baja-Media,Cultura,"1. Ribeira Seca
+",Je. 15 de,5-6 horas,"15,8 KM",Vehículo,Baja-Media,"1. Ribeira Seca
 Es un oasis verde en Santa Cruz y la mayor ribeira del municipio. Este lugar destaca por sus campos agrícolas irrigados mediante sistemas de goteo, contrastando con el entorno más seco y ofreciendo un paisaje único que refleja prácticas sostenibles. Los visitantes pueden disfrutar de caminatas guiadas para explorar la flora local, interactuar con los agricultores y capturar impresionantes fotografías de este entorno rural. 
 Consejo práctico: es recomendable llevar agua y calzado cómodo para aprovechar al máximo la experiencia.
 2. Igreja São Tiago Maior
@@ -642,11 +642,8 @@ Accesibilidad: Apta para familias y personas con movilidad reducida en varios pu
 Duración estimada: 5-8 horas.
 Normas y regulaciones: Respeto a las comunidades locales, evitar dejar basura y no molestar a la fauna.
 Idiomas disponibles: Portugués, inglés y francés en algunos puntos turísticos.
-Seguridad: Precaución en las caminatas, especialmente durante días lluviosos. Contacto de emergencia disponible en los puntos clave.",18
-RUTA SANTA CATARINA,Santa Catarina,COD_9,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/kXaUaDECXQ0xEGjB9JVt.png,COD_10,,COD_28,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/3yKfc7jtgo0gMdNJuvst.png,COD_31,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/qXnG0N85xiN3fVByEpQQ.jpg,"Explora los tesoros culturales, históricos y naturales de Santa Catarina, en un recorrido que conecta su rica herencia arquitectónica, lugares de culto y paisajes únicos. Esta ruta destaca por su diversidad, perfecta para quienes desean adentrarse en la esencia de Santiago.",3 H. 40 MIN,31 KM,Vehículo,Medios de comunicación,"Cultura
-Baño
-Paseo en Bote
-Senderismo","1. Cascata de Água Caída
+Seguridad: Precaución en las caminatas, especialmente durante días lluviosos. Contacto de emergencia disponible en los puntos clave.",18,Cultura,['Cultura']
+RUTA SANTA CATARINA,Santa Catarina,COD_9,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/kXaUaDECXQ0xEGjB9JVt.png,COD_10,,COD_28,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/3yKfc7jtgo0gMdNJuvst.png,COD_31,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/qXnG0N85xiN3fVByEpQQ.jpg,"Explora los tesoros culturales, históricos y naturales de Santa Catarina, en un recorrido que conecta su rica herencia arquitectónica, lugares de culto y paisajes únicos. Esta ruta destaca por su diversidad, perfecta para quienes desean adentrarse en la esencia de Santiago.",3 H. 40 MIN,3-4 horas,31 KM,Vehículo,Medios de comunicación,"1. Cascata de Água Caída
 Una cascada única en la isla, perfecta para caminatas y observación de fauna.
 2. Casa da Infância de Amilcar Cabral
 La residencia donde Amilcar Cabral pasó parte de su infancia, un héroe revolucionario de Cabo Verde. Este sitio combina historia y arquitectura colonial.
@@ -691,10 +688,11 @@ Visita a los Trapiches Tradicionales: Descubre el proceso artesanal de producci�
 Accesibilidad: Vehículos privados o tours organizados son recomendados.
 Época Ideal: Todo el año; ideal para días soleados.
 Costos: Museu da Tabanca: 100 escudos; Centro Cultural Norberto Tavares: 100 escudos.
-Normas: Respeta las áreas protegidas y la comunidad local.",19
-RUTA SÃO DOMINGOS,Santo Domingo,COD_34,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/I4hdKDtQZhRry2viHObv.jpg,COD_38,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/cqdMxM28mlraAWMtup0o.jpg,COD_18,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ElB4yb1c0081NE8gp4fe.jpg,COD_51,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/o0J3FG1XuAQMvDXOBAiB.jpg,"Explora los tesoros naturales, históricos y culturales del municipio de São Domingos. Esta ruta combina grutas impresionantes, vistas panorámicas, playas y monumentos, ofreciendo una experiencia completa de la riqueza de Santiago.",5 H. 25 MIN,85 KM,Vehículo,Medios de comunicación,"Baño
-Cultura
-Senderismo","1. Farol de Ponta Leste
+Normas: Respeta las áreas protegidas y la comunidad local.",19,"Cultura
+Baño
+Paseo en Bote
+Senderismo","['Cultura', 'Baño', 'Paseo en Bote', 'Senderismo']"
+RUTA SÃO DOMINGOS,Santo Domingo,COD_34,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/I4hdKDtQZhRry2viHObv.jpg,COD_38,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/cqdMxM28mlraAWMtup0o.jpg,COD_18,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/ElB4yb1c0081NE8gp4fe.jpg,COD_51,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/o0J3FG1XuAQMvDXOBAiB.jpg,"Explora los tesoros naturales, históricos y culturales del municipio de São Domingos. Esta ruta combina grutas impresionantes, vistas panorámicas, playas y monumentos, ofreciendo una experiencia completa de la riqueza de Santiago.",5 H. 25 MIN,5-6 horas,85 KM,Vehículo,Medios de comunicación,"1. Farol de Ponta Leste
 Un faro histórico que ofrece vistas espectaculares del océano y la costa este. Es un lugar emblemático para disfrutar del paisaje.
 Consejo Práctico: Lleva ropa cómoda y visita al atardecer para capturar las mejores vistas.
 2. Igreja de São Nicolau Tolentino
@@ -740,10 +738,10 @@ Ruta Gastronómica del Pastel de Milho: Degusta los famosos pasteles de maíz de
 Feria de Artesanías Locales: Participa en eventos donde se exponen cerámicas, tejidos y bordados típicos del municipio, promovidos por la Cooperativa Rabenta y la Fábrica de Cerámica de São Domingos.","Equipo Recomendado: Ropa ligera, calzado cómodo, protector solar, agua y cámara fotográfica.
 Accesibilidad: Vehículos privados o tours organizados son recomendados.
 Época Ideal: Todo el año, idealmente de mayo a octubre para disfrutar del clima más favorable.
-Costos: Ingreso gratuito a todos los recursos.",20
-RUTA SÃO LOURENÇO DOS ORGÃOS,São Lourenço dos Órgãos,COD_13,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/fzdutQv8QTgBTOLTV2ja.jpg,COD_32,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/mc1cPMag5VHSs6jOtAiQ.jpg,COD_80,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/grE3cChXwQHNzTdNRLLY.jpg,,,"Adéntrate en el corazón natural y cultural de São Lourenço dos Órgãos, un municipio que combina biodiversidad, historia y tradiciones. Desde jardines botánicos hasta mercados históricos y casas coloniales, esta ruta te conecta con la esencia auténtica de Cabo Verde.",2 H. 40 MIN,24 KM,Vehículo,Medios de comunicación,"Baño
+Costos: Ingreso gratuito a todos los recursos.",20,"Baño
 Cultura
-Senderismo","1. Centro Interpretativo ""Kintal de Nós Djentis""
+Senderismo","['Baño', 'Cultura', 'Senderismo']"
+RUTA SÃO LOURENÇO DOS ORGÃOS,São Lourenço dos Órgãos,COD_13,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/fzdutQv8QTgBTOLTV2ja.jpg,COD_32,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/mc1cPMag5VHSs6jOtAiQ.jpg,COD_80,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/grE3cChXwQHNzTdNRLLY.jpg,,,"Adéntrate en el corazón natural y cultural de São Lourenço dos Órgãos, un municipio que combina biodiversidad, historia y tradiciones. Desde jardines botánicos hasta mercados históricos y casas coloniales, esta ruta te conecta con la esencia auténtica de Cabo Verde.",2 H. 40 MIN, 2-3 horas,24 KM,Vehículo,Medios de comunicación,"1. Centro Interpretativo ""Kintal de Nós Djentis""
 Un espacio dedicado a la biodiversidad y el conocimiento agrícola de São Lourenço, con exposiciones interactivas y talleres educativos.
 Consejo Práctico: Ideal para todas las edades; visita temprano para aprovechar las actividades al aire libre.
 2. Jardim Botânico Grandvaux Barbosa
@@ -774,16 +772,10 @@ Duración: Ruta completa de 6-8 horas.
 Accesibilidad: Transporte público disponible, aunque se recomienda vehículo privado para mayor comodidad.
 Época Ideal: Todo el año, ideal para días soleados y durante las festividades locales【252†source】.
 Costos: Entrada gratuita a la mayoría de los recursos; talleres y visitas guiadas pueden tener costos adicionales【251†source】.
-Normas: Respeta las áreas protegidas y la comunidad local.",21
-RUTA DE TARRAFAL,Tarrafal,COD_68,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/HXHfwzSweRjHE2Iu0V6d.jpg,COD_3,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Fp3lN5HeJxjzZY9reqk1.jpg,COD_20,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Ey6BTxxiVBbG0CFymLRI.jpg,COD_48,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/YVo4EQGTjDPn3jdQy0ZZ.jpg,"Descubre la historia, cultura y belleza natural de Tarrafal en una ruta que abarca desde su patrimonio colonial hasta los paisajes más hermosos. Visita espacios tan emblemático como el Campo de Concentração, la Iglesia o el Centro de Arte, mientras disfrutas de la vida costera y la vibrante cultura local.",Kh 45 de,14 KM,Vehículo y a pie,Media-Alta,"Surf
-Bodyboard
-Windsurf
-Snorkel y buceo
-Senderismo costero
-Avistamiento de fauna marina
-Cultura  
-Arte 
-Artesanía","1. Turismo de surf (Ponta d'Atum)
+Normas: Respeta las áreas protegidas y la comunidad local.",21,"Baño
+Cultura
+Senderismo","['Baño', 'Cultura', 'Senderismo']"
+RUTA DE TARRAFAL,Tarrafal,COD_68,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/HXHfwzSweRjHE2Iu0V6d.jpg,COD_3,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Fp3lN5HeJxjzZY9reqk1.jpg,COD_20,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/Ey6BTxxiVBbG0CFymLRI.jpg,COD_48,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/YVo4EQGTjDPn3jdQy0ZZ.jpg,"Descubre la historia, cultura y belleza natural de Tarrafal en una ruta que abarca desde su patrimonio colonial hasta los paisajes más hermosos. Visita espacios tan emblemático como el Campo de Concentração, la Iglesia o el Centro de Arte, mientras disfrutas de la vida costera y la vibrante cultura local.",Kh 45 de,5-6 horas,14 KM,Vehículo y a pie,Media-Alta,"1. Turismo de surf (Ponta d'Atum)
 Ponta d'Atum es un destino popular para el surf, conocido por sus olas consistentes y aguas cristalinas. El paisaje natural de la costa, rodeado de formaciones rocosas, crea el ambiente perfecto para los surfistas. También se puede disfrutar de la observación de fauna marina y senderismo por la costa. 
 2. Campo de Concentração de Tarrafal
 Este histórico campo de concentración, ahora un museo al aire libre, fue utilizado para prisioneros políticos durante la dictadura portuguesa. Es un sitio de memoria que ofrece exposiciones sobre los prisioneros y la lucha por los derechos humanos. Los visitantes pueden recorrer el campo y aprender sobre su importancia histórica. 
@@ -826,10 +818,16 @@ Accesibilidad: Los recursos son accesibles en vehículo y fácilmente a pie. Si 
 Normas: mantener una actitud de respeto en lugares históricos y/o religiosos. 
 Idiomas: Portugués e inglés principalmente
 Turismo de surf - Consultar las condiciones del mar antes.
-Porto de Mangui -  Negociar los precios de los paseos si se decide embarcar",22
-RUTA SÃO SALVADOR DO MUNDO,San Salvador del Mundo,COD_72,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/9QAitAoOVdDU0r0GfTxh.jpg,COD_83,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/alz1BotvnaYSBUzZrMlz.png,COD_85,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/DlkUn1FiufTAbCUkYJgu.png,COD_86,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/6aHXjiwhwSwPnAn4e6lv.png,"Embárcate en una ruta única que fusiona historia, naturaleza y cultura en el corazón de Santiago. Desde impresionantes paisajes volcánicos hasta monumentos históricos, descubrirás la esencia de la isla mientras exploras sus maravillas naturales y tradiciones autóctonas. Ideal para los amantes de la aventura, la cultura local y la ecología.",CH. 15 MINUTOS,"7,5 KM",Vehículo y a pie,Media-Alta,"Cultura
-Senderismo 
-Avistamiento de fauna marina","1. Barragem de Faveta
+Porto de Mangui -  Negociar los precios de los paseos si se decide embarcar",22,"Surf
+Bodyboard
+Windsurf
+Snorkel y buceo
+Senderismo costero
+Avistamiento de fauna marina
+Cultura  
+Arte 
+Artesanía","['Surf', 'Bodyboard', 'Windsurf', 'Snorkel y buceo', 'Senderismo costero', 'Avistamiento de fauna marina', 'Cultura  ', 'Arte ', 'Artesanía']"
+RUTA SÃO SALVADOR DO MUNDO,San Salvador del Mundo,COD_72,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/9QAitAoOVdDU0r0GfTxh.jpg,COD_83,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/alz1BotvnaYSBUzZrMlz.png,COD_85,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/DlkUn1FiufTAbCUkYJgu.png,COD_86,https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/vGSx7XE482WK3IyOQsKn/pub/6aHXjiwhwSwPnAn4e6lv.png,"Embárcate en una ruta única que fusiona historia, naturaleza y cultura en el corazón de Santiago. Desde impresionantes paisajes volcánicos hasta monumentos históricos, descubrirás la esencia de la isla mientras exploras sus maravillas naturales y tradiciones autóctonas. Ideal para los amantes de la aventura, la cultura local y la ecología.",CH. 15 MINUTOS,4-5 horas,"7,5 KM",Vehículo y a pie,Media-Alta,"1. Barragem de Faveta
 Esta moderna infraestructura hidráulica, inaugurada en 2013 ha transformado el paisaje agrícola de la región, convirtiéndose en un atractivo turístico por su impacto ambiental positivo. La barrera de agua ha atraído diversas especies de aves, especialmente las garzas blancas. El entorno verde es ideal para caminatas y el festival anual del maíz atrae a numerosos visitantes en noviembre.
 2. Igreja de São Salvador do Mundo
 Un referente arquitectónico de la región, esta iglesia reemplazó una capilla original construida por el obispo D. Victoriano Portuense. Situada en el centro histórico de Achada Igreja, su edificación refleja la influencia colonial y es el epicentro de las celebraciones religiosas, especialmente la Fiesta de São Salvador do Mundo .
@@ -857,4 +855,6 @@ Accesibilidad: La ruta es apta para PMR salvo en puntos, como el Monte Gulilânc
 Época ideal: Primavera y el otoño. Evitar los meses de lluvia (agosto a octubre).
 Duración: La ruta completa puede tomar entre 4 y 6 horas, dependiendo de las actividades adicionales que se elijan.
 Normas: Respeta las indicaciones de los guías y las normativas locales sobre el cuidado del medio ambiente, especialmente en áreas protegidas.
-Idiomas: Los guías turísticos hablan portugués y criollo; algunos también inglés.",23
+Idiomas: Los guías turísticos hablan portugués y criollo; algunos también inglés.",23,"Cultura
+Senderismo 
+Avistamiento de fauna marina","['Cultura', 'Senderismo ', 'Avistamiento de fauna marina']"
