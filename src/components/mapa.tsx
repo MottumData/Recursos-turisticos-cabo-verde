@@ -1,42 +1,24 @@
 'use client';
 
-import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import { LatLngExpression } from 'leaflet';
-import ExpanderRutas from './expander_rutas';
-import { Icon } from 'leaflet';
+import ExpanderRutas from './Expanders/expanderRutas';
 import 'leaflet/dist/leaflet.css';
-import L, { LatLng } from 'leaflet';
-import { Polyline } from 'react-leaflet';
-import { renderToStaticMarkup } from 'react-dom/server';
 import {
-  FaUmbrellaBeach,
-  FaUniversity,
-  FaLandmark,
-  FaPalette,
-  FaWrench,
-  FaPaintBrush,
-  FaPrayingHands,
-  FaSeedling,
-  FaBinoculars,
-  FaUsers,
-  FaGuitar,
-  FaTractor,
-  FaMountain,
-  FaGem,
-  FaMonument,
   FaLayerGroup
 } from 'react-icons/fa';
 
 import pt from '../../public/locale/pt';
 import en from '../../public/locale/en';
 import es from '../../public/locale/es';
-import { useState, useEffect, JSX } from 'react';
+import { useState } from 'react';
 import Legend from './legend';
-import Expander from './expander';
-import { TouristResource, Route } from './loadCsv';
-import Sidebar from './sidebar';
+import Expander from './Expanders/expanderRecursos';
+import { TouristResource, Route } from './Utils/loadCsv';
+import Sidebar from './Sidebar/sidebar';
+import RoutingControl from './Utils/routingControl';
+import { getIcon } from './Icon/iconUtils';
 
-const Openrouteservice = require("openrouteservice-js");
 const locales = { pt, en, es };
 
 type Language = 'pt' | 'en' | 'es';
@@ -50,152 +32,7 @@ interface MapProps {
   language: Language;
 }
 
-function RoutingControl({ selectedRoute }: { selectedRoute: Route | null }) {
-  const map = useMap();
-  const [routeCoords, setRouteCoords] = useState<[number, number][]>([]);
-
-  useEffect(() => {
-    if (selectedRoute) {
-      const recursosGeoreferenciados = selectedRoute["recursos georeferenciados"];
-      console.log('Map component loaded:', recursosGeoreferenciados);
-
-      if (!recursosGeoreferenciados) {
-        console.error('No se encontró "recursos georeferenciados" en selectedRoute.');
-        return;
-      }
-
-      const lines = recursosGeoreferenciados.split('\n');
-      const waypoints = lines.map((line: string) => {
-        const match = line.match(/(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
-        if (match) {
-          const lat = parseFloat(match[1]);
-          const lng = parseFloat(match[2]);
-          return [lng, lat];
-        } else {
-          console.warn('No se encontraron coordenadas en la línea:', line);
-          return null;
-        }
-      }).filter((coord: [number, number] | null): coord is [number, number] => coord !== null);
-
-      if (waypoints.length < 2) {
-        console.error('Se requieren al menos dos waypoints para calcular una ruta.');
-        return;
-      }
-
-      console.log('Waypoints:', waypoints);
-
-      const fetchRoute = async () => {
-        try {
-          const response = await fetch('https://api.openrouteservice.org/v2/directions/driving-car/geojson', {
-            method: 'POST',
-            headers: {
-              'Authorization': '5b3ce3597851110001cf624806d373a127de42c6ac73f64c01f3d2a1',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              coordinates: waypoints
-            })
-          });
-
-          if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-          }
-
-          const data = await response.json();
-          const coords = data.features[0].geometry.coordinates.map((coord: [number, number]) => [coord[1], coord[0]] as [number, number]);
-          setRouteCoords(coords);
-
-          // Opcional: Ajustar la vista del mapa para la ruta
-          const bounds = L.latLngBounds(coords);
-          map.fitBounds(bounds);
-
-        } catch (err) {
-          console.error('Error al obtener la ruta:', err);
-        }
-      };
-
-      fetchRoute();
-    }
-  }, [map, selectedRoute]);
-
-  return (
-    <>
-      {routeCoords.length > 0 && (
-        <Polyline positions={routeCoords} pathOptions={{ color: 'blue', weight: 4 }} />
-      )}
-    </>
-  );
-}
-
-
-function createColoredDivIcon(iconElement: JSX.Element, bgColor: string) {
-  const size = 30; // Outer circle size
-  const iconScale = 0.8; // Scale factor for inner icon
-  
-  return L.divIcon({
-    html: renderToStaticMarkup(
-      <div
-        style={{
-          backgroundColor: bgColor,
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <div style={{ transform: `scale(${iconScale})` }}>
-          {iconElement}
-        </div>
-      </div>
-    ),
-    className: '',
-    iconSize: [size, size],
-  });
-}
-function getIcon(resource: TouristResource, language: Language) {
-  const locale = locales[language];
-  if (!resource || !resource.cara) {
-    return createColoredDivIcon(<FaLandmark size={24} color="#fff" />, '#888');
-  }
-
-  const cleanCara = resource.cara.trim();
-  switch (cleanCara) {
-    case locale['Cara_Beaches_and_Coastal_Locations']:
-      return createColoredDivIcon(<FaUmbrellaBeach size={24} color="#fff" />, '#F4D03F'); // Ocean blue
-    case locale['Cara_Archaeological Legacy']:
-      return createColoredDivIcon(<FaMonument size={24} color="#fff" />, '#d2b48c'); // Sand/stone
-    case locale['Cara_Folclore Materials']:
-      return createColoredDivIcon(<FaGuitar size={24} color="#fff" />, '#cd5c5c'); // Traditional red
-    case locale['Cara_Representative Works of Art']:
-      return createColoredDivIcon(<FaPalette size={24} color="#fff" />, '#9370db'); // Artistic purple
-    case locale['Cara_Engineering Works']:
-      return createColoredDivIcon(<FaWrench size={24} color="#fff" />, '#DC143C'); // Steel blue
-    case locale['Cara_Museums and Exhibition Halls']:
-      return createColoredDivIcon(<FaPaintBrush size={24} color="#fff" />, '#800020'); // Burgundy
-    case locale['Cara_Spiritual Folklore']:
-      return createColoredDivIcon(<FaPrayingHands size={24} color="#fff" />, '#4b0082'); // Deep indigo
-    case locale['Cara_Vales']:
-      return createColoredDivIcon(<FaSeedling size={24} color="#fff" />, '#90ee90'); // Light green
-    case locale['Cara_Mountains and Mountains']:
-      return createColoredDivIcon(<FaMountain size={24} color="#fff" />, '#708090'); // Slate gray
-    case locale['Cara_Flora and Fauna Observation Sites']:
-      return createColoredDivIcon(<FaBinoculars size={24} color="#fff" />, '#228b22'); // Forest green
-    case locale['Cara_Geological and Paleontological Formations']:
-      return createColoredDivIcon(<FaGem size={24} color="#fff" />, '#8b4513'); // Saddle brown
-    case locale['Cara_Ethnic Groups']:
-      return createColoredDivIcon(<FaUsers size={24} color="#fff" />, '#e27d60'); // Terracotta
-    case locale['Cara_Human Settlements and Living Architecture']:
-      return createColoredDivIcon(<FaUniversity size={24} color="#fff" />, '#b22222'); // Brick red
-    case locale['Cara_Agricultural Exploration']:
-      return createColoredDivIcon(<FaTractor size={24} color="#fff" />, '#daa520'); // Golden wheat
-    default:
-      return createColoredDivIcon(<FaLandmark size={24} color="#fff" />, '#778899'); // Light slate gray
-  }
-}
-
-export default function Map({ center, points, selectedRoute,setSelectedRoute, language }: MapProps) {
+export default function Map({ center, points, selectedRoute, setSelectedRoute, language }: MapProps) {
   const [filteredCategories, setFilteredCategories] = useState<string[]>([]);
   const [showLegend, setShowLegend] = useState<boolean>(false);
   const [expanderVisible, setExpanderVisible] = useState(false);
@@ -220,8 +57,8 @@ export default function Map({ center, points, selectedRoute,setSelectedRoute, la
     setSidebarVisible(true);
     setExpanderVisible(false);
     setRouteExpanderVisible(false);
-    // Close point expander
-    // Don't close route expander here
+    // Cerrar expander de punto
+    // No cerrar expander de ruta aquí
   };
 
   const filteredPoints = points.filter(point => 
@@ -232,7 +69,7 @@ export default function Map({ center, points, selectedRoute,setSelectedRoute, la
 
   return (
     <div className="w-screen h-screen relative ">
-      {/* Legend button positioned bottom-right */}
+      {/* Botón de leyenda posicionado en la esquina inferior derecha */}
       <div className="absolute bottom-6 right-4 z-[1000]">
         <button
           onClick={() => setShowLegend(true)}
@@ -260,7 +97,7 @@ export default function Map({ center, points, selectedRoute,setSelectedRoute, la
         </button>
       </div>
 
-      {/* Legend component */}
+      {/* Componente de leyenda */}
       {showLegend && (
         <Legend
           locale={locale}
@@ -274,14 +111,14 @@ export default function Map({ center, points, selectedRoute,setSelectedRoute, la
         style={{ height: '100%', width: '100%' }}
         zoomControl={false}
       >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {filteredPoints.map((point, idx) => (
-        <Marker key={idx} position={[point.lat, point.lng]} icon={getIcon(point, language)} eventHandlers={{ click: () => handleMarkerClick(point) }}>
-        </Marker>
-      ))}
-       {selectedRoute && <RoutingControl selectedRoute={selectedRoute} />}
-    </MapContainer>
-    <Expander
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        {filteredPoints.map((point, idx) => (
+          <Marker key={idx} position={[point.lat, point.lng]} icon={getIcon(point, language, locales)} eventHandlers={{ click: () => handleMarkerClick(point) }}>
+          </Marker>
+        ))}
+        {selectedRoute && <RoutingControl selectedRoute={selectedRoute} />}
+      </MapContainer>
+      <Expander
         visible={expanderVisible}
         resource={selectedResource ?? undefined}
         onClose={() => setExpanderVisible(false)}
@@ -289,7 +126,7 @@ export default function Map({ center, points, selectedRoute,setSelectedRoute, la
         locale={locale}
       />
 
-    <ExpanderRutas
+      <ExpanderRutas
         visible={routeExpanderVisible}
         resource={selectedRouteResource ?? undefined}
         onClose={() => setRouteExpanderVisible(false)}
@@ -297,7 +134,7 @@ export default function Map({ center, points, selectedRoute,setSelectedRoute, la
         locale={locale}
       />
 
-    <Sidebar
+      <Sidebar
         visible={sidebarVisible}
         onClose={() => setSidebarVisible(false)}
         language={language}

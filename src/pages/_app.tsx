@@ -1,6 +1,6 @@
 import MapView from './mapView';
 import '../app/globals.css';
-import { LanguageProvider } from '../components/languageContext';
+import { LanguageProvider } from '../components/Utils/languageContext';
 
 function App() {
   return (

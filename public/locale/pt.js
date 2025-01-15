@@ -108,4 +108,11 @@ export default{
   "Filter_Routes": "Filtrar Rotas",
   "Filter_Duration": "Filtrar Atributo1",
   "Filter_Activity": "Filtrar Atributo2",
+
+  "Select resource types": "Selecionar tipos de recursos",
+  "Select durations": "Selecionar durações",
+  "Select activities": "Selecionar atividades",
+
+  "Showing": "Mostrando",
+  "of 23 available routes": "de 23 rotas disponíveis"
 };

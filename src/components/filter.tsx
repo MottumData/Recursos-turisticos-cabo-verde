@@ -81,9 +81,9 @@ export default function CategoryFilter({
         <IconComponent className="w-5 h-5 text-gray-600" />
       </button>
       <span className="text-black-700 font-medium ml-3 text-[10px] sm:text-base font-medium">
-        {localeKey === 'Filter_Categories' ? 'Seleccionar tipo de recurso' : 
-         localeKey === 'Filter_Duration' ? 'Seleccionar duración' : 
-         localeKey === 'Filter_Activity' ? 'Seleccionar actividad' : 'Seleccionar filtro'}
+        {localeKey === 'Filter_Categories' ? locale['Select resource types'] : 
+         localeKey === 'Filter_Duration' ? locale['Select durations'] : 
+         localeKey === 'Filter_Activity' ? locale['Select activities'] : 'Seleccionar filtro'}
       </span>
 
       {isOpen && (

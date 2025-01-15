@@ -5,11 +5,11 @@ import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { LatLngExpression } from 'leaflet';
-import { useLanguage } from '../components/languageContext';
+import { useLanguage } from '../components/Utils/languageContext';
 import pt from '../../public/locale/pt';
 import en from '../../public/locale/en';
 import es from '../../public/locale/es';
-import { loadCSV, TouristResource, loadRoutesCSV, Route } from '../components/loadCsv';
+import { loadCSV, TouristResource, loadRoutesCSV, Route } from '../components/Utils/loadCsv';
 
 const Map = dynamic(() => import('../components/mapa'), {
   ssr: false,

@@ -1,0 +1,88 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useMap } from 'react-leaflet';
+import { Polyline } from 'react-leaflet';
+import L from 'leaflet';
+import { Route } from './loadCsv';
+
+interface RoutingControlProps {
+  selectedRoute: Route | null;
+}
+
+export default function RoutingControl({ selectedRoute }: RoutingControlProps) {
+  const map = useMap();
+  const [routeCoords, setRouteCoords] = useState<[number, number][]>([]);
+
+  useEffect(() => {
+    if (selectedRoute) {
+      const recursosGeoreferenciados = selectedRoute["recursos georeferenciados"];
+      console.log('Map component loaded:', recursosGeoreferenciados);
+
+      if (!recursosGeoreferenciados) {
+        console.error('No se encontró "recursos georeferenciados" en selectedRoute.');
+        return;
+      }
+
+      const lines = recursosGeoreferenciados.split('\n');
+      const waypoints = lines.map((line: string) => {
+        const match = line.match(/(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
+        if (match) {
+          const lat = parseFloat(match[1]);
+          const lng = parseFloat(match[2]);
+          return [lng, lat];
+        } else {
+          console.warn('No se encontraron coordenadas en la línea:', line);
+          return null;
+        }
+      }).filter((coord: [number, number] | null): coord is [number, number] => coord !== null);
+
+      if (waypoints.length < 2) {
+        console.error('Se requieren al menos dos waypoints para calcular una ruta.');
+        return;
+      }
+
+      console.log('Waypoints:', waypoints);
+
+      const fetchRoute = async () => {
+        try {
+          const response = await fetch('https://api.openrouteservice.org/v2/directions/driving-car/geojson', {
+            method: 'POST',
+            headers: {
+              'Authorization': '5b3ce3597851110001cf624806d373a127de42c6ac73f64c01f3d2a1',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              coordinates: waypoints
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+          }
+
+          const data = await response.json();
+          const coords = data.features[0].geometry.coordinates.map((coord: [number, number]) => [coord[1], coord[0]] as [number, number]);
+          setRouteCoords(coords);
+
+          // Opcional: Ajustar la vista del mapa para la ruta
+          const bounds = L.latLngBounds(coords);
+          map.fitBounds(bounds);
+
+        } catch (err) {
+          console.error('Error al obtener la ruta:', err);
+        }
+      };
+
+      fetchRoute();
+    }
+  }, [map, selectedRoute]);
+
+  return (
+    <>
+      {routeCoords.length > 0 && (
+        <Polyline positions={routeCoords} pathOptions={{ color: 'blue', weight: 4 }} />
+      )}
+    </>
+  );
+}

@@ -1,7 +1,7 @@
 import Papa from 'papaparse';
-import pt from '../../public/locale/pt';
-import en from '../../public/locale/en';
-import es from '../../public/locale/es';
+import pt from '../../../public/locale/pt';
+import en from '../../../public/locale/en';
+import es from '../../../public/locale/es';
 
 export interface TouristResource {
   lat: number;
