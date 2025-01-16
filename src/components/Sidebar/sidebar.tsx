@@ -82,6 +82,11 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
           onFilterChange={setFilteredCategories}
         />
       </div>
+
+      <div className="px-4 py-4 sm:px-6 sm:py-6">
+        <h3 className="text-xs sm:text-lg font-semibold text-gray-700 mb-3 sm:mb-4">
+          {locale['Select_Route'] || 'Select Route'}
+        </h3>
     
       <Filters
         language={language}
@@ -93,10 +98,6 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
         filteredRoutesCount={filteredRoutes.length}
       />
 
-      <div className="px-4 py-4 sm:px-6 sm:py-6">
-        <h3 className="text-xs sm:text-lg font-semibold text-gray-700 mb-3 sm:mb-4">
-          {locale['Select_Route'] || 'Select Route'}
-        </h3>
         <select
           value={selectedRoute}
           onChange={handleRouteChange}

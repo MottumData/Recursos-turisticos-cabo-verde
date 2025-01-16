@@ -4,7 +4,7 @@ import { FaMap } from 'react-icons/fa';
 interface ExpanderHeaderProps {
   resourceName: string;
   onClose: () => void;
-  googleMapsUrl: string;
+  googleMapsUrl?: string;
 }
 
 const ExpanderHeader: React.FC<ExpanderHeaderProps> = ({ resourceName, onClose, googleMapsUrl }) => {
@@ -32,14 +32,16 @@ const ExpanderHeader: React.FC<ExpanderHeaderProps> = ({ resourceName, onClose, 
         </button>
       </div>
       
-      <button
-        onClick={() => window.open(googleMapsUrl, '_blank')}
-        className="flex items-center gap-2 px-4 py-2 mt-2 text-sm text-gray-600 hover:bg-gray-100/80 rounded-full transition-colors"
-        title="Ver en Google Maps"
-      >
-        <FaMap className="h-5 w-5" />
-        <span>Ver en Google Maps</span>
-      </button>
+      {googleMapsUrl && (
+        <button
+          onClick={() => window.open(googleMapsUrl, '_blank')}
+          className="flex items-center gap-2 px-4 py-2 mt-2 text-sm text-gray-600 hover:bg-gray-100/80 rounded-full transition-colors"
+          title="Ver en Google Maps"
+        >
+          <FaMap className="h-5 w-5" />
+          <span>Ver en Google Maps</span>
+        </button>
+      )}
     </div>
   );
 };

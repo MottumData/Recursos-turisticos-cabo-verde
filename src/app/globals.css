@@ -95,3 +95,7 @@ html, body {
   height: 100%;
   overflow: hidden;
 }
+
+.leaflet-interactive {
+  outline: none !important;
+}

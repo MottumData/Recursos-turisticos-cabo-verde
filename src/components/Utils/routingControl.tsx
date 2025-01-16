@@ -2,15 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { useMap } from 'react-leaflet';
-import { Polyline } from 'react-leaflet';
+import { Polyline, Tooltip } from 'react-leaflet';
 import L from 'leaflet';
 import { Route } from './loadCsv';
 
 interface RoutingControlProps {
   selectedRoute: Route | null;
+  onRouteClick?: () => void;
 }
 
-export default function RoutingControl({ selectedRoute }: RoutingControlProps) {
+export default function RoutingControl({ selectedRoute, onRouteClick }: RoutingControlProps) {
   const map = useMap();
   const [routeCoords, setRouteCoords] = useState<[number, number][]>([]);
 
@@ -82,7 +83,25 @@ export default function RoutingControl({ selectedRoute }: RoutingControlProps) {
   return (
     <>
       {routeCoords.length > 0 && (
-        <Polyline positions={routeCoords} pathOptions={{ color: 'blue', weight: 4 }} />
+        <Polyline 
+          positions={routeCoords} 
+          pathOptions={{ 
+            color: 'blue', 
+            weight: 4,
+            opacity: 0.7,
+            className: 'no-focus-outline' // Add this
+          }} 
+          eventHandlers={{
+            click: onRouteClick,
+            mouseover: (e) => {
+              e.target.getElement()?.style.removeProperty('outline');
+            }
+          }}
+        >
+          <Tooltip sticky className='no-focus-outline'>
+            Click para más información
+          </Tooltip>
+        </Polyline>
       )}
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Header from './expanderHeader';
 import BasicInfo from './basicInfo';
 import Description from './description';
@@ -17,6 +17,7 @@ interface ExpanderRutasProps {
   resource?: TouristResource;
   language: 'pt' | 'en' | 'es';
   locale: { [key: string]: string };
+  selectedMapResource?: TouristResource | null;
 }
 
 const capitalizeWords = (str: string) => {
@@ -28,7 +29,7 @@ const capitalizeWords = (str: string) => {
     .join(' ');
 };
 
-export default function ExpanderRutas({ visible, onClose, resource, locale }: ExpanderRutasProps) {
+export default function ExpanderRutas({ visible, onClose, resource, locale, selectedMapResource}: ExpanderRutasProps) {
   const [activeImage, setActiveImage] = useState(0);
   const expanderRef = useRef<HTMLDivElement>(null);
 
@@ -38,6 +39,12 @@ export default function ExpanderRutas({ visible, onClose, resource, locale }: Ex
   const [expanderHeight, setExpanderHeight] = useState('30vh');
   const startYRef = useRef<number | null>(null);
   const startHeightRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (selectedMapResource) {
+      onClose();
+    }
+  }, [selectedMapResource, onClose]);
 
   const handleMouseDown = (evt: React.MouseEvent) => {
     evt.preventDefault();
@@ -101,27 +108,30 @@ export default function ExpanderRutas({ visible, onClose, resource, locale }: Ex
     resource[locale['url_img4']],
   ].filter(Boolean);
 
-  // Organize data into sections
-  const basicInfo = {
+  const mainInfo = {
     [locale['name']]: resource[locale['name']],
-    [locale['municipalities through which it passes']]: resource[locale['municipalities through which it passes']],
-    [locale['duration']]: resource[locale['duration']],
     [locale['distance']]: resource[locale['distance']],
-    [locale['access mode']]: resource[locale['access mode']],
+    [locale['duration']]: resource[locale['duration']],
+  };
+  
+  const details = {
     [locale['difficulty']]: resource[locale['difficulty']],
     [locale['activity']]: resource[locale['activity']],
-    [locale['resources included']]: resource[locale['resources included']],
+    [locale['access mode']]: resource[locale['access mode']],
+  };
+  
+  const locationInfo = {
     [locale['starting point']]: resource[locale['starting point']],
     [locale['exit point']]: resource[locale['exit point']],
-    [locale['georeferenced resources']]: resource[locale['georeferenced resources']],
-    [locale['url google maps']]: resource[locale['url google maps']],
-    [locale['latlong route']]: resource[locale['latlong route']],
-    [locale['ruta latlong transformada']]: resource[locale['ruta latlong transformada']],
+    [locale['municipalities through which it passes']]: resource[locale['municipalities through which it passes']],
+  };
+  
+  const additionalInfo = {
+    [locale['resources included']]: resource[locale['resources included']],
     [locale['optional activities:']]: resource[locale['optional activities:']],
     [locale['recommendations']]: resource[locale['recommendations']],
-    [locale['id']]: resource[locale['id']],
   };
-
+  
   const description = {
     [locale['route description max. 300 words']]: resource[locale['route description max. 300 words']],
   };
@@ -155,22 +165,14 @@ export default function ExpanderRutas({ visible, onClose, resource, locale }: Ex
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Information Column */}
           <div className="lg:w-1/2 space-y-8">
-            <BasicInfo basicInfo={basicInfo} capitalizeWords={capitalizeWords} />
-
-            <Description
-              description={description}
-              isOpen={isDescriptionOpen}
-              toggleOpen={() => setIsDescriptionOpen(!isDescriptionOpen)}
-              capitalizeWords={capitalizeWords}
-            />
-
-            <AccessServices
-              accessInfo={{}}
-              services={{}} // Añadir información si es necesario
-              isOpen={isAccessServicesOpen}
-              toggleOpen={() => setIsAccessServicesOpen(!isAccessServicesOpen)}
-              capitalizeWords={capitalizeWords}
-            />
+          <BasicInfo 
+            mainInfo={mainInfo}
+            routeDetails={details}
+            locationInfo={locationInfo}
+            additionalInfo={additionalInfo}
+            capitalizeWords={capitalizeWords}
+            type="route" // 'route' for ExpanderRutas, 'resource' for ExpanderRecursos
+          />
           </div>
 
           {/* Image and Gallery Column */}

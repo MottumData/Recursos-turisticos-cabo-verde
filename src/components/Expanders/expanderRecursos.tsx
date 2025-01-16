@@ -162,7 +162,6 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
         <Header
           resourceName={capitalizeWords(resource[locale['nome do recurso turístico']])}
           onClose={onClose}
-          googleMapsUrl={resource[locale['url google maps']]}
         />
       </div>
   
@@ -171,23 +170,13 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
           {/* Information Column */}
           <div className="lg:w-1/2 space-y-8">
             {/* Basic Information */}
-            <BasicInfo basicInfo={basicInfo} capitalizeWords={capitalizeWords} />
-
-            {/* Description */}
-            <Description
-              description={description}
-              isOpen={isDescriptionOpen}
-              toggleOpen={() => setIsDescriptionOpen(!isDescriptionOpen)}
+            <BasicInfo 
+              mainInfo={basicInfo}
+              routeDetails={description}
+              locationInfo={accessInfo}
+              additionalInfo={services}
               capitalizeWords={capitalizeWords}
-            />
-
-            {/* Access and Services */}
-            <AccessServices
-              accessInfo={accessInfo}
-              services={services}
-              isOpen={isAccessServicesOpen}
-              toggleOpen={() => setIsAccessServicesOpen(!isAccessServicesOpen)}
-              capitalizeWords={capitalizeWords}
+              type="resource" // 'route' for ExpanderRutas, 'resource' for ExpanderRecursos
             />
           </div>
 

@@ -40,16 +40,26 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const [routeExpanderVisible, setRouteExpanderVisible] = useState(false);
   const [selectedRouteResource, setSelectedRouteResource] = useState<Route | null>(null);
+  const [selectedMapResource, setSelectedMapResource] = useState<TouristResource | null>(null);
 
   const handleRouteSelect = (route: Route | null) => {
     console.log('Ruta seleccionada en Map:', route);
     setSelectedRoute(route);
     setSelectedRouteResource(route);
     setRouteExpanderVisible(!!route);
+    setSelectedMapResource(null);
+  };
+
+  const handleRouteClick = () => {
+    if (selectedRoute) {
+      setSelectedRouteResource(selectedRoute);
+      setRouteExpanderVisible(true);
+    }
   };
 
   const handleMarkerClick = (point: TouristResource) => {
     setSelectedResource(point);
+    setSelectedMapResource(point);
     setExpanderVisible(true);
   };
 
@@ -116,12 +126,12 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
           <Marker key={idx} position={[point.lat, point.lng]} icon={getIcon(point, language, locales)} eventHandlers={{ click: () => handleMarkerClick(point) }}>
           </Marker>
         ))}
-        {selectedRoute && <RoutingControl selectedRoute={selectedRoute} />}
+        {selectedRoute && <RoutingControl selectedRoute={selectedRoute} onRouteClick={handleRouteClick}/>}
       </MapContainer>
       <Expander
         visible={expanderVisible}
         resource={selectedResource ?? undefined}
-        onClose={() => setExpanderVisible(false)}
+        onClose={() => {setExpanderVisible(false); setSelectedMapResource(null);}}
         language={language}
         locale={locale}
       />
@@ -132,6 +142,7 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
         onClose={() => setRouteExpanderVisible(false)}
         language={language}
         locale={locale}
+        selectedMapResource={selectedMapResource}
       />
 
       <Sidebar

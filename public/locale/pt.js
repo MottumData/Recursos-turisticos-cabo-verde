@@ -90,7 +90,7 @@ export default{
   "difficulty": "dificuldade",
   "activity": "atividade",
   "activity_list": "atividade_lista",
-  "resources included": "recursos incluídos",
+  "resources included": "recursos incluidos",
   "starting point": "ponto de início",
   "exit point": "ponto de saída",
   "georeferenced resources": "recursos georeferenciados",
