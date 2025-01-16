@@ -82,14 +82,17 @@ export default function RoutingControl({ selectedRoute, onRouteClick }: RoutingC
 
   return (
     <>
-      {routeCoords.length > 0 && (
+    {routeCoords.length > 0 && (
+      <>
+        {/* Línea visible */}
         <Polyline 
           positions={routeCoords} 
           pathOptions={{ 
             color: 'blue', 
-            weight: 4,
+            weight: 8, // Grosor normal
             opacity: 0.7,
-            className: 'no-focus-outline' // Add this
+            className: 'no-focus-outline',
+            interactive: true
           }} 
           eventHandlers={{
             click: onRouteClick,
@@ -102,7 +105,23 @@ export default function RoutingControl({ selectedRoute, onRouteClick }: RoutingC
             Click para más información
           </Tooltip>
         </Polyline>
-      )}
-    </>
+
+        {/* Capa interactiva transparente */}
+        <Polyline 
+          positions={routeCoords} 
+          pathOptions={{ 
+            color: 'transparent', 
+            weight: 20, // Grosor mayor para facilitar el toque
+            opacity: 0, // Transparente
+            className: 'no-focus-outline',
+            interactive: true
+          }} 
+          eventHandlers={{
+            click: onRouteClick,
+          }}
+        />
+      </>
+    )}
+  </>
   );
 }
