@@ -53,7 +53,8 @@ export default function RoutingControl({ selectedRoute }: RoutingControlProps) {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              coordinates: waypoints
+              coordinates: waypoints,
+              radiuses: waypoints.map(() => 10000),
             })
           });
 
