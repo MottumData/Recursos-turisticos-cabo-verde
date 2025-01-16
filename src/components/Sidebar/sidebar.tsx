@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Header from './header';
 import Filters from './filters';
 import LanguageSelector from './languageSelector';
@@ -60,6 +60,13 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
     onRouteSelect(route);
     onClose();
   };
+
+  useEffect(() => {
+    setFilteredCategories([]);
+    setFilteredDurations([]);
+    setFilteredActivities([]);
+    setSelectedRoute('');
+  }, [language]);
 
   return (
     <div
