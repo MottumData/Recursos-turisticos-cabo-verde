@@ -18,6 +18,7 @@ import { TouristResource, Route } from './Utils/loadCsv';
 import Sidebar from './Sidebar/sidebar';
 import RoutingControl from './Utils/routingControl';
 import { getIcon } from './Icon/iconUtils';
+import SidebarToggle from './Sidebar/sidebarToggle';
 
 const locales = { pt, en, es };
 
@@ -89,23 +90,6 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
           <FaLayerGroup className="w-6 h-6 text-gray-600" />
         </button>
       </div>
-      <div className="absolute top-6 left-6 z-[1000]">
-        <button
-          onClick={handleSidebarToggle}
-          className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg"
-          title="Open Sidebar"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            className="w-6 h-6 text-gray-600"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12h18M3 6h18M3 18h18" />
-          </svg>
-        </button>
-      </div>
 
       {/* Componente de leyenda */}
       {showLegend && (
@@ -148,12 +132,14 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
       <Sidebar
         visible={sidebarVisible}
         onClose={() => setSidebarVisible(false)}
+        onOpen={() => setSidebarVisible(true)}
         language={language}
         setFilteredCategories={setFilteredCategories}
         content={<div>Your content here</div>}
         locale={locale}
         onRouteSelect={handleRouteSelect}
       />
+      <SidebarToggle visible={sidebarVisible} onToggle={() => setSidebarVisible(!sidebarVisible)} />
     </div>
   );
 }

@@ -9,12 +9,14 @@ import es from '../../../public/locale/es';
 import { useLanguage } from '../Utils/languageContext';
 import { Route } from '../Utils/loadCsv';
 import useSidebarHooks from './sidebarUtils';
+import SidebarToggle from './sidebarToggle';
 
 type Language = 'pt' | 'en' | 'es';
 
 interface SidebarProps {
   visible: boolean;
   onClose: () => void;
+  onOpen: () => void;
   content: React.ReactNode;
   language: Language;
   setFilteredCategories: (categories: string[]) => void;
@@ -24,7 +26,7 @@ interface SidebarProps {
 
 const locales = { pt, en, es };
 
-const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFilteredCategories, locale, onRouteSelect }) => {
+const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, onOpen ,content, setFilteredCategories, locale, onRouteSelect }) => {
   const { language, setLanguage } = useLanguage() as { language: Language; setLanguage: (lang: Language) => void };
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [routes, setRoutes] = useState<Route[]>([]);
@@ -77,7 +79,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
         flex flex-col
         ${visible ? 'translate-x-0' : '-translate-x-full'}`}
     >
-
+      <div className="h-full overflow-y-auto">
       <Header locale={locale} />
 
       <div className="px-4 py-4 sm:px-6 sm:py-6 border-b border-gray-200">
@@ -124,7 +126,9 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, content, setFiltere
         setLanguage={setLanguage}
         locale={locale}
       />
+      </div>
     </div>
+  
   );
 }
 
