@@ -4,6 +4,7 @@ import en from '../../../public/locale/en';
 import es from '../../../public/locale/es';
 
 export interface TouristResource {
+  id: string;
   lat: number;
   lng: number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,8 +30,11 @@ export const loadCSV = (csvFilePath: string, language: Language): Promise<Touris
       complete: (results) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const data: TouristResource[] = results.data.map((row: any) => {
+          console.log('Lat-Long value:', row['Lat-Long']);
           const [lat, lng] = row['Lat-Long'].split(',').map((coord: string) => parseFloat(coord.trim()));
+          
           const resource: TouristResource = {
+            id: row['id'],
             lat,
             lng,
           };

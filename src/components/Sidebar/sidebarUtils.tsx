@@ -47,7 +47,6 @@ const useSidebarHooks = ({
 
   // Load routes from CSV
   useEffect(() => {
-    console.log('Loading routes...');
     const csvFilePath = `/data/rutas_cabo_verde_${language}.csv`;
     loadRoutesCSV(csvFilePath, language).then(data => {
       setRoutes(data);
@@ -106,7 +105,6 @@ const useSidebarHooks = ({
     }
   
     setFilteredRoutes(filtered);
-    console.log('Filtered Routes:', filtered);
   }, [routes, filteredDurations, filteredActivities, locale, setFilteredRoutes]);
 };
 

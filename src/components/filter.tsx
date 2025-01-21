@@ -54,7 +54,6 @@ export default function CategoryFilter({
   }, []);
 
   useEffect(() => {
-    console.log(`CategoryFilter (${localeKey}) options:`, options);
   }, [options, localeKey]);
 
 

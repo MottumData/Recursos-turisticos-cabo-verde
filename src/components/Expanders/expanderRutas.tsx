@@ -32,11 +32,14 @@ const capitalizeWords = (str: string) => {
 export default function ExpanderRutas({ visible, onClose, resource, locale, selectedMapResource}: ExpanderRutasProps) {
   const [activeImage, setActiveImage] = useState(0);
   const expanderRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  
+  const MIN_HEIGHT_VH = 25; // Altura mínima en vh
+  const getMinHeightPx = () => (MIN_HEIGHT_VH / 100) * window.innerHeight;
+  
+  const [expanderHeight, setExpanderHeight] = useState(`${MIN_HEIGHT_VH}vh`);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
-  const [isAccessServicesOpen, setIsAccessServicesOpen] = useState(false);
-
-  const [expanderHeight, setExpanderHeight] = useState('30vh');
   const startYRef = useRef<number | null>(null);
   const startHeightRef = useRef<number | null>(null);
 
@@ -45,6 +48,33 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
       onClose();
     }
   }, [selectedMapResource, onClose]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Actualizar minHeight cuando cambia el tamaño de la ventana
+      if (expanderRef.current) {
+        const currentHeight = parseInt(expanderHeight);
+        const minHeight = getMinHeightPx();
+        if (currentHeight < minHeight) {
+          setExpanderHeight(`${minHeight}px`);
+        }
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [expanderHeight]);
+
+  useEffect(() => {
+    if (visible) {
+      setExpanderHeight(`${MIN_HEIGHT_VH}vh`);
+      setIsDropdownOpen(false); // Cerrar los desplegables
+      expanderRef.current?.scrollTo(0, 0); // Desplazar el expander hacia arriba
+      contentRef.current?.scrollTo(0, 0); // Desplazar el contenido hacia arriba
+    }
+  }, [visible]);
 
   const handleMouseDown = (evt: React.MouseEvent) => {
     evt.preventDefault();
@@ -59,7 +89,9 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
       const delta = startYRef.current - evt.clientY;
       let newHeight = startHeightRef.current + delta;
       const maxExpanderHeight = window.innerHeight;
+      const minExpanderHeight = getMinHeightPx();
       if (newHeight > maxExpanderHeight) newHeight = maxExpanderHeight;
+      if (newHeight < minExpanderHeight) newHeight = minExpanderHeight;
       setExpanderHeight(`${newHeight}px`);
     }
   };
@@ -86,7 +118,9 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
       const delta = startYRef.current - evt.touches[0].clientY;
       let newHeight = startHeightRef.current + delta;
       const maxExpanderHeight = window.innerHeight;
+      const minExpanderHeight = getMinHeightPx();
       if (newHeight > maxExpanderHeight) newHeight = maxExpanderHeight;
+      if (newHeight < minExpanderHeight) newHeight = minExpanderHeight;
       setExpanderHeight(`${newHeight}px`);
     }
   };
@@ -109,7 +143,6 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
   ].filter(Boolean);
 
   const mainInfo = {
-    [locale['name']]: resource[locale['name']],
     [locale['distance']]: resource[locale['distance']],
     [locale['duration']]: resource[locale['duration']],
   };
@@ -136,6 +169,20 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
     [locale['route description max. 300 words']]: resource[locale['route description max. 300 words']],
   };
 
+  const requiredKeys = [
+    'name', 'distance', 'duration',
+    'difficulty', 'activity', 'access mode',
+    'starting point', 'exit point', 'municipalities through which it passes',
+    'resources included', 'optional activities:', 'recommendations',
+    'route description max. 300 words'
+  ];
+  
+  requiredKeys.forEach(key => {
+    if (!locale[key]) {
+      console.warn(`Missing locale key: ${key}`);
+    }
+  });
+
   return (
     <div
       ref={expanderRef}
@@ -157,12 +204,18 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
           resourceName={capitalizeWords(resource[locale['name']])}
           onClose={onClose}
           googleMapsUrl={resource[locale['url google maps']]}
+          locale={locale}
         />
       </div>
 
       {/* Body content below header */}
-      <div className="p-6 overflow-y-auto" style={{ height: 'calc(80vh - 90px)', WebkitOverflowScrolling: 'touch' }}>
+      <div ref={contentRef} className="p-6 overflow-y-auto" style={{ height: 'calc(80vh - 90px)', WebkitOverflowScrolling: 'touch' }}>
         <div className="flex flex-col lg:flex-row gap-8">
+        <ImageGallery
+            images={images}
+            activeImage={activeImage}
+            setActiveImage={setActiveImage}
+          />
           {/* Information Column */}
           <div className="lg:w-1/2 space-y-8">
           <BasicInfo 
@@ -171,16 +224,12 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
             locationInfo={locationInfo}
             additionalInfo={additionalInfo}
             capitalizeWords={capitalizeWords}
+            locale={locale}
             type="route" // 'route' for ExpanderRutas, 'resource' for ExpanderRecursos
+            isDropdownOpen={isDropdownOpen}
+            setIsDropdownOpen={setIsDropdownOpen}
           />
           </div>
-
-          {/* Image and Gallery Column */}
-          <ImageGallery
-            images={images}
-            activeImage={activeImage}
-            setActiveImage={setActiveImage}
-          />
         </div>
       </div>
     </div>

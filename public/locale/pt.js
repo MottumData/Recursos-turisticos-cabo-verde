@@ -91,7 +91,7 @@ export default{
   "activity": "atividade",
   "activity_list": "atividade_lista",
   "resources included": "recursos incluidos",
-  "starting point": "ponto de início",
+  "starting point": "punto de inicio",
   "exit point": "ponto de saída",
   "georeferenced resources": "recursos georeferenciados",
   "url google maps": "url do google maps",
@@ -114,5 +114,16 @@ export default{
   "Select activities": "Selecionar atividades",
 
   "Showing": "Mostrando",
-  "of 23 available routes": "de 23 rotas disponíveis"
+  "of 23 available routes": "de 23 rotas disponíveis",
+
+  "Route information": "Informação da rota",
+  "Characteristics": "Características",
+  "Access and location": "Acesso e localização",
+  "Activities and recommendations": "Atividades e recomendações",
+  "General information": "Informação geral",
+  "Description": "Descrição",
+  "Location": "Localização",
+  "Services": "Serviços",
+
+  "Search with google maps": "Pesquisar com google maps",
 };

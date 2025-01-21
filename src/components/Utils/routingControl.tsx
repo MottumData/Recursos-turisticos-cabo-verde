@@ -9,16 +9,17 @@ import { Route } from './loadCsv';
 interface RoutingControlProps {
   selectedRoute: Route | null;
   onRouteClick?: () => void;
+  locale: { [key: string]: string };
 }
 
-export default function RoutingControl({ selectedRoute, onRouteClick }: RoutingControlProps) {
+export default function RoutingControl({ selectedRoute, onRouteClick, locale }: RoutingControlProps) {
   const map = useMap();
   const [routeCoords, setRouteCoords] = useState<[number, number][]>([]);
 
+
   useEffect(() => {
     if (selectedRoute) {
-      const recursosGeoreferenciados = selectedRoute["recursos georeferenciados"];
-      console.log('Map component loaded:', recursosGeoreferenciados);
+      const recursosGeoreferenciados = selectedRoute[locale["georeferenced resources"]];
 
       if (!recursosGeoreferenciados) {
         console.error('No se encontró "recursos georeferenciados" en selectedRoute.');
@@ -42,8 +43,6 @@ export default function RoutingControl({ selectedRoute, onRouteClick }: RoutingC
         console.error('Se requieren al menos dos waypoints para calcular una ruta.');
         return;
       }
-
-      console.log('Waypoints:', waypoints);
 
       const fetchRoute = async () => {
         try {

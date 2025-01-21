@@ -1,5 +1,5 @@
 import React from 'react';
-import {useRef, useEffect, JSX} from 'react';
+import {useRef, useEffect} from 'react';
 import { 
   FaUmbrellaBeach, FaMonument, FaGuitar, FaPalette, 
   FaWrench, FaPaintBrush, FaPrayingHands, FaSeedling,
@@ -14,7 +14,7 @@ interface LegendProps {
 }
 
 interface Category {
-  icon: JSX.Element;
+  icon: React.ReactNode;
   color: string;
   key: string;
 }

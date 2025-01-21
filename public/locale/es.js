@@ -113,5 +113,16 @@ export default {
   "Select activities": "Seleccionar actividades",
 
   "Showing": "Mostrando",
-  "of 23 available routes": "de 23 rutas disponibles"
+  "of 23 available routes": "de 23 rutas disponibles",
+
+  "Route information": "Información de la ruta",
+  "Characteristics": "Características",
+  "Access and location": "Acceso y ubicación",
+  "Activities and recommendations": "Actividades y recomendaciones",
+  "General information": "Información general",
+  "Description": "Descripción",
+  "Location": "Ubicación",
+  "Services": "Servicios",
+
+  "Search with google maps": "Buscar con google maps"
 };

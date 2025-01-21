@@ -116,4 +116,15 @@ export default {
 
   "Showing": "Showing",
   "of 23 available routes": "of 23 available routes",
+
+  "Route information": "Route information",
+  "Characteristics": "Characteristics",
+  "Access and location": "Access and location",
+  "Activities and recommendations": "Activities and recommendations",
+  "General information": "General information",
+  "Description": "Description",
+  "Location": "Location",
+  "Services": "Services",
+
+  "Search with google maps": "Search with google maps",
 };

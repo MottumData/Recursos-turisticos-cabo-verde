@@ -5,9 +5,10 @@ interface ExpanderHeaderProps {
   resourceName: string;
   onClose: () => void;
   googleMapsUrl?: string;
+  locale: { [key: string]: string }; 
 }
 
-const ExpanderHeader: React.FC<ExpanderHeaderProps> = ({ resourceName, onClose, googleMapsUrl }) => {
+const ExpanderHeader: React.FC<ExpanderHeaderProps> = ({ resourceName, onClose, googleMapsUrl, locale }) => {
   return (
     <div className="flex flex-col items-center p-6 relative">
       <div className="flex justify-between w-full items-center">
@@ -36,10 +37,10 @@ const ExpanderHeader: React.FC<ExpanderHeaderProps> = ({ resourceName, onClose, 
         <button
           onClick={() => window.open(googleMapsUrl, '_blank')}
           className="flex items-center gap-2 px-4 py-2 mt-2 text-sm text-gray-600 hover:bg-gray-100/80 rounded-full transition-colors"
-          title="Ver en Google Maps"
+          title="Search with google maps"
         >
           <FaMap className="h-5 w-5" />
-          <span>Ver en Google Maps</span>
+          <span>{locale['Search with google maps']}</span>
         </button>
       )}
     </div>

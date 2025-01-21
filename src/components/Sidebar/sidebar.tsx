@@ -9,7 +9,6 @@ import es from '../../../public/locale/es';
 import { useLanguage } from '../Utils/languageContext';
 import { Route } from '../Utils/loadCsv';
 import useSidebarHooks from './sidebarUtils';
-import SidebarToggle from './sidebarToggle';
 
 type Language = 'pt' | 'en' | 'es';
 
