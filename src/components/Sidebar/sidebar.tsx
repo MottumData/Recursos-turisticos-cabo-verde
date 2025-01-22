@@ -61,6 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, onOpen ,content, se
     const routeName = event.target.value;
     setSelectedRoute(routeName);
     const route = routes.find(r => r.name === routeName) || null;
+    console.log("Sidebar render:", route);
     onRouteSelect(route);
     onClose();
   };

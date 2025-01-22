@@ -145,6 +145,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
   const mainInfo = {
     [locale['distance']]: resource[locale['distance']],
     [locale['duration']]: resource[locale['duration']],
+    [locale['route description']]: resource[locale['route description']],
   };
   
   const details = {
@@ -166,7 +167,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
   };
   
   const description = {
-    [locale['route description max. 300 words']]: resource[locale['route description max. 300 words']],
+    [locale['route description']]: resource[locale['route description']],
   };
 
   const requiredKeys = [
@@ -174,7 +175,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
     'difficulty', 'activity', 'access mode',
     'starting point', 'exit point', 'municipalities through which it passes',
     'resources included', 'optional activities:', 'recommendations',
-    'route description max. 300 words'
+    'route description'
   ];
   
   requiredKeys.forEach(key => {
