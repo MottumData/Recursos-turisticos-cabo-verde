@@ -56,7 +56,7 @@ export default {
   "Cara_Spiritual Folklore": "Folclore Espiritual",
   "Cara_Folclore Materials": "Manualidades Con Materiales Folclóricos",
   "Cara_Agricultural Exploration": "Granjas",
-  "Cara_Vales": "Vales",
+  "Cara_Vales": "Valles",
 
   "Show_Legend": "Mostrar Leyenda",
   "Leyend": "Leyenda",
@@ -81,7 +81,7 @@ export default {
   "url_img3": "url_img3",
   "image 4": "imagen 4",
   "url_img4": "url_img4",
-  "route description max. 300 words": "descripción de la ruta max. 300 palabras",
+  "route description": "descripción de la ruta",
   "duration": "duración",
   "duration_final": "duración_final",
   "distance": "distancia",

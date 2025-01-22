@@ -82,7 +82,7 @@ export default{
   "url_img3": "url_img3",
   "image 4": "imagem 4",
   "url_img4": "url_img4",
-  "route description max. 300 words": "descrição da rota máx. 300 palavras",
+  "route description": "descrição da rota",
   "duration": "duración",
   "duration_final": "duración_final",
   "distance": "distância",
