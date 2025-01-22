@@ -42,7 +42,7 @@ const Filters: React.FC<FiltersProps> = ({
         />
       </div>
       <div className="mb-2 mt-4 text-center text-xs sm:text-base">
-        {`${locale['Showing']} ${filteredRoutesCount} ${locale['of 23 available routes']}`}
+      {`${locale['Select']} (`}<span className="font-bold">{filteredRoutesCount}</span>{`/23)`}
       </div>
     </>
   );

@@ -112,7 +112,7 @@ export default {
   "Select durations": "Seleccionar duraciones",
   "Select activities": "Seleccionar actividades",
 
-  "Showing": "Mostrando",
+  "Select": "Seleccione una ruta",
   "of 23 available routes": "de 23 rutas disponibles",
 
   "Route information": "Información de la ruta",
@@ -124,5 +124,14 @@ export default {
   "Location": "Ubicación",
   "Services": "Servicios",
 
-  "Search with google maps": "Buscar con google maps"
+  "Search with google maps": "Buscar con google maps",
+
+  "How_to_select_route": "Cómo seleccionar una ruta",
+  "Use_filters": "Seleccione los filtros deseados",
+  "Filters_explanation": "Empieza seleccionando los filtros de duración y actividades para encontrar la ruta que mejor se adapte a tus necesidades.",
+  "Select_from_list": "Seleccionar de la lista",
+  "selection_explanation": "Selecciona una ruta de la lista de opciones disponibles.",
+  "Understood": "Entendido",
+  "Visualize_route": "Visualizar la ruta",
+  "Route_displayed": "La ruta se mostrará en el mapa, mostrando los recursos incluidos.",
 };

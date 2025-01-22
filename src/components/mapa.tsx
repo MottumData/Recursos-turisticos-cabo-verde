@@ -19,6 +19,7 @@ import Sidebar from './Sidebar/sidebar';
 import RoutingControl from './Utils/routingControl';
 import { getIcon } from './Icon/iconUtils';
 import SidebarToggle from './Sidebar/sidebarToggle';
+import RouteModal from './Sidebar/modal';
 
 const locales = { pt, en, es };
 
@@ -43,6 +44,7 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
   const [selectedRouteResource, setSelectedRouteResource] = useState<Route | null>(null);
   const [selectedMapResource, setSelectedMapResource] = useState<TouristResource | null>(null);
   const [filteredPoints, setFilteredPoints] = useState<TouristResource[]>(points);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleRouteSelect = (route: Route | null) => {
     setSelectedRoute(route);
@@ -185,6 +187,12 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
         selectedMapResource={selectedMapResource}
       />
 
+      <RouteModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        locale={locale}
+      />
+
       <Sidebar
         visible={sidebarVisible}
         onClose={() => setSidebarVisible(false)}
@@ -194,6 +202,7 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
         content={<div>Your content here</div>}
         locale={locale}
         onRouteSelect={handleRouteSelect}
+        openModal={() => setIsModalOpen(true)}
       />
       <SidebarToggle visible={sidebarVisible} onToggle={handleSidebarToggle} />
     </div>

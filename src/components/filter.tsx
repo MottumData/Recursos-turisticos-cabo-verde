@@ -39,6 +39,7 @@ export default function CategoryFilter({
   const filterRef = useRef<HTMLDivElement>(null);
   const locale = locales[language];
   const IconComponent = iconMap[localeKey] || FaFilter;
+  const chipColors = ["bg-blue-200", "bg-green-200", "bg-yellow-200", "bg-orange-200", "bg-gray-200"];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -71,19 +72,19 @@ export default function CategoryFilter({
   };
 
   return (
-    <div className="relative" ref={filterRef}>
+    <div className="relative max-w-xs mx-auto" ref={filterRef}>
       <button
         onClick={toggleFilterPanel}
-        className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg"
+        className="flex justify-center items-center p-2 bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg w-full"
         title={locale[localeKey] || 'Filter'}
       >
         <IconComponent className="w-5 h-5 text-gray-600" />
-      </button>
-      <span className="text-black-700 font-medium ml-3 text-[10px] sm:text-base font-medium">
+      <span className="text-black-700 font-medium ml-3 text-[10px] sm:text-base">
         {localeKey === 'Filter_Categories' ? locale['Select resource types'] : 
          localeKey === 'Filter_Duration' ? locale['Select durations'] : 
          localeKey === 'Filter_Activity' ? locale['Select activities'] : 'Seleccionar filtro'}
       </span>
+      </button>
 
       {isOpen && (
         <div
@@ -148,6 +149,23 @@ export default function CategoryFilter({
           </div>
         </div>
       )}
+      {/* Nuevo contenedor de filtros seleccionados */}
+      <div className="flex flex-wrap gap-2 mt-2">
+        {selectedFilters.map((filterKey, index) => (
+          <div
+            key={filterKey}
+            className={`inline-flex items-center px-2 py-1 text-[8px] sm:text-xs font-medium rounded ${chipColors[index % chipColors.length]} text-gray-800`}
+          >
+            {filterKey}
+            <button
+              className="ml-1 font-bold text-gray-600 hover:text-black"
+              onClick={() => toggleFilterOption(filterKey)}
+            >
+              x
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

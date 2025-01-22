@@ -114,7 +114,7 @@ export default {
   "Select durations": "Select durations",
   "Select activities": "Select activities",
 
-  "Showing": "Showing",
+  "Select": "Select a route",
   "of 23 available routes": "of 23 available routes",
 
   "Route information": "Route information",
@@ -127,4 +127,13 @@ export default {
   "Services": "Services",
 
   "Search with google maps": "Search with google maps",
+
+  "How_to_select_route": "How to select a route",
+  "Use_filters": "Select the desired filters",
+  "Filters_explanation": "Start by using the duration, and activity filters to narrow down your options.",
+  "Select_from_list": "Select from the list",
+  "selection_explanation": "Select a route from the list of available options.",
+  "Understood": "Understood",
+  "Visualize_route": "Visualize the route",
+  "Route_displayed": "The route will be displayed on the map, showing the resources included.",
 };
