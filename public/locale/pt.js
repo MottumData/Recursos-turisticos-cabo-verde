@@ -51,7 +51,7 @@ export default{
   "Cara_Flora and Fauna Observation Sites": "Locais De Observação De Flora E Fauna",
   "Cara_Geological and Paleontological Formations": "Formações Geológicas E Paleontológicas",
   "Cara_Human Settlements and Living Architecture": "Assentamentos Humanos E Arquitetura Viva",
-  "Cara_Mountains and Mountains": "Montanhas E Montanhas",
+  "Cara_Mountains and Mountains": "Montes E Montanhas",
   "Cara_Museums and Exhibition Halls": "Museus E Salas De Exposições",
   "Cara_Representative Works of Art": "Obras De Arte Representativas",
   "Cara_Spiritual Folklore": "Folclore Espiritual",
@@ -66,7 +66,7 @@ export default{
   "Santiago Resources map": "Mapa de Recursos de Santiago",
   "Select_Language": "Selecionar Idioma",
   "Select_Route": "Selecionar Rota",
-  "Categories": "Categorias",
+  "Select_resource": "Selecionar recurso",
 
   "Basic_information": "Informação Básica",
   "Description": "Descrição",
