@@ -87,7 +87,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, onOpen ,content, se
 
       <div className="px-4 py-4 sm:px-6 sm:py-6 border-b border-gray-200">
         <h3 className="text-xs sm:text-lg font-semibold text-gray-700 mb-3 sm:mb-4">
-          {locale['Categories'] || 'Categories'}
+          {locale['Select_resource'] || 'Select resource'}
         </h3>
         <CategoryFilter 
           language={language}

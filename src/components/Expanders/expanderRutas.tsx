@@ -210,7 +210,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
       </div>
 
       {/* Body content below header */}
-      <div ref={contentRef} className="p-6 overflow-y-auto" style={{ height: 'calc(80vh - 90px)', WebkitOverflowScrolling: 'touch' }}>
+      <div ref={contentRef} className="p-6 overflow-y-auto" style={{ height: 'calc(80vh - 180px)', WebkitOverflowScrolling: 'touch'}}>
         <div className="flex flex-col lg:flex-row gap-8">
         <ImageGallery
             images={images}
