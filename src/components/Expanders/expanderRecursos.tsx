@@ -113,27 +113,32 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
   }, [expanderHeight]);
   
   useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (expanderRef.current && !expanderRef.current.contains(event.target as Node)) {
-          onClose();
-        }
-      };
-  
-      document.addEventListener('mousedown', handleClickOutside);
-      
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }, [onClose]);
-
-    useEffect(() => {
-      if (visible) {
-        setExpanderHeight(`${MIN_HEIGHT_VH}vh`);
-        setIsDropdownOpen(false); // Cerrar los desplegables
-        expanderRef.current?.scrollTo(0, 0); // Desplazar el expander hacia arriba
-        contentRef.current?.scrollTo(0, 0); // Desplazar el contenido hacia arriba
+    const handleClickOutside = (event: MouseEvent) => {
+      if (expanderRef.current && !expanderRef.current.contains(event.target as Node)) {
+        onClose();
       }
-    }, [visible]);
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose]);
+
+  useEffect(() => {
+    if (visible) {
+      setExpanderHeight(`${MIN_HEIGHT_VH}vh`);
+      setIsDropdownOpen(false); // Cerrar los desplegables
+      expanderRef.current?.scrollTo(0, 0); // Desplazar el expander hacia arriba
+      contentRef.current?.scrollTo(0, 0); // Desplazar el contenido hacia arriba
+    }
+  }, [visible]);
+
+  useEffect(() => {
+      const headerHeight = (expanderRef.current?.querySelector('div.sticky') as HTMLElement)?.offsetHeight || 0;
+      contentRef.current?.style.setProperty('height', `calc(${expanderHeight} - ${headerHeight}px)`);
+    }, [expanderHeight, visible]);
   
 
   if (!resource) return null;
@@ -199,7 +204,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
         />
       </div>
   
-      <div ref={contentRef} className="p-6 overflow-y-auto" style={{ height: 'calc(80vh - 90px)', WebkitOverflowScrolling: 'touch' }}>
+      <div ref={contentRef} className="p-6 overflow-y-auto" style={{ height: `calc(${expanderHeight} - 90px)`, WebkitOverflowScrolling: 'touch' }}>
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Image and Gallery Column */}
           <ImageGallery

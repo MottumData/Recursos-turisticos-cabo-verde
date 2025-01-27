@@ -76,6 +76,11 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
     }
   }, [visible]);
 
+  useEffect(() => {
+    const headerHeight = (expanderRef.current?.querySelector('div.sticky') as HTMLElement)?.offsetHeight || 0;
+    contentRef.current?.style.setProperty('height', `calc(${expanderHeight} - ${headerHeight}px)`);
+  }, [expanderHeight, visible]);
+
   const handleMouseDown = (evt: React.MouseEvent) => {
     evt.preventDefault();
     startYRef.current = evt.clientY;
@@ -210,7 +215,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
       </div>
 
       {/* Body content below header */}
-      <div ref={contentRef} className="p-6 overflow-y-auto" style={{ height: 'calc(80vh - 180px)', WebkitOverflowScrolling: 'touch'}}>
+      <div ref={contentRef} className="p-6 overflow-y-auto" style={{ height: `calc(${expanderHeight} - 90px)`, WebkitOverflowScrolling: 'touch'}}>
         <div className="flex flex-col lg:flex-row gap-8">
         <ImageGallery
             images={images}
