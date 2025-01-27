@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Recursos-Turísticos-Cabo-Verde
 
-First, run the development server:
+Este repositorio contiene una solución que permite a los usuarios visualizar un mapa de recursos turísticos y rutas en Cabo Verde. La aplicación proporciona información detallada sobre cada recurso y ruta, facilitando la exploración y planificación de visitas turísticas. La solución está desarrollada utilizando Node.js y se despliega fácilmente tanto en un entorno local como en un contenedor Docker.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Estructura del repositorio:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Ejecución en local :computer:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerrequisitos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Asegúrate de tener instalados previamente los siguientes componentes:
 
-## Learn More
+- [Node.js](https://nodejs.org/en/download/prebuilt-installer/) v.22
+- [Docker](https://www.docker.com/products/docker-desktop/)
 
-To learn more about Next.js, take a look at the following resources:
+A continuación, se muestra el despliegue tanto en local como en un contenedor Docker
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Despliegue en local :house:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clonar el repositorio**
+   
+   Primero, clona el repositorio y situate en el directorio clonado:
+   ```bash
+   git clone https://github.com/MottumData/Recursos-turisticos-cabo-verde
+   ```
 
-## Deploy on Vercel
+2. **Instalación de dependencias**
+    ```bash
+    npm install
+    ```
+3. **Ejecutar UI en local (develop)**
+    ```bash
+    npm run dev
+    ```
+4. **Ejecutar UI en local (production)**
+    ```bash
+    npm run start
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Despliegue con Docker :whale:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clonar el repositorio**
+   
+   Primero, clona el repositorio y situate en el directorio clonado:
+   ```bash
+   git clone https://github.com/MottumData/Recursos-turisticos-cabo-verde
+   ```
+2. **Crear imagen de Docker**
+    ```bash
+    docker build -t Recursos-turisticos-cabo-verde .
+    ```
+3. **Ejecutar contenedor Docker**
+    
+    ```bash
+    docker run -p 3000:3000 Recursos-turisticos-cabo-verde
+    ```
