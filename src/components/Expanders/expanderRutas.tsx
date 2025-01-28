@@ -43,12 +43,14 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
   const startYRef = useRef<number | null>(null);
   const startHeightRef = useRef<number | null>(null);
 
+  {/* Cerrar el Expander cuando se selecciona un recurso en el mapa */}
   useEffect(() => {
     if (selectedMapResource) {
       onClose();
     }
   }, [selectedMapResource, onClose]);
 
+  {/* Actualizar la altura mínima del Expander cuando cambia el tamaño de la ventana */}
   useEffect(() => {
     const handleResize = () => {
       // Actualizar minHeight cuando cambia el tamaño de la ventana
@@ -67,6 +69,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
     };
   }, [expanderHeight]);
 
+  {/* Actualizar la altura del Expander cuando cambia la visibilidad */}
   useEffect(() => {
     if (visible) {
       setExpanderHeight(`${MIN_HEIGHT_VH}vh`);
@@ -76,11 +79,13 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
     }
   }, [visible]);
 
+  {/* Actualizar la altura del Expander cuando cambia la altura del header */}
   useEffect(() => {
     const headerHeight = (expanderRef.current?.querySelector('div.sticky') as HTMLElement)?.offsetHeight || 0;
     contentRef.current?.style.setProperty('height', `calc(${expanderHeight} - ${headerHeight}px)`);
   }, [expanderHeight, visible]);
 
+  {/* Función para mover el Expander */}
   const handleMouseDown = (evt: React.MouseEvent) => {
     evt.preventDefault();
     startYRef.current = evt.clientY;
@@ -89,6 +94,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
     document.addEventListener('mouseup', handleMouseUp);
   };
 
+  {/* Función para mover el Expander */}
   const handleMouseMove = (evt: MouseEvent) => {
     if (startYRef.current !== null && startHeightRef.current !== null) {
       const delta = startYRef.current - evt.clientY;
@@ -101,6 +107,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
     }
   };
 
+  {/* Función para soltar el Expander */}
   const handleMouseUp = () => {
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
@@ -108,6 +115,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
     startHeightRef.current = null;
   };
 
+  {/* Función para tocar el Expander en dispositivos táctiles */}
   const handleTouchStart = (evt: React.TouchEvent) => {
     evt.preventDefault();
     evt.stopPropagation();
@@ -117,6 +125,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
     document.addEventListener('touchend', handleTouchEnd);
   };
   
+  {/* Función para mover el Expander en dispositivos táctiles */}
   const handleTouchMove = (evt: TouchEvent) => {
     evt.preventDefault();
     if (startYRef.current !== null && startHeightRef.current !== null) {
@@ -130,6 +139,7 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
     }
   };
   
+  {/* Función para soltar el Expander en dispositivos táctiles */}
   const handleTouchEnd = () => {
     document.removeEventListener('touchmove', handleTouchMove);
     document.removeEventListener('touchend', handleTouchEnd);
@@ -139,7 +149,6 @@ export default function ExpanderRutas({ visible, onClose, resource, locale, sele
 
   if (!resource) return null;
 
-  // Image collection
   const images = [
     resource[locale['url_img1']],
     resource[locale['url_img2']],

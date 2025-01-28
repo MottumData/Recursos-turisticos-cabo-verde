@@ -38,6 +38,7 @@ const Legend: React.FC<LegendProps> = ({ locale, onClose }) => {
     { icon: <FaTractor size={20} />, color: '#daa520', key: 'Cara_Agricultural Exploration' },
   ];
 
+  {/* Función para cerrar el panel de leyenda al hacer clic fuera de él */}
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (legendRef.current && !legendRef.current.contains(event.target as Node)) {

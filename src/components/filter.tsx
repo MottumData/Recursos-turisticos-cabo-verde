@@ -41,6 +41,7 @@ export default function CategoryFilter({
   const IconComponent = iconMap[localeKey] || FaFilter;
   const chipColors = ["bg-blue-200", "bg-green-200", "bg-yellow-200", "bg-orange-200", "bg-gray-200"];
 
+  {/* useEffect para cerrar el panel de filtros al hacer clic fuera de él */}
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
@@ -54,10 +55,7 @@ export default function CategoryFilter({
     };
   }, []);
 
-  useEffect(() => {
-  }, [options, localeKey]);
-
-
+  {/* Función para gestionar la selección de filtros */}
   const toggleFilterOption = (filterKey: string) => {
     const newFilters = selectedFilters.includes(filterKey)
       ? selectedFilters.filter(f => f !== filterKey)
@@ -67,6 +65,7 @@ export default function CategoryFilter({
     onFilterChange(newFilters);
   };
 
+  {/* Función para abrir/cerrar el panel de filtros */}
   const toggleFilterPanel = () => {
     setIsOpen(!isOpen);
   };
@@ -85,7 +84,8 @@ export default function CategoryFilter({
          localeKey === 'Filter_Activity' ? locale['Select activities'] : 'Seleccionar filtro'}
       </span>
       </button>
-
+      
+      {/* Contenedor de opciones de filtro */}
       {isOpen && (
         <div
         className="absolute mt-2 
@@ -149,7 +149,8 @@ export default function CategoryFilter({
           </div>
         </div>
       )}
-      {/* Nuevo contenedor de filtros seleccionados */}
+      
+      {/* Colores de los chips de filtro */}
       <div className="flex flex-wrap gap-2 mt-2">
         {selectedFilters.map((filterKey, index) => (
           <div
@@ -161,7 +162,6 @@ export default function CategoryFilter({
               className="ml-1 font-bold text-gray-600 hover:text-black"
               onClick={() => toggleFilterOption(filterKey)}
             >
-              x
             </button>
           </div>
         ))}

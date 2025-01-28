@@ -47,6 +47,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
     document.addEventListener('mouseup', handleMouseUp);
   };
 
+  {/* Función para mover el Expander */}
   const handleMouseMove = (evt: MouseEvent) => {
     if (startYRef.current !== null && startHeightRef.current !== null) {
       const delta = startYRef.current - evt.clientY;
@@ -59,6 +60,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
     }
   };
 
+  {/* Función para soltar el Expander */}
   const handleMouseUp = () => {
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
@@ -66,6 +68,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
     startHeightRef.current = null;
   };
 
+  {/* Función para tocar el Expander en dispositivos táctiles */}
   const handleTouchStart = (evt: React.TouchEvent) => {
     evt.stopPropagation();
     startYRef.current = evt.touches[0].clientY;
@@ -74,6 +77,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
     document.addEventListener('touchend', handleTouchEnd);
   };
   
+  {/* Función para mover el Expander en dispositivos táctiles */}
   const handleTouchMove = (evt: TouchEvent) => {
     evt.preventDefault();
     if (startYRef.current !== null && startHeightRef.current !== null) {
@@ -87,6 +91,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
     }
   };
   
+  {/* Función para soltar el Expander en dispositivos táctiles */}
   const handleTouchEnd = () => {
     document.removeEventListener('touchmove', handleTouchMove);
     document.removeEventListener('touchend', handleTouchEnd);
@@ -94,9 +99,9 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
     startHeightRef.current = null;
   };
 
+  {/* useEffect para ir actualizando la altura del Expander */}
   useEffect(() => {
     const handleResize = () => {
-      // Actualizar minHeight cuando cambia el tamaño de la ventana
       if (expanderRef.current) {
         const currentHeight = parseInt(expanderHeight);
         const minHeight = getMinHeightPx();
@@ -112,6 +117,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
     };
   }, [expanderHeight]);
   
+  {/* useEffect para cerrar el Expander al hacer click fuera de él */}
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (expanderRef.current && !expanderRef.current.contains(event.target as Node)) {
@@ -126,6 +132,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
     };
   }, [onClose]);
 
+  {/* useEffect para actualizar la altura del Expander al abrirlo */}
   useEffect(() => {
     if (visible) {
       setExpanderHeight(`${MIN_HEIGHT_VH}vh`);
@@ -135,6 +142,7 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
     }
   }, [visible]);
 
+  {/* useEffect para ajustar la altura del contenido */}
   useEffect(() => {
       const headerHeight = (expanderRef.current?.querySelector('div.sticky') as HTMLElement)?.offsetHeight || 0;
       contentRef.current?.style.setProperty('height', `calc(${expanderHeight} - ${headerHeight}px)`);
@@ -143,7 +151,6 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
 
   if (!resource) return null;
 
-  // Image collection
   const images = [
     resource[locale['feature images']],
     resource[locale['feature 1 images']],
@@ -152,7 +159,6 @@ export default function Expander({ visible, onClose, resource, locale }: Expande
     resource[locale['feature 4 images']],
   ].filter(Boolean);
 
-  // Organize data into sections
   const basicInfo = {
     [locale['island']]: resource[locale['island']],
     [locale['council']]: resource[locale['council']],

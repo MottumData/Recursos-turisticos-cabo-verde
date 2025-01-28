@@ -10,7 +10,6 @@ import { useLanguage } from '../Utils/languageContext';
 import { Route } from '../Utils/loadCsv';
 import useSidebarHooks from './sidebarUtils';
 import { FaInfoCircle } from 'react-icons/fa';
-import RouteModal from './modal';
 
 type Language = 'pt' | 'en' | 'es';
 
@@ -42,7 +41,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, onOpen ,content, se
 
   const [filteredRoutes, setFilteredRoutes] = useState<Route[]>([]);
 
-  // Use the custom hook to handle useEffects
+  {/* Usar los hooks de sidebarUtils */}
   useSidebarHooks({
     sidebarRef,
     onClose,
@@ -57,6 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, onOpen ,content, se
     setFilteredRoutes
   });
 
+  {/* Función para manejar el cambio de ruta */}
   const handleRouteChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const routeName = event.target.value;
     setSelectedRoute(routeName);
@@ -66,6 +66,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose, onOpen ,content, se
     onClose();
   };
 
+  {/* useEffect para limpiar los filtros cuando cambiamos de idioma */}
   useEffect(() => {
     setFilteredCategories([]);
     setFilteredDurations([]);

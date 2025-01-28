@@ -6,8 +6,8 @@ import { JSX } from 'react';
 import { FaLandmark, FaUmbrellaBeach, FaMonument, FaGuitar, FaPalette, FaWrench, FaPaintBrush, FaPrayingHands, FaSeedling, FaMountain, FaBinoculars, FaGem, FaUsers, FaUniversity, FaTractor } from 'react-icons/fa';
 
 export function createColoredDivIcon(iconElement: JSX.Element, bgColor: string) {
-  const size = 30; // Tamaño del círculo exterior
-  const iconScale = 0.8; // Factor de escala para el icono interior
+  const size = 30; {/* Tamaño del círculo exterior */}
+  const iconScale = 0.8; {/* Factor de escala para el icono interior */}
   
   return L.divIcon({
     html: renderToStaticMarkup(

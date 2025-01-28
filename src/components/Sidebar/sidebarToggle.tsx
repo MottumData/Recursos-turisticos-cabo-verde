@@ -15,7 +15,7 @@ const SidebarToggle: React.FC<SidebarToggleProps> = ({ visible, onToggle }) => {
     rounded-r-lg shadow-md p-2 focus:outline-none z-[100000] transition-all duration-300 ease-in-out"
     style={{
         left: visible ? 
-          'min(400px, max(60vw, min(40vw, 400px)))' : // Coincide con el ancho máximo del sidebar
+          'min(400px, max(60vw, min(40vw, 400px)))' :
           '0px'
       }}
     >
