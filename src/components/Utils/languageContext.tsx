@@ -8,6 +8,7 @@ interface LanguageContextProps {
   setLanguage: (language: string) => void;
 }
 
+{/* Crear el contexto de idioma */}
 const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
@@ -20,6 +21,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+{/* Hook para obtener el idioma */}
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (!context) {

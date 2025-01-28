@@ -46,6 +46,7 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
   const [filteredPoints, setFilteredPoints] = useState<TouristResource[]>(points);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  {/* Función para gestionar la selección de rutas */}
   const handleRouteSelect = (route: Route | null) => {
     setSelectedRoute(route);
     setSelectedRouteResource(route);
@@ -64,20 +65,19 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
     }
   };
 
+  {/* Función para gestionar los cambios en los filtros seleccionados */}
   const handleCategoryFilterChange = (categories: string[]) => {
     setFilteredCategories(categories);
     
     let filtered = points;
     
-    // Apply route filter if a route is selected
     if (selectedRouteResource && selectedRouteResource[locale['georeferenced resources']]) {
       const routePoints: string[] = selectedRouteResource[locale['georeferenced resources']]
         .split('\n')
         .map((line: string) => line.trim());
       filtered = points.filter(point => routePoints.some(rp => point.id.startsWith(rp)));
     }
-    
-    // Apply category filter
+
     if (categories.length > 0) {
       filtered = filtered.filter(point => categories.includes(point.cara));
     }
@@ -85,7 +85,7 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
     setFilteredPoints(filtered);
   };
 
-
+  {/* Función para seleccionar una ruta */}
   const handleRouteClick = () => {
     if (selectedRoute) {
       setSelectedRouteResource(selectedRoute);
@@ -93,12 +93,14 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
     }
   };
 
+  {/* Función para hacer click en un marcador del mapa */}
   const handleMarkerClick = (point: TouristResource) => {
     setSelectedResource(point);
     setSelectedMapResource(point);
     setExpanderVisible(true);
   };
 
+  {/* Función para la gestión del sidebar; abierto o cerrado */}
   const handleSidebarToggle = () => {
     setSidebarVisible(!sidebarVisible);
     if (!sidebarVisible) {
@@ -107,6 +109,7 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
     }
   };
 
+  {/* Función para cerrar los expanders */}
   const handleRouteExpanderClose = () => {
     setRouteExpanderVisible(false);
     setSelectedRoute(null);
@@ -114,9 +117,9 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
     setFilteredPoints(points);
   };
   
-
   const locale: { [key: string]: string } = locales[language];
 
+  {/* useEffect para el manejo del tamaño de la pantalla en móvil, evita la desaparicióon de la leyenda en el móvil */}
   useEffect(() => {
     const updateHeight = () => {
       const vh = window.innerHeight * 0.01;
@@ -128,12 +131,12 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
     return () => window.removeEventListener('resize', updateHeight);
   }, []);
 
+  {/* useEffect para resetear los estados de las rutas y los puntos al cambiar el idioma */}
   useEffect(() => {
-    // Resetar el estado de las rutas y los puntos al cambiar el idioma
     setSelectedRouteResource(null);
-    setSelectedRoute(null); // Añadido para resetear la ruta seleccionada
-    setRouteExpanderVisible(false); // Cerrar el expander de la ruta
-    setFilteredPoints(points); // Restablecer los puntos filtrados a todos los puntos
+    setSelectedRoute(null); 
+    setRouteExpanderVisible(false);
+    setFilteredPoints(points); 
   }, [language, points]);
 
   return (
@@ -149,7 +152,6 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
         </button>
       </div>
 
-      {/* Componente de leyenda */}
       {showLegend && (
         <Legend
           locale={locale}
@@ -170,6 +172,7 @@ export default function Map({ center, points, selectedRoute, setSelectedRoute, l
         ))}
         {selectedRoute && <RoutingControl selectedRoute={selectedRoute} onRouteClick={handleRouteClick} locale={locale}/>}
       </MapContainer>
+      
       <Expander
         visible={expanderVisible}
         resource={selectedResource ?? undefined}

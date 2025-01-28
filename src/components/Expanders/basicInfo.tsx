@@ -44,6 +44,7 @@ const BasicInfo: React.FC<BasicInfoProps> = ({
     additional: false,
   });
 
+  {/* Resetear las secciones abiertas para que aparezcan cerradas cada vez que accedes a un nuevo recurso */}
   useEffect(() => {
     if (!isDropdownOpen) {
       setOpenSections({
@@ -54,12 +55,13 @@ const BasicInfo: React.FC<BasicInfoProps> = ({
     }
   }, [isDropdownOpen]);
 
+  {/* Función para abrir y cerrar las secciones */}
   const toggleSection = (section: string) => {
     setOpenSections((prev) => ({
       ...prev,
       [section]: !prev[section],
     }));
-    setIsDropdownOpen(true); // Asegurarse de que isDropdownOpen esté en true cuando se abre una sección
+    setIsDropdownOpen(true);
   };
 
   const sections: { [key: string]: Section } = type === 'route' ? {
@@ -106,6 +108,7 @@ const BasicInfo: React.FC<BasicInfoProps> = ({
     }
   };
 
+  {/* Función para renderizar las secciones */}
   const renderSection = (
     key: string,
     title: string,

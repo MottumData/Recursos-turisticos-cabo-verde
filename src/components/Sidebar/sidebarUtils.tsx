@@ -30,7 +30,8 @@ const useSidebarHooks = ({
   filteredActivities,
   setFilteredRoutes
 }: SidebarUtilsProps) => {
-  // Handle click outside to close sidebar
+
+  {/* Cerrar el sidebar cuando clicamos fuera de el mismo */}
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
@@ -45,7 +46,7 @@ const useSidebarHooks = ({
     };
   }, [sidebarRef, onClose]);
 
-  // Load routes from CSV
+  {/* Cargar las rutas desde el CSV */}
   useEffect(() => {
     const csvFilePath = `/data/rutas_cabo_verde_${language}.csv`;
     loadRoutesCSV(csvFilePath, language).then(data => {
@@ -83,7 +84,7 @@ const useSidebarHooks = ({
     });
   }, [language, locale, setRoutes, setDurationOptions, setActivityOptions]);
 
-  // Filter routes based on durations and activities
+  {/* Filtrar las rutas según las duraciones y actividades seleccionadas */}
   useEffect(() => {
     let filtered = routes;
   

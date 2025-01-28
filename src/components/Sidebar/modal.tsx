@@ -10,6 +10,7 @@ interface RouteModalProps {
 const RouteModal: React.FC<RouteModalProps> = ({ isOpen, onClose, locale }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
+  {/* Cerrar el modal cuando clicamos fuera de el mismo */}
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {

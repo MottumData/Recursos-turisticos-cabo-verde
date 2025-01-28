@@ -16,7 +16,7 @@ export default function RoutingControl({ selectedRoute, onRouteClick, locale }: 
   const map = useMap();
   const [routeCoords, setRouteCoords] = useState<[number, number][]>([]);
 
-
+  {/* useEffect para cargar la ruta seleccionada en el mapa */}
   useEffect(() => {
     if (selectedRoute) {
       const recursosGeoreferenciados = selectedRoute[locale["georeferenced resources"]];
@@ -43,7 +43,8 @@ export default function RoutingControl({ selectedRoute, onRouteClick, locale }: 
         console.error('Se requieren al menos dos waypoints para calcular una ruta.');
         return;
       }
-
+      
+      {/* Función asíncrona para obtener la ruta */}
       const fetchRoute = async () => {
         try {
           const response = await fetch('https://api.openrouteservice.org/v2/directions/driving-car/geojson', {
@@ -88,7 +89,7 @@ export default function RoutingControl({ selectedRoute, onRouteClick, locale }: 
           positions={routeCoords} 
           pathOptions={{ 
             color: 'blue', 
-            weight: 8, // Grosor normal
+            weight: 8, 
             opacity: 0.7,
             className: 'no-focus-outline',
             interactive: true
@@ -110,8 +111,8 @@ export default function RoutingControl({ selectedRoute, onRouteClick, locale }: 
           positions={routeCoords} 
           pathOptions={{ 
             color: 'transparent', 
-            weight: 20, // Grosor mayor para facilitar el toque
-            opacity: 0, // Transparente
+            weight: 20, 
+            opacity: 0,
             className: 'no-focus-outline',
             interactive: true
           }} 

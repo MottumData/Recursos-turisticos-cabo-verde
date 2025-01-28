@@ -8,20 +8,21 @@ export interface TouristResource {
   lat: number;
   lng: number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any; // Allows any other CSV fields
+  [key: string]: any;
 }
 
 export interface Route {
   name: string;
   coordinates: [number, number][];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any; // Allows any other CSV fields
+  [key: string]: any;
 }
 
 const locales = { pt, en, es };
 
 type Language = 'pt' | 'en' | 'es';
 
+{/* Función para cargar los recursos turísticos desde un archivo CSV */}
 export const loadCSV = (csvFilePath: string, language: Language): Promise<TouristResource[]> => {
   return new Promise((resolve, reject) => {
     Papa.parse(csvFilePath, {
@@ -38,13 +39,12 @@ export const loadCSV = (csvFilePath: string, language: Language): Promise<Touris
             lat,
             lng,
           };
-          // Copiar todas las demás columnas
           for (const [key, value] of Object.entries(row)) {
             if (key !== 'Lat-Long') {
               if (key === 'Cara') {
-                resource['cara'] = value; // Mapeo explícito de 'Cara' a 'cara'
+                resource['cara'] = value; 
               } else {
-                resource[key.toLowerCase()] = value; // Normalizar otras claves si es necesario
+                resource[key.toLowerCase()] = value;
               }
             }
           }
@@ -59,6 +59,7 @@ export const loadCSV = (csvFilePath: string, language: Language): Promise<Touris
   });
 };
 
+{/* Función para cargar las rutas desde un archivo CSV */}
 export const loadRoutesCSV = (csvFilePath: string, language: Language): Promise<Route[]> => {
   const locale = locales[language];
   return new Promise((resolve, reject) => {
@@ -78,7 +79,6 @@ export const loadRoutesCSV = (csvFilePath: string, language: Language): Promise<
             name: row[locale['Nome da rota']],
             coordinates,
           };
-          // Copy all other columns
           for (const [key, value] of Object.entries(row)) {
             if (key !== 'Rota LatLong Transformada' && key !== 'Nome da rota') {
               route[key.toLowerCase()] = value;
