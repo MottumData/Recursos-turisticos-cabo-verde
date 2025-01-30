@@ -3,6 +3,8 @@
 
 Este repositorio contiene una solución que permite a los usuarios visualizar e interactuar con un mapa de recursos turísticos y rutas en Cabo Verde. La aplicación proporciona información detallada sobre cada recurso y ruta, permitiendo tanto filtrarlos como desplegar la informacióon relacionada a la ruta o al recurso, facilitando la exploración y planificación de visitas turísticas. Es una solución multi-idiomas, y se pueden visualizar tanto los recursos como las rutas en portugués, inglés y español. La solución está desarrollada utilizando Node.js y se despliega fácilmente tanto en un entorno local como en un contenedor Docker.
 
+Este repositorio ha sido creado por Mottum en colaboración con Codexca
+
 ## Estructura del repositorio:
 
 - `public/`: Archivos estáticos públicos, como imágenes y datos CSV.
